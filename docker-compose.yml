@@ -1,0 +1,80 @@
+# ==============================================================================
+# PhishShield Production Docker Compose Orchestration
+# Services:
+#   1. backend:  FastAPI + PyTorch CPU + EasyOCR + SQLite database
+#   2. frontend: Nginx static SPA runner with security headers & reverse proxy
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: phishshield-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - PROJECT_NAME=PhishShield
+      - SECRET_KEY=${SECRET_KEY:-phishshield-production-secure-cluster-key-minimum-32chars}
+      - ADMIN_INITIAL_PASSWORD=${ADMIN_INITIAL_PASSWORD:-}
+      - DATABASE_URL=sqlite:////app/data/phishshield.db
+      - MAX_CONCURRENT_OCR=1
+      - MAX_OCR_QUEUE_DEPTH=10
+      - OCR_TIMEOUT_SECONDS=120
+      - EASYOCR_MODULE_PATH=/app/models/easyocr
+      - TORCH_HOME=/app/models/torch
+      - CORS_ORIGINS=http://localhost,http://localhost:80,http://127.0.0.1,http://127.0.0.1:80
+    volumes:
+      # Persistent SQLite database storage
+      - phishshield_backend_data:/app/data
+      # Persistent ML & OCR neural model cache (avoids repeated model downloads)
+      - phishshield_model_cache:/app/models
+    networks:
+      - phishshield-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 3000M
+          cpus: '2.0'
+        reservations:
+          memory: 512M
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: phishshield-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - phishshield-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+networks:
+  phishshield-network:
+    driver: bridge
+
+volumes:
+  phishshield_backend_data:
+    driver: local
+  phishshield_model_cache:
+    driver: local
