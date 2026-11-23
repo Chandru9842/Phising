@@ -1,7 +1,8 @@
 # ==============================================================================
 # PhishShield Production Backend Dockerfile
 # Python 3.12-slim with CPU PyTorch, EasyOCR & OpenCV dependencies
-# Non-root execution, bounded resource usage, and container healthcheck
+# Non-root execution (UID 1000 for Hugging Face Spaces & standard Linux compatibility)
+# Multi-port support (7860 for Hugging Face Spaces, 8000 for Docker Compose)
 # ==============================================================================
 
 FROM python:3.12-slim AS base
@@ -12,7 +13,8 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
     EASYOCR_MODULE_PATH=/app/models/easyocr \
-    TORCH_HOME=/app/models/torch
+    TORCH_HOME=/app/models/torch \
+    PORT=7860
 
 # Install system dependencies required by OpenCV and EasyOCR
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -22,15 +24,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Create dedicated non-root application user
-RUN groupadd -g 10001 phishshield && \
-    useradd -u 10001 -g phishshield -s /bin/bash -m phishshield
+# Create dedicated non-root application user (UID 1000 for Hugging Face Spaces compatibility)
+RUN groupadd -g 1000 phishshield && \
+    useradd -u 1000 -g phishshield -s /bin/bash -m phishshield
 
 WORKDIR /app
 
 # Create persistent storage directories with appropriate ownership
-RUN mkdir -p /app/data /app/models/easyocr /app/models/torch && \
-    chown -R phishshield:phishshield /app
+RUN mkdir -p /app/data /app/models/easyocr /app/models/torch /tmp/cache && \
+    chown -R phishshield:phishshield /app /tmp/cache
 
 # Copy dependency definition
 COPY requirements.txt .
@@ -45,12 +47,12 @@ COPY --chown=phishshield:phishshield run.py .
 # Switch to non-root user
 USER phishshield
 
-# Expose backend API port
-EXPOSE 8000
+# Expose backend API ports (7860 for HF Spaces, 8000 for Docker Compose)
+EXPOSE 7860 8000
 
-# Container healthcheck targeting the zero-dependency health endpoint
-HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-    CMD curl -f http://localhost:8000/api/health || exit 1
+# Container healthcheck targeting the active port
+HEALTHCHECK --interval=30s --timeout=5s --start-period=35s --retries=3 \
+    CMD curl -f http://localhost:${PORT:-7860}/api/health || curl -f http://localhost:8000/api/health || exit 1
 
-# Launch ASGI production server (single worker with threadpool for CPU OCR stability)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+# Launch ASGI production server using configurable PORT env variable
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1"]
