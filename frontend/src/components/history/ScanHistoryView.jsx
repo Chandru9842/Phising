@@ -284,11 +284,10 @@ export default function ScanHistoryView({
                   key={t.id}
                   type="button"
                   onClick={() => handleTypeChange(t.id)}
-                  className={`px-2.5 py-1 rounded text-xs font-mono transition-all ${
-                    selectedType === t.id
+                  className={`px-2.5 py-1 rounded text-xs font-mono transition-all ${selectedType === t.id
                       ? 'bg-[#EFF6FF] text-[#1D4ED8] font-semibold border border-[#BFDBFE]'
                       : 'text-[#475569] hover:text-[#0F172A]'
-                  }`}
+                    }`}
                 >
                   {t.label}
                 </button>
@@ -309,11 +308,10 @@ export default function ScanHistoryView({
                   key={v.id}
                   type="button"
                   onClick={() => handleVerdictChange(v.id)}
-                  className={`px-2.5 py-1 rounded text-xs font-mono transition-all ${
-                    selectedVerdict === v.id
+                  className={`px-2.5 py-1 rounded text-xs font-mono transition-all ${selectedVerdict === v.id
                       ? 'bg-[#0F172A] text-white font-semibold'
                       : `${v.color || 'text-[#475569]'} hover:text-[#0F172A]`
-                  }`}
+                    }`}
                 >
                   {v.label}
                 </button>
@@ -393,11 +391,10 @@ export default function ScanHistoryView({
                     <tr
                       key={item.id}
                       onClick={() => setSelectedRecord(item)}
-                      className={`cursor-pointer transition-colors ${
-                        isSelected
+                      className={`cursor-pointer transition-colors ${isSelected
                           ? 'bg-cyan-500/10 hover:bg-cyan-500/15'
                           : 'hover:bg-[#F8FAFC]/60'
-                      }`}
+                        }`}
                     >
                       <td className="py-3 px-4 font-mono text-[11px] text-[#64748B] whitespace-nowrap">
                         {formatDateTime(item.created_at)}
@@ -447,17 +444,16 @@ export default function ScanHistoryView({
 
                       <td className="py-3 px-3 font-mono whitespace-nowrap">
                         <span
-                          className={`font-bold ${
-                            formattedScore === 'N/A'
+                          className={`font-bold ${formattedScore === 'N/A'
                               ? 'text-[#475569]'
                               : item.risk_score >= 80
-                              ? 'text-[#991B1B]'
-                              : item.risk_score >= 60
-                              ? 'text-orange-400'
-                              : item.risk_score >= 30
-                              ? 'text-[#92400E]'
-                              : 'text-[#065F46]'
-                          }`}
+                                ? 'text-[#991B1B]'
+                                : item.risk_score >= 60
+                                  ? 'text-orange-400'
+                                  : item.risk_score >= 30
+                                    ? 'text-[#92400E]'
+                                    : 'text-[#065F46]'
+                            }`}
                         >
                           {formattedScore}
                         </span>
@@ -532,11 +528,10 @@ export default function ScanHistoryView({
                     key={page}
                     type="button"
                     onClick={() => setCurrentPage(page)}
-                    className={`w-7 h-7 rounded text-xs transition-all ${
-                      currentPage === page
+                    className={`w-7 h-7 rounded text-xs transition-all ${currentPage === page
                         ? 'bg-[#1D4ED8] text-white font-bold shadow-sm'
                         : 'bg-[#F8FAFC] text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0]'
-                    }`}
+                      }`}
                   >
                     {page}
                   </button>
@@ -595,17 +590,16 @@ export default function ScanHistoryView({
             <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
               <span className="text-[10px] text-[#64748B] uppercase block">Risk Score</span>
               <span
-                className={`font-bold text-sm mt-0.5 block ${
-                  selectedRecord.risk_score === null || selectedRecord.risk_level === 'INSUFFICIENT_EVIDENCE'
+                className={`font-bold text-sm mt-0.5 block ${selectedRecord.risk_score === null || selectedRecord.risk_level === 'INSUFFICIENT_EVIDENCE'
                     ? 'text-[#475569]'
                     : selectedRecord.risk_score >= 80
-                    ? 'text-[#991B1B]'
-                    : selectedRecord.risk_score >= 60
-                    ? 'text-orange-400'
-                    : selectedRecord.risk_score >= 30
-                    ? 'text-[#92400E]'
-                    : 'text-[#065F46]'
-                }`}
+                      ? 'text-[#991B1B]'
+                      : selectedRecord.risk_score >= 60
+                        ? 'text-orange-400'
+                        : selectedRecord.risk_score >= 30
+                          ? 'text-[#92400E]'
+                          : 'text-[#065F46]'
+                  }`}
               >
                 {formatRiskScore(selectedRecord.risk_score, selectedRecord.risk_level)}
               </span>

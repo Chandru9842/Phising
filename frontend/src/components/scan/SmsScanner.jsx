@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { apiService } from '../../services/api';
+import NetworkErrorCard from '../common/NetworkErrorCard';
+import { SkeletonScanDossier } from '../common/SkeletonLoader';
 import {
   MessageSquare,
   ShieldAlert,
@@ -255,13 +257,23 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start space-x-2.5">
-            <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
-            <div className="flex-1">
-              <span className="font-semibold block">Scan Error:</span>
-              <span className="opacity-90">{error}</span>
+          error.toLowerCase().includes('network') || error.toLowerCase().includes('connect') || error.toLowerCase().includes('server') || error.toLowerCase().includes('offline') || error.toLowerCase().includes('failed') ? (
+            <NetworkErrorCard
+              title="SMS Gateway Connection Offline"
+              message="Unable to communicate with the PhishShield smishing detection engine. Please verify your internet connection and ensure the backend server is running at http://127.0.0.1:8000."
+              details={error}
+              onRetry={() => handleScan(message)}
+              isRetrying={isScanning}
+            />
+          ) : (
+            <div className="p-4 rounded-xl bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#7F1D1D] flex items-start space-x-3 shadow-sm">
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#DC2626] mt-0.5" />
+              <div className="flex-1 space-y-1">
+                <span className="font-semibold block font-mono text-[11px] uppercase text-[#991B1B]">Smishing Engine Error:</span>
+                <span className="opacity-95 leading-relaxed">{error}</span>
+              </div>
             </div>
-          </div>
+          )
         )}
 
         {/* Preset Sample Targets */}
@@ -307,8 +319,11 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
         </div>
       </div>
 
+      {/* Loading Skeleton */}
+      {isScanning && <SkeletonScanDossier />}
+
       {/* 2. SCAN RESULTS VIEW */}
-      {scanResult && (
+      {scanResult && !isScanning && (
         <div className="space-y-6">
           {/* Hero Assessment Card */}
           <div className="cyber-card p-5 sm:p-6 space-y-5 border-purple-500/20">
@@ -316,7 +331,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#E2E8F0]">
               <div className="min-w-0 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-mono text-purple-400 uppercase tracking-wider font-semibold">
+                  <span className="text-[11px] font-mono text-[#1D4ED8] uppercase tracking-wider font-semibold">
                     Composite Smishing Assessment
                   </span>
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0]">
@@ -353,29 +368,34 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
 
             {/* Actionable Safety Recommendation Directive */}
             <div
-              className={`p-4 rounded-xl border flex items-start space-x-3.5 ${scanResult.composite_risk_level === 'CRITICAL'
-                ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
-                : scanResult.composite_risk_level === 'HIGH'
-                  ? 'bg-orange-950/30 border-orange-800/70 text-orange-200'
+              className={`p-4 rounded-xl border flex items-start space-x-3.5 shadow-sm ${
+                scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH'
+                  ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
                   : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS'
-                    ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
-                    : 'bg-[#ECFDF5] border-[#A7F3D0] text-emerald-200'
-                }`}
+                  ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
+                  : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
+              }`}
             >
               <div className="shrink-0 mt-0.5">
-                {scanResult.composite_risk_level === 'CRITICAL' ? (
-                  <ShieldAlert className="w-5 h-5 text-[#991B1B] animate-pulse" />
-                ) : scanResult.composite_risk_level === 'HIGH' ? (
-                  <AlertOctagon className="w-5 h-5 text-orange-400" />
+                {scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH' ? (
+                  <ShieldAlert className="w-5 h-5 text-[#DC2626] animate-pulse" />
                 ) : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS' ? (
-                  <AlertTriangle className="w-5 h-5 text-[#92400E]" />
+                  <AlertTriangle className="w-5 h-5 text-[#D97706]" />
                 ) : (
-                  <ShieldCheck className="w-5 h-5 text-[#065F46]" />
+                  <ShieldCheck className="w-5 h-5 text-[#059669]" />
                 )}
               </div>
               <div className="flex-1 text-xs">
                 <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <span className="font-mono font-bold tracking-wider uppercase text-[11px]">
+                  <span
+                    className={`font-mono font-bold tracking-wider uppercase text-[11px] ${
+                      scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH'
+                        ? 'text-[#991B1B]'
+                        : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS'
+                        ? 'text-[#92400E]'
+                        : 'text-[#065F46]'
+                    }`}
+                  >
                     ACTION DIRECTIVE: {scanResult.recommendation.replace(/_/g, ' ')}
                   </span>
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SkeletonTableRows } from '../common/SkeletonLoader';
 import {
   History,
   ArrowRight,
@@ -119,8 +120,8 @@ export default function RecentActivityTable({
       </div>
 
       {isLoading ? (
-        <div className="py-6 text-center text-xs font-mono text-[#64748B]">
-          Loading telemetry from audit store...
+        <div className="overflow-x-auto rounded-md border border-[#E2E8F0] p-2 bg-white">
+          <SkeletonTableRows rows={4} />
         </div>
       ) : displayScans.length > 0 ? (
         <div className="overflow-x-auto rounded-md border border-[#E2E8F0]">

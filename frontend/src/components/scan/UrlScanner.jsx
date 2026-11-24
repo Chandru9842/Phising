@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { apiService } from '../../services/api';
+import NetworkErrorCard from '../common/NetworkErrorCard';
+import { SkeletonScanDossier } from '../common/SkeletonLoader';
 import {
   Globe,
   ShieldAlert,
@@ -299,13 +301,12 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 <Globe className="w-4 h-4 text-[#1D4ED8]" />
                 {protocolDetails && (
                   <span
-                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
-                      protocolDetails.secure
-                        ? 'bg-emerald-500/10 text-[#065F46] border-emerald-500/20'
-                        : protocolDetails.protocol === 'http'
+                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${protocolDetails.secure
+                      ? 'bg-emerald-500/10 text-[#065F46] border-emerald-500/20'
+                      : protocolDetails.protocol === 'http'
                         ? 'bg-rose-500/10 text-[#991B1B] border-rose-500/20'
                         : 'bg-slate-800 text-[#475569] border-slate-700'
-                    }`}
+                      }`}
                   >
                     {protocolDetails.protocol.toUpperCase()}
                   </span>
@@ -375,13 +376,23 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start space-x-2.5">
-            <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
-            <div className="flex-1">
-              <span className="font-semibold block">Scan Error:</span>
-              <span className="opacity-90">{error}</span>
+          error.toLowerCase().includes('network') || error.toLowerCase().includes('connect') || error.toLowerCase().includes('server') || error.toLowerCase().includes('offline') || error.toLowerCase().includes('failed') ? (
+            <NetworkErrorCard
+              title="Scanner Gateway Connection Offline"
+              message="Unable to communicate with the PhishShield security engine. Please verify your internet connection and ensure the backend server is running at http://127.0.0.1:8000."
+              details={error}
+              onRetry={handleScan}
+              isRetrying={isScanning}
+            />
+          ) : (
+            <div className="p-4 rounded-xl bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#7F1D1D] flex items-start space-x-3 shadow-sm">
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#DC2626] mt-0.5" />
+              <div className="flex-1 space-y-1">
+                <span className="font-semibold block font-mono text-[11px] uppercase text-[#991B1B]">Security Engine Error:</span>
+                <span className="opacity-95 leading-relaxed">{error}</span>
+              </div>
             </div>
-          </div>
+          )
         )}
 
         {/* Preset Sample Targets */}
@@ -427,8 +438,11 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
         </div>
       </div>
 
+      {/* Loading Skeleton */}
+      {isScanning && <SkeletonScanDossier />}
+
       {/* 2. SCAN RESULT DOSSIER */}
-      {scanResult && (
+      {scanResult && !isScanning && (
         <div className="space-y-6">
           {/* Hero Assessment Card */}
           <div className="cyber-card p-5 sm:p-6 space-y-5 border-[#E2E8F0]">
@@ -474,30 +488,34 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
             {/* Actionable Recommendation Directive */}
             {riskAssessment && (
               <div
-                className={`p-4 rounded-xl border flex items-start space-x-3.5 ${
-                  riskAssessment.risk_level === 'CRITICAL'
-                    ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
-                    : riskAssessment.risk_level === 'HIGH'
-                    ? 'bg-orange-950/30 border-orange-800/70 text-orange-200'
+                className={`p-4 rounded-xl border flex items-start space-x-3.5 shadow-sm ${
+                  riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH'
+                    ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
                     : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS'
-                    ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
-                    : 'bg-[#ECFDF5] border-[#A7F3D0] text-emerald-200'
+                    ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
+                    : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
                 }`}
               >
                 <div className="shrink-0 mt-0.5">
-                  {riskAssessment.risk_level === 'CRITICAL' ? (
-                    <ShieldAlert className="w-5 h-5 text-[#991B1B] animate-pulse" />
-                  ) : riskAssessment.risk_level === 'HIGH' ? (
-                    <AlertOctagon className="w-5 h-5 text-orange-400" />
+                  {riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH' ? (
+                    <ShieldAlert className="w-5 h-5 text-[#DC2626] animate-pulse" />
                   ) : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS' ? (
-                    <AlertTriangle className="w-5 h-5 text-[#92400E]" />
+                    <AlertTriangle className="w-5 h-5 text-[#D97706]" />
                   ) : (
-                    <ShieldCheck className="w-5 h-5 text-[#065F46]" />
+                    <ShieldCheck className="w-5 h-5 text-[#059669]" />
                   )}
                 </div>
                 <div className="flex-1 text-xs">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="font-mono font-bold tracking-wider uppercase text-[11px]">
+                    <span
+                      className={`font-mono font-bold tracking-wider uppercase text-[11px] ${
+                        riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH'
+                          ? 'text-[#991B1B]'
+                          : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS'
+                          ? 'text-[#92400E]'
+                          : 'text-[#065F46]'
+                      }`}
+                    >
                       DIRECTIVE: {riskAssessment.recommendation.replace(/_/g, ' ')}
                     </span>
                   </div>
@@ -519,15 +537,14 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
 
                 <div className="flex items-baseline space-x-2">
                   <span
-                    className={`text-3xl font-black font-mono ${
-                      scanResult.risk_score >= 80
-                        ? 'text-[#991B1B]'
-                        : scanResult.risk_score >= 60
+                    className={`text-3xl font-black font-mono ${scanResult.risk_score >= 80
+                      ? 'text-[#991B1B]'
+                      : scanResult.risk_score >= 60
                         ? 'text-orange-400'
                         : scanResult.risk_score >= 30
-                        ? 'text-[#92400E]'
-                        : 'text-[#065F46]'
-                    }`}
+                          ? 'text-[#92400E]'
+                          : 'text-[#065F46]'
+                      }`}
                   >
                     {scanResult.risk_score}%
                   </span>
@@ -540,22 +557,21 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 <div className="space-y-1">
                   <div className="w-full bg-[#F8FAFC] h-2 rounded-full overflow-hidden border border-[#E2E8F0]">
                     <div
-                      className={`h-full rounded-full transition-all duration-700 ${
-                        scanResult.risk_score >= 80
-                          ? 'bg-rose-500'
-                          : scanResult.risk_score >= 60
+                      className={`h-full rounded-full transition-all duration-700 ${scanResult.risk_score >= 80
+                        ? 'bg-rose-500'
+                        : scanResult.risk_score >= 60
                           ? 'bg-orange-500'
                           : scanResult.risk_score >= 30
-                          ? 'bg-amber-500'
-                          : 'bg-emerald-500'
-                      }`}
+                            ? 'bg-amber-500'
+                            : 'bg-emerald-500'
+                        }`}
                       style={{ width: `${Math.max(4, scanResult.risk_score)}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-[9px] font-mono text-[#64748B]">
+                  <div className="flex justify-between text-[9px] font-mono font-medium text-[#475569]">
                     <span>Safe (0-30%)</span>
                     <span>Suspicious (30-60%)</span>
-                    <span>Phishing (80%+)</span>
+                    <span>Phishing (60%+)</span>
                   </div>
                 </div>
               </div>
@@ -630,7 +646,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                   <div className="flex justify-between items-center">
                     <span className="text-[#475569]">Model Output Prob:</span>
                     <span className="font-mono text-[#0F172A] font-bold">
-                      {shapData ? (shapData.model_output * 100).toFixed(1) : `${scanResult.risk_score}%`}
+                      {shapData ? `${(shapData.model_output * 100).toFixed(1)}%` : `${scanResult.risk_score}%`}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
@@ -797,9 +813,8 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                               <div className="flex justify-between font-mono text-[11px]">
                                 <span>SHAP Attribution:</span>
                                 <span
-                                  className={`font-bold ${
-                                    data.shap > 0 ? 'text-[#991B1B]' : 'text-[#065F46]'
-                                  }`}
+                                  className={`font-bold ${data.shap > 0 ? 'text-[#991B1B]' : 'text-[#065F46]'
+                                    }`}
                                 >
                                   {data.shap > 0 ? '+' : ''}
                                   {data.shap.toFixed(4)}
@@ -864,11 +879,10 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                         key={cat}
                         type="button"
                         onClick={() => setActiveCategory(cat)}
-                        className={`px-2.5 py-1 rounded text-[11px] font-mono font-medium transition-all ${
-                          activeCategory === cat
-                            ? 'bg-cyan-500/15 text-[#0F172A] border border-[#CBD5E1]'
-                            : 'bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0] hover:text-[#0F172A]'
-                        }`}
+                        className={`px-2.5 py-1 rounded text-[11px] font-mono font-medium transition-all ${activeCategory === cat
+                          ? 'bg-cyan-500/15 text-[#0F172A] border border-[#CBD5E1]'
+                          : 'bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0] hover:text-[#0F172A]'
+                          }`}
                       >
                         {cat}
                       </button>
@@ -904,11 +918,10 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                     return (
                       <div
                         key={key}
-                        className={`p-2.5 rounded-lg bg-[#F8FAFC] border transition-all ${
-                          isFlagged
-                            ? 'border-rose-500/40 bg-[#FEF2F2]'
-                            : 'border-[#E2E8F0] hover:border-[#CBD5E1]'
-                        }`}
+                        className={`p-2.5 rounded-lg bg-[#F8FAFC] border transition-all ${isFlagged
+                          ? 'border-rose-500/40 bg-[#FEF2F2]'
+                          : 'border-[#E2E8F0] hover:border-[#CBD5E1]'
+                          }`}
                         title={meta.desc}
                       >
                         <div className="flex items-center justify-between text-[10px] font-mono text-[#64748B] mb-1">
@@ -920,9 +933,8 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                           )}
                         </div>
                         <div
-                          className={`text-xs font-mono font-bold truncate ${
-                            isFlagged ? 'text-[#991B1B]' : 'text-[#0F172A]'
-                          }`}
+                          className={`text-xs font-mono font-bold truncate ${isFlagged ? 'text-[#991B1B]' : 'text-[#0F172A]'
+                            }`}
                         >
                           {typeof val === 'number'
                             ? Number.isInteger(val)

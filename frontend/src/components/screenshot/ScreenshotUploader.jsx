@@ -667,40 +667,40 @@ IMPORTANT STATIC LIMITATIONS:
       case 'CRITICAL':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#FEF2F2] text-rose-200 border border-rose-600 flex items-center gap-1.5 shadow-sm shadow-rose-900/50"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#FEF2F2] text-[#991B1B] border border-[#FECACA] flex items-center gap-1.5 shadow-sm"
             role="status"
             aria-label="Critical Phishing Threat"
           >
-            <AlertOctagon className="w-4 h-4 text-[#991B1B] shrink-0" aria-hidden="true" />
+            <AlertOctagon className="w-4 h-4 text-[#DC2626] shrink-0" aria-hidden="true" />
             <span>CRITICAL PHISHING THREAT</span>
           </span>
         );
       case 'HIGH':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#FFFBEB] text-amber-200 border border-amber-600 flex items-center gap-1.5 shadow-sm shadow-amber-900/50"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FDE68A] flex items-center gap-1.5 shadow-sm"
             role="status"
             aria-label="High Risk Phishing"
           >
-            <AlertTriangle className="w-4 h-4 text-[#92400E] shrink-0" aria-hidden="true" />
+            <AlertTriangle className="w-4 h-4 text-[#D97706] shrink-0" aria-hidden="true" />
             <span>HIGH RISK PHISHING</span>
           </span>
         );
       case 'MEDIUM':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-yellow-950/70 text-yellow-200 border border-yellow-600 flex items-center gap-1.5"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FDE68A] flex items-center gap-1.5"
             role="status"
             aria-label="Medium Risk Caution"
           >
-            <AlertTriangle className="w-4 h-4 text-yellow-400 shrink-0" aria-hidden="true" />
+            <AlertTriangle className="w-4 h-4 text-[#D97706] shrink-0" aria-hidden="true" />
             <span>MEDIUM RISK (CAUTION)</span>
           </span>
         );
       case 'LOW':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-slate-900 text-[#0F172A] border border-slate-700 flex items-center gap-1.5"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0] flex items-center gap-1.5"
             role="status"
             aria-label="Low Risk Informational"
           >
@@ -711,11 +711,11 @@ IMPORTANT STATIC LIMITATIONS:
       case 'SAFE':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#ECFDF5] text-emerald-200 border border-emerald-600 flex items-center gap-1.5 shadow-sm shadow-emerald-900/50"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] flex items-center gap-1.5 shadow-sm"
             role="status"
             aria-label="Authentic Verified Portal"
           >
-            <ShieldCheck className="w-4 h-4 text-[#065F46] shrink-0" aria-hidden="true" />
+            <ShieldCheck className="w-4 h-4 text-[#059669] shrink-0" aria-hidden="true" />
             <span>AUTHENTIC VERIFIED PORTAL</span>
           </span>
         );
@@ -909,10 +909,10 @@ IMPORTANT STATIC LIMITATIONS:
                 <button
                   type="button"
                   onClick={() => handleGenerateSyntheticTest('SBI_PHISHING_CLONE')}
-                  className="p-3 rounded-lg bg-[#F8FAFC] border border-rose-900/40 hover:border-rose-500/60 hover:bg-[#F1F5F9] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-rose-500"
+                  className="p-3 rounded-lg bg-[#FEF2F2]/40 border border-[#FECACA] hover:bg-[#FEF2F2] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-rose-500"
                 >
-                  <span className="text-xs font-semibold text-[#991B1B] group-hover:text-rose-200 block flex items-center gap-1.5">
-                    <AlertTriangle className="w-3.5 h-3.5 text-[#991B1B] shrink-0" />
+                  <span className="text-xs font-semibold text-[#991B1B] block flex items-center gap-1.5">
+                    <AlertTriangle className="w-3.5 h-3.5 text-[#DC2626] shrink-0" />
                     <span>SBI Fake KYC Phishing Clone</span>
                   </span>
                   <span className="text-[10px] font-mono text-[#475569] mt-1 block">
@@ -923,10 +923,10 @@ IMPORTANT STATIC LIMITATIONS:
                 <button
                   type="button"
                   onClick={() => handleGenerateSyntheticTest('GENUINE_SBI_PORTAL')}
-                  className="p-3 rounded-lg bg-[#F8FAFC] border border-emerald-900/40 hover:border-emerald-500/60 hover:bg-[#F1F5F9] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="p-3 rounded-lg bg-[#ECFDF5]/40 border border-[#A7F3D0] hover:bg-[#ECFDF5] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 >
-                  <span className="text-xs font-semibold text-[#065F46] group-hover:text-emerald-200 block flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-[#065F46] shrink-0" />
+                  <span className="text-xs font-semibold text-[#065F46] block flex items-center gap-1.5">
+                    <CheckCircle className="w-3.5 h-3.5 text-[#059669] shrink-0" />
                     <span>Genuine SBI NetBanking Portal</span>
                   </span>
                   <span className="text-[10px] font-mono text-[#475569] mt-1 block">
@@ -1178,7 +1178,7 @@ IMPORTANT STATIC LIMITATIONS:
             <button
               type="button"
               onClick={() => setError(null)}
-              className="text-[#991B1B] hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
+              className="text-[#991B1B] hover:text-[#7F1D1D] font-bold text-xs font-mono shrink-0 ml-2"
             >
               Dismiss
             </button>
@@ -1186,11 +1186,11 @@ IMPORTANT STATIC LIMITATIONS:
         )}
 
         {ocrError && (
-          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start justify-between space-x-2.5">
+          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#7F1D1D] flex items-start justify-between space-x-2.5">
             <div className="flex items-start space-x-2.5">
-              <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#DC2626] mt-0.5" />
               <div>
-                <span className="font-semibold block font-mono text-[11px] uppercase">
+                <span className="font-semibold block font-mono text-[11px] uppercase text-[#991B1B]">
                   OCR Engine Exception:
                 </span>
                 <span className="opacity-95">{ocrError}</span>
@@ -1199,7 +1199,7 @@ IMPORTANT STATIC LIMITATIONS:
             <button
               type="button"
               onClick={() => setOcrError(null)}
-              className="text-[#991B1B] hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
+              className="text-[#991B1B] hover:text-[#7F1D1D] font-bold text-xs font-mono shrink-0 ml-2"
             >
               Dismiss
             </button>
@@ -1207,11 +1207,11 @@ IMPORTANT STATIC LIMITATIONS:
         )}
 
         {threatError && (
-          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start justify-between space-x-2.5">
+          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#7F1D1D] flex items-start justify-between space-x-2.5">
             <div className="flex items-start space-x-2.5">
-              <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#DC2626] mt-0.5" />
               <div>
-                <span className="font-semibold block font-mono text-[11px] uppercase">
+                <span className="font-semibold block font-mono text-[11px] uppercase text-[#991B1B]">
                   Threat Pipeline Analysis Error:
                 </span>
                 <span className="opacity-95">{threatError}</span>
@@ -1220,7 +1220,7 @@ IMPORTANT STATIC LIMITATIONS:
             <button
               type="button"
               onClick={() => setThreatError(null)}
-              className="text-[#991B1B] hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
+              className="text-[#991B1B] hover:text-[#7F1D1D] font-bold text-xs font-mono shrink-0 ml-2"
             >
               Dismiss
             </button>
@@ -1316,28 +1316,24 @@ IMPORTANT STATIC LIMITATIONS:
 
           {/* Executive Summary Banner (Task 3) */}
           <div
-            className={`p-4 rounded-xl border flex items-start space-x-3 text-xs ${threatReport.screenshot_assessment?.risk_level === 'CRITICAL'
-                ? 'bg-[#FEF2F2] border-rose-600/80 text-rose-100'
-                : threatReport.screenshot_assessment?.risk_level === 'HIGH'
-                  ? 'bg-[#FFFBEB] border-amber-600/80 text-amber-100'
-                  : threatReport.screenshot_assessment?.risk_level === 'MEDIUM'
-                    ? 'bg-yellow-950/30 border-yellow-600/60 text-yellow-100'
-                    : threatReport.screenshot_assessment?.risk_level === 'INSUFFICIENT_EVIDENCE'
-                      ? 'bg-slate-900/70 border-cyan-500/50 text-[#0F172A]'
-                      : threatReport.screenshot_assessment?.risk_level === 'LOW'
-                        ? 'bg-slate-900/60 border-slate-700 text-[#0F172A]'
-                        : 'bg-[#ECFDF5] border-emerald-600/80 text-emerald-100'
-              }`}
+            className={`p-4 rounded-xl border flex items-start space-x-3 text-xs shadow-sm ${
+              threatReport.screenshot_assessment?.risk_level === 'CRITICAL' || threatReport.screenshot_assessment?.risk_level === 'HIGH'
+                ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
+                : threatReport.screenshot_assessment?.risk_level === 'MEDIUM' || threatReport.screenshot_assessment?.risk_level === 'SUSPICIOUS'
+                ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
+                : threatReport.screenshot_assessment?.risk_level === 'INSUFFICIENT_EVIDENCE' || threatReport.screenshot_assessment?.risk_level === 'LOW'
+                ? 'bg-[#F8FAFC] border-[#E2E8F0] text-[#475569]'
+                : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
+            }`}
           >
-            {threatReport.screenshot_assessment?.risk_level === 'CRITICAL' ? (
-              <AlertOctagon className="w-5 h-5 shrink-0 mt-0.5 text-[#991B1B]" />
-            ) : threatReport.screenshot_assessment?.risk_level === 'HIGH' ||
-              threatReport.screenshot_assessment?.risk_level === 'MEDIUM' ? (
-              <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5 text-[#92400E]" />
+            {threatReport.screenshot_assessment?.risk_level === 'CRITICAL' || threatReport.screenshot_assessment?.risk_level === 'HIGH' ? (
+              <AlertOctagon className="w-5 h-5 shrink-0 mt-0.5 text-[#DC2626]" />
+            ) : threatReport.screenshot_assessment?.risk_level === 'MEDIUM' || threatReport.screenshot_assessment?.risk_level === 'SUSPICIOUS' ? (
+              <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5 text-[#D97706]" />
             ) : threatReport.screenshot_assessment?.risk_level === 'INSUFFICIENT_EVIDENCE' ? (
               <HelpCircle className="w-5 h-5 shrink-0 mt-0.5 text-[#0F172A]" />
             ) : (
-              <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 text-[#065F46]" />
+              <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 text-[#059669]" />
             )}
 
             <div className="space-y-1.5 flex-1 min-w-0">
@@ -1534,12 +1530,13 @@ IMPORTANT STATIC LIMITATIONS:
                     {threatReport.evidence.map((ev, idx) => (
                       <div
                         key={idx}
-                        className={`p-3.5 rounded-lg border text-xs font-mono flex items-start space-x-3 ${ev.severity === 'CRITICAL'
-                            ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
-                            : ev.severity === 'HIGH'
-                              ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
+                        className={`p-3.5 rounded-lg border text-xs font-mono flex items-start space-x-3 ${
+                          ev.severity === 'CRITICAL' || ev.severity === 'HIGH'
+                            ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
+                            : ev.severity === 'MEDIUM'
+                              ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
                               : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#334155]'
-                          }`}
+                        }`}
                       >
                         <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase shrink-0 mt-0.5 bg-[#F8FAFC] border border-[#E2E8F0]">
                           {ev.severity}
@@ -1794,8 +1791,8 @@ IMPORTANT STATIC LIMITATIONS:
 
                       {/* Mismatch Warning */}
                       {b.domain_mismatch_detected && (
-                        <div className="p-3 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-rose-200 text-[11px] flex items-start space-x-2">
-                          <AlertTriangle className="w-4 h-4 text-[#991B1B] shrink-0 mt-0.5" />
+                        <div className="p-3 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-[#7F1D1D] text-[11px] flex items-start space-x-2 shadow-sm">
+                          <AlertTriangle className="w-4 h-4 text-[#DC2626] shrink-0 mt-0.5" />
                           <p className="leading-relaxed">{b.mismatch_details}</p>
                         </div>
                       )}

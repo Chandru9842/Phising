@@ -7,6 +7,8 @@ import QuickScanCard from './components/dashboard/QuickScanCard';
 import ThreatMapPreview from './components/dashboard/ThreatMapPreview';
 import RecentActivityTable from './components/dashboard/RecentActivityTable';
 import ArchitectureOverview from './components/dashboard/ArchitectureOverview';
+import NetworkErrorCard from './components/common/NetworkErrorCard';
+import { SkeletonMetricCards } from './components/common/SkeletonLoader';
 
 // Lazy-loaded views for optimal code-splitting and bundle performance
 const UrlScanner = React.lazy(() => import('./components/scan/UrlScanner'));
@@ -64,6 +66,7 @@ export default function App() {
   });
   const [selectedScanUrl, setSelectedScanUrl] = useState(null);
   const [selectedScanSms, setSelectedScanSms] = useState(null);
+  const [networkError, setNetworkError] = useState(null);
 
   const fetchHealthAndData = async () => {
     setIsCheckingHealth(true);
@@ -74,6 +77,7 @@ export default function App() {
         apiService.getStats(),
       ]);
       setHealth(healthRes);
+      setNetworkError(null);
       if (banksRes && banksRes.banks) {
         setBanksData(banksRes.banks);
       }
@@ -82,6 +86,7 @@ export default function App() {
       }
     } catch (err) {
       console.error('Data fetch error:', err);
+      setNetworkError(err?.message || 'Failed to establish connection with PhishShield security engine at http://127.0.0.1:8000');
     } finally {
       setIsCheckingHealth(false);
     }
@@ -144,44 +149,59 @@ export default function App() {
 
         {/* Primary Workspace Scroll Area */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-7xl mx-auto w-full space-y-6">
+          {/* Network Offline Alert (Pic-1 Style) */}
+          {networkError && (
+            <NetworkErrorCard
+              title="Security Gateway Connection Offline"
+              message="An error occurred while establishing a connection with the PhishShield detection engine. Please check your internet connection and verify that the backend server is running at http://127.0.0.1:8000."
+              details={networkError}
+              onRetry={fetchHealthAndData}
+              isRetrying={isCheckingHealth}
+            />
+          )}
+
           {/* TAB 1: OVERVIEW DASHBOARD */}
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
-              {/* Telemetry Metric Cards (Real Database Numbers) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <MetricCard
-                  title="Total Scans"
-                  value={stats?.total_scans !== undefined ? stats.total_scans : '—'}
-                  subtext="Persistent SQLite audit logs"
-                  icon={Activity}
-                  color="blue"
-                />
-                <MetricCard
-                  title="Phishing Detected"
-                  value={stats?.phishing_detected !== undefined ? stats.phishing_detected : '—'}
-                  subtext={
-                    stats?.total_scans > 0
-                      ? `${((stats.phishing_detected / stats.total_scans) * 100).toFixed(1)}% detection rate`
-                      : 'ML + Zero-Trust flagged'
-                  }
-                  icon={ShieldAlert}
-                  color="rose"
-                />
-                <MetricCard
-                  title="Brand Impersonations"
-                  value={stats?.brand_impersonations !== undefined ? stats.brand_impersonations : '—'}
-                  subtext="Targeting Indian banks"
-                  icon={AlertTriangle}
-                  color="amber"
-                />
-                <MetricCard
-                  title="Safe Verified"
-                  value={stats?.safe_scans !== undefined ? stats.safe_scans : '—'}
-                  subtext="Canonical banking whitelist"
-                  icon={ShieldCheck}
-                  color="emerald"
-                />
-              </div>
+              {/* Telemetry Metric Cards (Real Database Numbers or Skeleton) */}
+              {isCheckingHealth && !stats?.total_scans ? (
+                <SkeletonMetricCards />
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <MetricCard
+                    title="Total Scans"
+                    value={stats?.total_scans !== undefined ? stats.total_scans : '—'}
+                    subtext="Persistent SQLite audit logs"
+                    icon={Activity}
+                    color="blue"
+                  />
+                  <MetricCard
+                    title="Phishing Detected"
+                    value={stats?.phishing_detected !== undefined ? stats.phishing_detected : '—'}
+                    subtext={
+                      stats?.total_scans > 0
+                        ? `${((stats.phishing_detected / stats.total_scans) * 100).toFixed(1)}% detection rate`
+                        : 'ML + Zero-Trust flagged'
+                    }
+                    icon={ShieldAlert}
+                    color="rose"
+                  />
+                  <MetricCard
+                    title="Brand Impersonations"
+                    value={stats?.brand_impersonations !== undefined ? stats.brand_impersonations : '—'}
+                    subtext="Targeting Indian banks"
+                    icon={AlertTriangle}
+                    color="amber"
+                  />
+                  <MetricCard
+                    title="Safe Verified"
+                    value={stats?.safe_scans !== undefined ? stats.safe_scans : '—'}
+                    subtext="Canonical banking whitelist"
+                    icon={ShieldCheck}
+                    color="emerald"
+                  />
+                </div>
+              )}
 
               {/* Quick Scan Input Terminal */}
               <QuickScanCard onNavigateToScanner={handleQuickScan} />
