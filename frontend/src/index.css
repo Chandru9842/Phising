@@ -3,31 +3,39 @@
 @tailwind utilities;
 
 :root {
-  /* Matte Slate Surface Design System (Linear / Stripe Security / Cloudflare Radar) */
-  --bg-canvas: #0B0E14;
-  --bg-chrome: #0E121A;
-  --bg-surface: #12161F;
-  --bg-surface-hover: #171C28;
-  --bg-well: #0D1017;
+  /* Stripe / Cloudflare Zero Trust Light Enterprise Palette */
+  --bg-canvas: #F6F8FA;
+  --bg-chrome: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-hover: #F8FAFC;
+  --bg-well: #FFFFFF;
 
-  /* Restrained Hairline Borders */
-  --border-structural: #1E2430;
-  --border-interactive: #2B3445;
-  --border-focus: #3B82F6;
+  /* Crisp Hairline Borders */
+  --border-structural: #E2E8F0;
+  --border-interactive: #CBD5E1;
+  --border-focus: #0F172A;
 
   /* High-Contrast Typographic Inks */
-  --text-primary: #F3F4F6;
-  --text-secondary: #9CA3AF;
-  --text-muted: #6B7280;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
 
-  /* Institutional Action & Focus */
-  --brand-primary: #2563EB;
-  --brand-hover: #1D4ED8;
+  /* Authoritative Charcoal Brand Actions */
+  --brand-primary: #0F172A;
+  --brand-hover: #1E293B;
 
-  /* Semantic Forensic Verdicts Only */
-  --verdict-safe: #34D399;
-  --verdict-warn: #FBBF24;
-  --verdict-danger: #F87171;
+  /* Accessible Semantic Verdict Badges */
+  --verdict-safe-bg: #ECFDF5;
+  --verdict-safe-text: #065F46;
+  --verdict-safe-border: #A7F3D0;
+
+  --verdict-warn-bg: #FFFBEB;
+  --verdict-warn-text: #92400E;
+  --verdict-warn-border: #FDE68A;
+
+  --verdict-danger-bg: #FEF2F2;
+  --verdict-danger-text: #991B1B;
+  --verdict-danger-border: #FECACA;
 }
 
 @layer base {
@@ -35,146 +43,158 @@
     background-color: var(--bg-canvas);
     color: var(--text-primary);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.5;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
   code, pre, kbd, .font-mono {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-variant-numeric: tabular-nums;
   }
 }
 
 @layer components {
-  /* Bespoke Matte Slate Card */
+  /* Stripe-Style Crisp White Card */
   .cyber-card {
-    background-color: #12161F;
-    border: 1px solid #1E2430;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
     border-radius: 0.5rem;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .cyber-card:hover {
-    border-color: #2B3445;
+    border-color: #CBD5E1;
   }
 
   /* Interactive Secondary Elevation */
   .cyber-surface {
-    background-color: #0E121A;
-    border: 1px solid #1E2430;
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
     border-radius: 0.375rem;
   }
 
-  /* Form Input Wells */
+  /* Form Input Fields */
   .cyber-input {
-    background-color: #0D1017;
-    border: 1px solid #1E2430;
-    color: #F3F4F6;
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    color: #0F172A;
     border-radius: 0.375rem;
     padding: 0.5rem 0.75rem;
-    font-size: 0.8125rem;
+    font-size: 0.84375rem;
     line-height: 1.25rem;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .cyber-input:focus {
     outline: none;
-    border-color: #2563EB;
-    box-shadow: 0 0 0 1px #2563EB;
+    border-color: #0F172A;
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.12);
   }
   .cyber-input::placeholder {
-    color: #6B7280;
+    color: #94A3B8;
   }
 
-  /* Primary Institutional Action Button */
+  /* Primary Action Button (Authoritative Charcoal) */
   .cyber-btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background-color: #2563EB;
+    background-color: #0F172A;
     color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 0.8125rem;
+    font-size: 0.84375rem;
     padding: 0.5rem 0.875rem;
     border-radius: 0.375rem;
     transition: background-color 0.15s ease;
   }
   .cyber-btn-primary:hover:not(:disabled) {
-    background-color: #1D4ED8;
+    background-color: #1E293B;
   }
   .cyber-btn-primary:disabled {
     opacity: 0.45;
     cursor: not-allowed;
   }
 
-  /* Restrained Secondary Button */
+  /* Neutral Secondary Button */
   .cyber-btn-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background-color: #12161F;
-    border: 1px solid #1E2430;
-    color: #9CA3AF;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    color: #475569;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 0.8125rem;
+    font-size: 0.84375rem;
     padding: 0.5rem 0.75rem;
     border-radius: 0.375rem;
     transition: all 0.15s ease;
   }
   .cyber-btn-secondary:hover:not(:disabled) {
-    color: #F3F4F6;
-    background-color: #171C28;
-    border-color: #2B3445;
+    color: #0F172A;
+    background-color: #F8FAFC;
+    border-color: #CBD5E1;
   }
 
-  /* Forensic Verdict Badges */
+  /* Accessible Semantic Verdict Badges */
   .cyber-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    padding: 0.125rem 0.5rem;
+    padding: 0.15rem 0.5rem;
     border-radius: 0.25rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
   }
   .cyber-badge-safe {
-    background-color: rgba(52, 211, 153, 0.08);
-    color: #34D399;
-    border: 1px solid rgba(52, 211, 153, 0.25);
+    background-color: #ECFDF5;
+    color: #065F46;
+    border: 1px solid #A7F3D0;
   }
   .cyber-badge-warn {
-    background-color: rgba(251, 191, 36, 0.08);
-    color: #FBBF24;
-    border: 1px solid rgba(251, 191, 36, 0.25);
+    background-color: #FFFBEB;
+    color: #92400E;
+    border: 1px solid #FDE68A;
   }
   .cyber-badge-danger {
-    background-color: rgba(248, 113, 113, 0.08);
-    color: #F87171;
-    border: 1px solid rgba(248, 113, 113, 0.25);
+    background-color: #FEF2F2;
+    color: #991B1B;
+    border: 1px solid #FECACA;
   }
-  .cyber-badge-cyan {
-    background-color: rgba(37, 99, 235, 0.08);
-    color: #60A5FA;
-    border: 1px solid rgba(37, 99, 235, 0.25);
+  .cyber-badge-cyan,
+  .cyber-badge-neutral {
+    background-color: #F1F5F9;
+    color: #475569;
+    border: 1px solid #E2E8F0;
   }
 }
 
 /* Crisp hairline scrollbars */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0E14;
+  background: #F6F8FA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E2430;
-  border-radius: 2px;
+  background: #CBD5E1;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2B3445;
+  background: #94A3B8;
 }

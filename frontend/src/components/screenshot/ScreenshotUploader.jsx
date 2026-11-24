@@ -668,22 +668,22 @@ IMPORTANT STATIC LIMITATIONS:
       case 'CRITICAL':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-rose-950/80 text-rose-200 border border-rose-600 flex items-center gap-1.5 shadow-sm shadow-rose-900/50"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#FEF2F2] text-rose-200 border border-rose-600 flex items-center gap-1.5 shadow-sm shadow-rose-900/50"
             role="status"
             aria-label="Critical Phishing Threat"
           >
-            <AlertOctagon className="w-4 h-4 text-rose-400 shrink-0" aria-hidden="true" />
+            <AlertOctagon className="w-4 h-4 text-[#991B1B] shrink-0" aria-hidden="true" />
             <span>CRITICAL PHISHING THREAT</span>
           </span>
         );
       case 'HIGH':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-amber-950/80 text-amber-200 border border-amber-600 flex items-center gap-1.5 shadow-sm shadow-amber-900/50"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#FFFBEB] text-amber-200 border border-amber-600 flex items-center gap-1.5 shadow-sm shadow-amber-900/50"
             role="status"
             aria-label="High Risk Phishing"
           >
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
+            <AlertTriangle className="w-4 h-4 text-[#92400E] shrink-0" aria-hidden="true" />
             <span>HIGH RISK PHISHING</span>
           </span>
         );
@@ -701,22 +701,22 @@ IMPORTANT STATIC LIMITATIONS:
       case 'LOW':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-slate-900 text-slate-200 border border-slate-700 flex items-center gap-1.5"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-slate-900 text-[#0F172A] border border-slate-700 flex items-center gap-1.5"
             role="status"
             aria-label="Low Risk Informational"
           >
-            <ShieldCheck className="w-4 h-4 text-slate-400 shrink-0" aria-hidden="true" />
+            <ShieldCheck className="w-4 h-4 text-[#475569] shrink-0" aria-hidden="true" />
             <span>LOW RISK / INFORMATIONAL</span>
           </span>
         );
       case 'SAFE':
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-emerald-950/80 text-emerald-200 border border-emerald-600 flex items-center gap-1.5 shadow-sm shadow-emerald-900/50"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-[#ECFDF5] text-emerald-200 border border-emerald-600 flex items-center gap-1.5 shadow-sm shadow-emerald-900/50"
             role="status"
             aria-label="Authentic Verified Portal"
           >
-            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" aria-hidden="true" />
+            <ShieldCheck className="w-4 h-4 text-[#065F46] shrink-0" aria-hidden="true" />
             <span>AUTHENTIC VERIFIED PORTAL</span>
           </span>
         );
@@ -724,11 +724,11 @@ IMPORTANT STATIC LIMITATIONS:
       default:
         return (
           <span
-            className="px-3 py-1 rounded text-xs font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700 flex items-center gap-1.5"
+            className="px-3 py-1 rounded text-xs font-mono font-bold bg-slate-800 text-[#334155] border border-slate-700 flex items-center gap-1.5"
             role="status"
             aria-label="Insufficient Typography / Unconfirmed"
           >
-            <HelpCircle className="w-4 h-4 text-cyan-400 shrink-0" aria-hidden="true" />
+            <HelpCircle className="w-4 h-4 text-[#0F172A] shrink-0" aria-hidden="true" />
             <span>INSUFFICIENT EVIDENCE</span>
           </span>
         );
@@ -751,8 +751,8 @@ IMPORTANT STATIC LIMITATIONS:
         className="fixed bottom-5 right-5 z-50 pointer-events-none"
       >
         {toastMessage && (
-          <div className="bg-[#131926] border border-cyan-500/60 shadow-xl shadow-cyan-950/40 text-cyan-300 text-xs font-mono px-4 py-3 rounded-lg flex items-center gap-2 pointer-events-auto animate-fadeIn">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="bg-[#F8FAFC] border border-cyan-500/60 shadow-xl shadow-cyan-950/40 text-[#0F172A] text-xs font-mono px-4 py-3 rounded-lg flex items-center gap-2 pointer-events-auto animate-fadeIn">
+            <CheckCircle2 className="w-4 h-4 text-[#065F46] shrink-0" />
             <span>{toastMessage}</span>
           </div>
         )}
@@ -766,12 +766,12 @@ IMPORTANT STATIC LIMITATIONS:
           aria-label="Screenshot Full Resolution Preview"
           className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4"
         >
-          <div className="w-full max-w-5xl flex items-center justify-between pb-3 text-xs font-mono text-slate-300">
+          <div className="w-full max-w-5xl flex items-center justify-between pb-3 text-xs font-mono text-[#334155]">
             <div className="flex items-center gap-2">
-              <ImageIcon className="w-4 h-4 text-cyan-400" />
+              <ImageIcon className="w-4 h-4 text-[#0F172A]" />
               <span>Full Resolution Inspection ({selectedFile?.name})</span>
               {imageDimensions && (
-                <span className="text-slate-500">
+                <span className="text-[#64748B]">
                   [{imageDimensions.width} × {imageDimensions.height} px]
                 </span>
               )}
@@ -779,56 +779,56 @@ IMPORTANT STATIC LIMITATIONS:
             <button
               type="button"
               onClick={() => setIsLightboxOpen(false)}
-              className="p-1.5 rounded-lg bg-[#131926] hover:bg-slate-800 text-slate-400 hover:text-white border border-[#1e293b]"
+              className="p-1.5 rounded-lg bg-[#F8FAFC] hover:bg-slate-800 text-[#475569] hover:text-white border border-[#E2E8F0]"
               aria-label="Close Lightbox"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
-          <div className="max-w-5xl max-h-[85vh] overflow-auto rounded-xl border border-[#1e293b] bg-[#07090e] p-2 flex items-center justify-center">
+          <div className="max-w-5xl max-h-[85vh] overflow-auto rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-2 flex items-center justify-center">
             <img
               src={previewUrl}
               alt="High resolution screenshot target"
               className="max-h-[80vh] w-auto max-w-full object-contain rounded"
             />
           </div>
-          <p className="text-[11px] font-mono text-slate-500 pt-3">
-            Press <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">ESC</kbd> or click Close to return.
+          <p className="text-[11px] font-mono text-[#64748B] pt-3">
+            Press <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-[#334155] border border-slate-700">ESC</kbd> or click Close to return.
           </p>
         </div>
       )}
 
       {/* 1. Header & Architecture Notice */}
       <div className="cyber-card p-5 sm:p-6 space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1e293b] pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
           <div>
-            <div className="flex items-center space-x-2 text-cyan-400 mb-1">
+            <div className="flex items-center space-x-2 text-[#0F172A] mb-1">
               <ShieldAlert className="w-4 h-4" />
               <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
                 Screenshot Phishing Threat Intelligence Console (Phase 5E)
               </h2>
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[#475569]">
               Multimodal static security pipeline: Combines EasyOCR typography detection, candidate URL lexical repair, Random Forest phishing classification, TreeSHAP feature explanations, and 25+ Indian banking brand cross-verifications.
             </p>
           </div>
 
           <div className="flex items-center space-x-2 shrink-0">
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131926] text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
-              <Lock className="w-3 h-3 text-emerald-400" />
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#065F46] border border-emerald-500/30 flex items-center gap-1.5">
+              <Lock className="w-3 h-3 text-[#065F46]" />
               <span>Zero-Socket Static Analysis</span>
             </span>
           </div>
         </div>
 
         {/* Security Sandbox Callout */}
-        <div className="p-3.5 rounded-lg bg-[#131926] border border-[#1e293b] flex items-start space-x-3 text-xs text-slate-300">
-          <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+        <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-start space-x-3 text-xs text-[#334155]">
+          <ShieldCheck className="w-4 h-4 text-[#0F172A] shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <span className="font-mono text-cyan-400 font-bold uppercase text-[11px] block">
+            <span className="font-mono text-[#0F172A] font-bold uppercase text-[11px] block">
               Safe In-Memory Threat Evaluation Guarantee
             </span>
-            <p className="text-slate-400 leading-relaxed text-[11px]">
+            <p className="text-[#475569] leading-relaxed text-[11px]">
               PhishShield evaluates all screenshots within isolated, in-memory buffers. Discovered URLs and embedded links are never opened, resolved, or connected to external networks. Extracted text is treated as untrusted input and analyzed entirely through local offline machine learning models.
             </p>
           </div>
@@ -855,8 +855,8 @@ IMPORTANT STATIC LIMITATIONS:
               role="button"
               aria-label="Upload banking screenshot or phishing image"
               className={`p-8 sm:p-12 rounded-xl border-2 border-dashed transition-all cursor-pointer text-center space-y-4 focus:outline-none focus:ring-2 focus:ring-cyan-500/60 ${isDragging
-                  ? 'border-cyan-400 bg-cyan-500/10 shadow-lg shadow-cyan-500/20'
-                  : 'border-[#1e293b] hover:border-cyan-500/40 hover:bg-[#131926]/50 bg-[#0d111a]'
+                  ? 'border-[#0F172A] bg-cyan-500/10 shadow-lg shadow-cyan-500/20'
+                  : 'border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]/50 bg-white'
                 }`}
             >
               <input
@@ -871,7 +871,7 @@ IMPORTANT STATIC LIMITATIONS:
                 className="hidden"
               />
 
-              <div className="w-14 h-14 rounded-full bg-[#131926] border border-[#1e293b] text-cyan-400 flex items-center justify-center mx-auto shadow-inner">
+              <div className="w-14 h-14 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] flex items-center justify-center mx-auto shadow-inner">
                 <UploadCloud className="w-7 h-7" />
               </div>
 
@@ -879,44 +879,44 @@ IMPORTANT STATIC LIMITATIONS:
                 <h3 className="text-sm font-bold text-white font-mono">
                   Drag and drop screenshot of suspicious portal, SMS, or app lure
                 </h3>
-                <p className="text-xs text-slate-400">
-                  or <span className="text-cyan-400 font-semibold underline">browse local files</span> from your system
+                <p className="text-xs text-[#475569]">
+                  or <span className="text-[#0F172A] font-semibold underline">browse local files</span> from your system
                 </p>
               </div>
 
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-2 text-[11px] font-mono text-slate-500">
-                <span className="px-2 py-0.5 rounded bg-[#131926] border border-[#1e293b]">
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-2 text-[11px] font-mono text-[#64748B]">
+                <span className="px-2 py-0.5 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
                   Formats: PNG, JPG, JPEG, WEBP
                 </span>
-                <span className="px-2 py-0.5 rounded bg-[#131926] border border-[#1e293b]">
+                <span className="px-2 py-0.5 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
                   Max Size: 5.0 MB
                 </span>
-                <span className="px-2 py-0.5 rounded bg-[#131926] border border-[#1e293b]">
+                <span className="px-2 py-0.5 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
                   Max Dim: 4096×4096 px
                 </span>
               </div>
             </div>
 
             {/* In-Browser Synthetic Threat Simulations */}
-            <div className="mt-5 pt-4 border-t border-[#1e293b]">
+            <div className="mt-5 pt-4 border-t border-[#E2E8F0]">
               <div className="flex items-center justify-between mb-2.5">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#475569] font-semibold">
                   Or Test with In-Browser Synthetic Threat Simulations:
                 </span>
-                <span className="text-[10px] text-slate-500 font-mono">Zero-download live generators</span>
+                <span className="text-[10px] text-[#64748B] font-mono">Zero-download live generators</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <button
                   type="button"
                   onClick={() => handleGenerateSyntheticTest('SBI_PHISHING_CLONE')}
-                  className="p-3 rounded-lg bg-[#131926] border border-rose-900/40 hover:border-rose-500/60 hover:bg-[#1a2234] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-rose-500"
+                  className="p-3 rounded-lg bg-[#F8FAFC] border border-rose-900/40 hover:border-rose-500/60 hover:bg-[#F1F5F9] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-rose-500"
                 >
-                  <span className="text-xs font-semibold text-rose-300 group-hover:text-rose-200 block flex items-center gap-1.5">
-                    <AlertTriangle className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                  <span className="text-xs font-semibold text-[#991B1B] group-hover:text-rose-200 block flex items-center gap-1.5">
+                    <AlertTriangle className="w-3.5 h-3.5 text-[#991B1B] shrink-0" />
                     <span>SBI Fake KYC Phishing Clone</span>
                   </span>
-                  <span className="text-[10px] font-mono text-slate-400 mt-1 block">
+                  <span className="text-[10px] font-mono text-[#475569] mt-1 block">
                     Corrupted Scheme ('https:II') + OTP demand + Untrusted Domain (.top)
                   </span>
                 </button>
@@ -924,13 +924,13 @@ IMPORTANT STATIC LIMITATIONS:
                 <button
                   type="button"
                   onClick={() => handleGenerateSyntheticTest('GENUINE_SBI_PORTAL')}
-                  className="p-3 rounded-lg bg-[#131926] border border-emerald-900/40 hover:border-emerald-500/60 hover:bg-[#1a2234] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="p-3 rounded-lg bg-[#F8FAFC] border border-emerald-900/40 hover:border-emerald-500/60 hover:bg-[#F1F5F9] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 >
-                  <span className="text-xs font-semibold text-emerald-300 group-hover:text-emerald-200 block flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span className="text-xs font-semibold text-[#065F46] group-hover:text-emerald-200 block flex items-center gap-1.5">
+                    <CheckCircle className="w-3.5 h-3.5 text-[#065F46] shrink-0" />
                     <span>Genuine SBI NetBanking Portal</span>
                   </span>
-                  <span className="text-[10px] font-mono text-slate-400 mt-1 block">
+                  <span className="text-[10px] font-mono text-[#475569] mt-1 block">
                     Zero-Trust Verified Domain (.sbi) + Legitimate Safety Advisory
                   </span>
                 </button>
@@ -938,13 +938,13 @@ IMPORTANT STATIC LIMITATIONS:
                 <button
                   type="button"
                   onClick={() => handleGenerateSyntheticTest('BLANK')}
-                  className="p-3 rounded-lg bg-[#131926] border border-[#1e293b] hover:border-cyan-500/40 hover:bg-[#1a2234] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                  className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F1F5F9] text-left transition-all group focus:outline-none focus:ring-1 focus:ring-cyan-500"
                 >
-                  <span className="text-xs font-semibold text-slate-300 group-hover:text-cyan-300 block flex items-center gap-1.5">
-                    <HelpCircle className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span className="text-xs font-semibold text-[#334155] group-hover:text-[#0F172A] block flex items-center gap-1.5">
+                    <HelpCircle className="w-3.5 h-3.5 text-[#475569] shrink-0" />
                     <span>Blank / Ambiguous Canvas</span>
                   </span>
-                  <span className="text-[10px] font-mono text-slate-400 mt-1 block">
+                  <span className="text-[10px] font-mono text-[#475569] mt-1 block">
                     Validates INSUFFICIENT_EVIDENCE handling gracefully
                   </span>
                 </button>
@@ -954,13 +954,13 @@ IMPORTANT STATIC LIMITATIONS:
         ) : (
           /* Image Preview & Interactive Analysis Controls */
           <div className="space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1e293b] pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center space-x-2 min-w-0">
-                <ImageIcon className="w-4 h-4 text-cyan-400 shrink-0" />
+                <ImageIcon className="w-4 h-4 text-[#0F172A] shrink-0" />
                 <span className="text-xs font-bold font-mono text-white uppercase tracking-wider shrink-0">
                   Target Image Preview
                 </span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131926] text-slate-300 border border-[#1e293b] truncate" title={selectedFile?.name}>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#334155] border border-[#E2E8F0] truncate" title={selectedFile?.name}>
                   {selectedFile?.name}
                 </span>
               </div>
@@ -969,7 +969,7 @@ IMPORTANT STATIC LIMITATIONS:
                 <button
                   type="button"
                   onClick={() => setIsLightboxOpen(true)}
-                  className="cyber-btn-secondary text-xs px-2.5 py-1 text-slate-300 hover:text-cyan-300 flex items-center gap-1.5"
+                  className="cyber-btn-secondary text-xs px-2.5 py-1 text-[#334155] hover:text-[#0F172A] flex items-center gap-1.5"
                   title="Expand to full resolution"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
@@ -980,7 +980,7 @@ IMPORTANT STATIC LIMITATIONS:
                   type="button"
                   onClick={handleReset}
                   disabled={isProcessing || isExtractingOcr || isAnalyzingThreats}
-                  className="cyber-btn-secondary text-xs px-2.5 py-1 text-slate-400 hover:text-rose-400 flex items-center gap-1.5"
+                  className="cyber-btn-secondary text-xs px-2.5 py-1 text-[#475569] hover:text-[#991B1B] flex items-center gap-1.5"
                   title="Remove image and select another"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -992,7 +992,7 @@ IMPORTANT STATIC LIMITATIONS:
             {/* Preview Box & Analysis Controls */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <div
-                className="lg:col-span-2 rounded-xl overflow-hidden bg-[#07090e] border border-[#1e293b] relative group flex items-center justify-center p-2 min-h-[260px] max-h-[380px] cursor-pointer"
+                className="lg:col-span-2 rounded-xl overflow-hidden bg-[#F8FAFC] border border-[#E2E8F0] relative group flex items-center justify-center p-2 min-h-[260px] max-h-[380px] cursor-pointer"
                 onClick={() => setIsLightboxOpen(true)}
                 title="Click to view full resolution"
               >
@@ -1002,7 +1002,7 @@ IMPORTANT STATIC LIMITATIONS:
                   className="max-h-[360px] w-auto max-w-full object-contain rounded-lg"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                  <span className="px-3 py-1.5 rounded-lg bg-[#131926]/90 border border-cyan-500/40 text-cyan-300 text-xs font-mono flex items-center gap-1.5">
+                  <span className="px-3 py-1.5 rounded-lg bg-[#F8FAFC]/90 border border-[#CBD5E1] text-[#0F172A] text-xs font-mono flex items-center gap-1.5">
                     <Maximize2 className="w-3.5 h-3.5" />
                     <span>Click to Zoom</span>
                   </span>
@@ -1010,39 +1010,39 @@ IMPORTANT STATIC LIMITATIONS:
               </div>
 
               {/* Action & Metadata Box */}
-              <div className="p-4 rounded-xl bg-[#131926] border border-[#1e293b] flex flex-col justify-between space-y-4">
+              <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col justify-between space-y-4">
                 <div className="space-y-3">
-                  <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block border-b border-[#1e293b] pb-2">
+                  <span className="text-[10px] font-mono uppercase text-[#475569] font-bold block border-b border-[#E2E8F0] pb-2">
                     Security Validation Parameters
                   </span>
 
                   <div className="space-y-2 text-xs font-mono">
-                    <div className="flex justify-between text-slate-400">
+                    <div className="flex justify-between text-[#475569]">
                       <span>Target File:</span>
                       <span className="text-white font-bold truncate max-w-[150px]" title={selectedFile?.name}>
                         {selectedFile?.name}
                       </span>
                     </div>
 
-                    <div className="flex justify-between text-slate-400">
+                    <div className="flex justify-between text-[#475569]">
                       <span>File Size:</span>
-                      <span className="text-cyan-400 font-bold">
+                      <span className="text-[#0F172A] font-bold">
                         {(selectedFile?.size / 1024).toFixed(1)} KB
                       </span>
                     </div>
 
                     {imageDimensions && (
-                      <div className="flex justify-between text-slate-400">
+                      <div className="flex justify-between text-[#475569]">
                         <span>Dimensions:</span>
-                        <span className="text-slate-200 font-bold">
+                        <span className="text-[#0F172A] font-bold">
                           {imageDimensions.width} × {imageDimensions.height} px
                         </span>
                       </div>
                     )}
 
-                    <div className="flex justify-between text-slate-400">
+                    <div className="flex justify-between text-[#475569]">
                       <span>Format Check:</span>
-                      <span className="text-emerald-400 flex items-center gap-1">
+                      <span className="text-[#065F46] flex items-center gap-1">
                         <CheckCircle2 className="w-3 h-3" />
                         <span>Valid Magic Signature</span>
                       </span>
@@ -1076,7 +1076,7 @@ IMPORTANT STATIC LIMITATIONS:
                       type="button"
                       onClick={handleExtractOcr}
                       disabled={isProcessing || isExtractingOcr || isAnalyzingThreats}
-                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-slate-300 hover:text-white"
+                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-[#334155] hover:text-white"
                       title="Run EasyOCR typography extraction only"
                     >
                       <FileText className="w-3.5 h-3.5" />
@@ -1087,7 +1087,7 @@ IMPORTANT STATIC LIMITATIONS:
                       type="button"
                       onClick={handleUploadAndProcess}
                       disabled={isProcessing || isExtractingOcr || isAnalyzingThreats}
-                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-slate-300 hover:text-white"
+                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-[#334155] hover:text-white"
                       title="Run safe OpenCV pixel normalization only"
                     >
                       <Sliders className="w-3.5 h-3.5" />
@@ -1102,19 +1102,19 @@ IMPORTANT STATIC LIMITATIONS:
 
         {/* Polished Multi-Stage Honest Processing State (Task 2) */}
         {(isProcessing || isExtractingOcr || isAnalyzingThreats) && (
-          <div className="p-4 sm:p-5 rounded-xl bg-[#0a0e17] border border-cyan-500/40 space-y-4 animate-fadeIn">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1e293b] pb-3">
+          <div className="p-4 sm:p-5 rounded-xl bg-[#0a0e17] border border-[#CBD5E1] space-y-4 animate-fadeIn">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center gap-2">
-                <RefreshCw className="w-4 h-4 text-cyan-400 animate-spin" />
+                <RefreshCw className="w-4 h-4 text-[#0F172A] animate-spin" />
                 <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
                   Static Security Pipeline Active
                 </span>
               </div>
               <div className="flex items-center gap-3 text-xs font-mono">
-                <span className="text-slate-400">
-                  Elapsed: <span className="text-cyan-400 font-bold">{elapsedTime}s</span>
+                <span className="text-[#475569]">
+                  Elapsed: <span className="text-[#0F172A] font-bold">{elapsedTime}s</span>
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-[#131926] text-amber-300 border border-amber-600/30">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-[#F8FAFC] text-[#92400E] border border-amber-600/30">
                   Synchronous Local Execution (6–15s typical)
                 </span>
               </div>
@@ -1122,43 +1122,43 @@ IMPORTANT STATIC LIMITATIONS:
 
             {/* Indeterminate Animated Scanning Radar Bar */}
             <div className="space-y-1">
-              <div className="w-full bg-[#131926] h-2 rounded-full overflow-hidden border border-[#1e293b] relative">
+              <div className="w-full bg-[#F8FAFC] h-2 rounded-full overflow-hidden border border-[#E2E8F0] relative">
                 <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-cyan-500 via-indigo-500 to-rose-500 rounded-full animate-pulse opacity-85" />
               </div>
-              <p className="text-[11px] font-mono text-slate-400 pt-1">
+              <p className="text-[11px] font-mono text-[#475569] pt-1">
                 {processingStatusText || 'Executing multi-layer threat assessment...'}
               </p>
             </div>
 
             {/* Informational Pipeline Architecture Stages (Honest client presentation) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-1 text-[11px] font-mono">
-              <div className="p-2.5 rounded bg-[#131926] border border-[#1e293b] space-y-0.5">
-                <span className="text-cyan-400 font-bold block">1. Ingestion & Sandbox</span>
-                <span className="text-slate-400 text-[10px]">Magic headers & OpenCV matrix</span>
+              <div className="p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] space-y-0.5">
+                <span className="text-[#0F172A] font-bold block">1. Ingestion & Sandbox</span>
+                <span className="text-[#475569] text-[10px]">Magic headers & OpenCV matrix</span>
               </div>
-              <div className="p-2.5 rounded bg-[#131926] border border-[#1e293b] space-y-0.5">
-                <span className="text-cyan-400 font-bold block">2. Neural EasyOCR</span>
-                <span className="text-slate-400 text-[10px]">CRAFT box & CRNN typography</span>
+              <div className="p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] space-y-0.5">
+                <span className="text-[#0F172A] font-bold block">2. Neural EasyOCR</span>
+                <span className="text-[#475569] text-[10px]">CRAFT box & CRNN typography</span>
               </div>
-              <div className="p-2.5 rounded bg-[#131926] border border-[#1e293b] space-y-0.5">
-                <span className="text-cyan-400 font-bold block">3. Lexical URL Repair</span>
-                <span className="text-slate-400 text-[10px]">Fix 'https:II', parse TLDs</span>
+              <div className="p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] space-y-0.5">
+                <span className="text-[#0F172A] font-bold block">3. Lexical URL Repair</span>
+                <span className="text-[#475569] text-[10px]">Fix 'https:II', parse TLDs</span>
               </div>
-              <div className="p-2.5 rounded bg-[#131926] border border-[#1e293b] space-y-0.5">
-                <span className="text-cyan-400 font-bold block">4. Random Forest & SHAP</span>
-                <span className="text-slate-400 text-[10px]">26 structural & lexical features</span>
+              <div className="p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] space-y-0.5">
+                <span className="text-[#0F172A] font-bold block">4. Random Forest & SHAP</span>
+                <span className="text-[#475569] text-[10px]">26 structural & lexical features</span>
               </div>
-              <div className="p-2.5 rounded bg-[#131926] border border-[#1e293b] space-y-0.5">
-                <span className="text-cyan-400 font-bold block">5. Banking Registry</span>
-                <span className="text-slate-400 text-[10px]">25+ Indian banks domain checks</span>
+              <div className="p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] space-y-0.5">
+                <span className="text-[#0F172A] font-bold block">5. Banking Registry</span>
+                <span className="text-[#475569] text-[10px]">25+ Indian banks domain checks</span>
               </div>
-              <div className="p-2.5 rounded bg-[#131926] border border-[#1e293b] space-y-0.5">
-                <span className="text-cyan-400 font-bold block">6. Social Engineering NLP</span>
-                <span className="text-slate-400 text-[10px]">Urgency, OTP & KYC threat signals</span>
+              <div className="p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] space-y-0.5">
+                <span className="text-[#0F172A] font-bold block">6. Social Engineering NLP</span>
+                <span className="text-[#475569] text-[10px]">Urgency, OTP & KYC threat signals</span>
               </div>
-              <div className="p-2.5 rounded bg-[#131926] border border-[#1e293b] space-y-0.5 sm:col-span-2">
-                <span className="text-cyan-400 font-bold block">7. Evidence Synthesis</span>
-                <span className="text-slate-400 text-[10px]">Multi-factor risk aggregation & defensible guidance</span>
+              <div className="p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] space-y-0.5 sm:col-span-2">
+                <span className="text-[#0F172A] font-bold block">7. Evidence Synthesis</span>
+                <span className="text-[#475569] text-[10px]">Multi-factor risk aggregation & defensible guidance</span>
               </div>
             </div>
           </div>
@@ -1166,9 +1166,9 @@ IMPORTANT STATIC LIMITATIONS:
 
         {/* Actionable Error Banners with Dismiss Actions */}
         {error && (
-          <div className="p-3.5 rounded-lg bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 flex items-start justify-between space-x-2.5">
+          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start justify-between space-x-2.5">
             <div className="flex items-start space-x-2.5">
-              <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
               <div>
                 <span className="font-semibold block font-mono text-[11px] uppercase">
                   Image Ingestion Error:
@@ -1179,7 +1179,7 @@ IMPORTANT STATIC LIMITATIONS:
             <button
               type="button"
               onClick={() => setError(null)}
-              className="text-rose-400 hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
+              className="text-[#991B1B] hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
             >
               Dismiss
             </button>
@@ -1187,9 +1187,9 @@ IMPORTANT STATIC LIMITATIONS:
         )}
 
         {ocrError && (
-          <div className="p-3.5 rounded-lg bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 flex items-start justify-between space-x-2.5">
+          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start justify-between space-x-2.5">
             <div className="flex items-start space-x-2.5">
-              <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
               <div>
                 <span className="font-semibold block font-mono text-[11px] uppercase">
                   OCR Engine Exception:
@@ -1200,7 +1200,7 @@ IMPORTANT STATIC LIMITATIONS:
             <button
               type="button"
               onClick={() => setOcrError(null)}
-              className="text-rose-400 hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
+              className="text-[#991B1B] hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
             >
               Dismiss
             </button>
@@ -1208,9 +1208,9 @@ IMPORTANT STATIC LIMITATIONS:
         )}
 
         {threatError && (
-          <div className="p-3.5 rounded-lg bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 flex items-start justify-between space-x-2.5">
+          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start justify-between space-x-2.5">
             <div className="flex items-start space-x-2.5">
-              <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+              <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
               <div>
                 <span className="font-semibold block font-mono text-[11px] uppercase">
                   Threat Pipeline Analysis Error:
@@ -1221,7 +1221,7 @@ IMPORTANT STATIC LIMITATIONS:
             <button
               type="button"
               onClick={() => setThreatError(null)}
-              className="text-rose-400 hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
+              className="text-[#991B1B] hover:text-rose-200 text-xs font-mono shrink-0 ml-2"
             >
               Dismiss
             </button>
@@ -1231,17 +1231,17 @@ IMPORTANT STATIC LIMITATIONS:
 
       {/* 3. Comprehensive Screenshot Threat Dossier (Phase 5C / 5E) */}
       {threatReport && (
-        <div className="cyber-card p-5 sm:p-6 border-cyan-500/40 space-y-6 bg-[#0d111a] animate-fadeIn">
+        <div className="cyber-card p-5 sm:p-6 border-[#CBD5E1] space-y-6 bg-white animate-fadeIn">
           {/* Top Dossier Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1e293b] pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
             <div className="space-y-1">
               <div className="flex items-center space-x-2">
-                <FileSearch className="w-4 h-4 text-cyan-400" />
+                <FileSearch className="w-4 h-4 text-[#0F172A]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                   Screenshot Phishing Threat Assessment Dossier
                 </h3>
               </div>
-              <span className="text-[11px] text-slate-400 font-mono block">
+              <span className="text-[11px] text-[#475569] font-mono block">
                 Session ID: {threatReport.upload_id} • Analyzed: {threatReport.analyzed_at}
               </span>
             </div>
@@ -1251,13 +1251,13 @@ IMPORTANT STATIC LIMITATIONS:
               <button
                 type="button"
                 onClick={handleCopyReport}
-                className="cyber-btn-secondary text-[11px] px-2.5 py-1 text-slate-300 hover:text-cyan-300 flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                className="cyber-btn-secondary text-[11px] px-2.5 py-1 text-[#334155] hover:text-[#0F172A] flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500"
                 title="Copy entire markdown threat intelligence report"
               >
                 {copiedReport ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Report Copied!</span>
+                    <Check className="w-3.5 h-3.5 text-[#065F46]" />
+                    <span className="text-[#065F46]">Report Copied!</span>
                   </>
                 ) : (
                   <>
@@ -1275,10 +1275,10 @@ IMPORTANT STATIC LIMITATIONS:
                   a.download = `phishshield-threat-report-${threatReport.upload_id || 'scan'}.json`;
                   a.click();
                 }}
-                className="cyber-btn-secondary text-[11px] px-2.5 py-1 text-slate-300 hover:text-cyan-300 flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                className="cyber-btn-secondary text-[11px] px-2.5 py-1 text-[#334155] hover:text-[#0F172A] flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500"
                 title="Download full JSON threat intelligence dossier"
               >
-                <Download className="w-3.5 h-3.5 text-cyan-400" />
+                <Download className="w-3.5 h-3.5 text-[#0F172A]" />
                 <span>Export JSON</span>
               </button>
             </div>
@@ -1286,30 +1286,30 @@ IMPORTANT STATIC LIMITATIONS:
 
           {/* Core Threat Metrics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
-            <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b]">
-              <span className="text-[10px] text-slate-500 uppercase block">Calibrated Risk Score</span>
+            <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+              <span className="text-[10px] text-[#64748B] uppercase block">Calibrated Risk Score</span>
               <span className="text-sm font-bold mt-0.5 block text-white">
                 {formatRiskScore(threatReport.screenshot_assessment?.risk_score)}
               </span>
             </div>
 
-            <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b]">
-              <span className="text-[10px] text-slate-500 uppercase block">Extracted URLs</span>
-              <span className="text-cyan-400 font-bold text-sm mt-0.5 block">
+            <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+              <span className="text-[10px] text-[#64748B] uppercase block">Extracted URLs</span>
+              <span className="text-[#0F172A] font-bold text-sm mt-0.5 block">
                 {threatReport.extracted_urls?.length || 0} Candidates
               </span>
             </div>
 
-            <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b]">
-              <span className="text-[10px] text-slate-500 uppercase block">Brand Matches</span>
-              <span className="text-amber-400 font-bold text-sm mt-0.5 block">
+            <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+              <span className="text-[10px] text-[#64748B] uppercase block">Brand Matches</span>
+              <span className="text-[#92400E] font-bold text-sm mt-0.5 block">
                 {threatReport.bank_brand_evidence?.length || 0} Detected
               </span>
             </div>
 
-            <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b]">
-              <span className="text-[10px] text-slate-500 uppercase block">Social Eng. Signals</span>
-              <span className="text-rose-400 font-bold text-sm mt-0.5 block">
+            <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+              <span className="text-[10px] text-[#64748B] uppercase block">Social Eng. Signals</span>
+              <span className="text-[#991B1B] font-bold text-sm mt-0.5 block">
                 {threatReport.social_engineering_indicators?.length || 0} Patterns
               </span>
             </div>
@@ -1318,27 +1318,27 @@ IMPORTANT STATIC LIMITATIONS:
           {/* Executive Summary Banner (Task 3) */}
           <div
             className={`p-4 rounded-xl border flex items-start space-x-3 text-xs ${threatReport.screenshot_assessment?.risk_level === 'CRITICAL'
-                ? 'bg-rose-950/40 border-rose-600/80 text-rose-100'
+                ? 'bg-[#FEF2F2] border-rose-600/80 text-rose-100'
                 : threatReport.screenshot_assessment?.risk_level === 'HIGH'
-                  ? 'bg-amber-950/40 border-amber-600/80 text-amber-100'
+                  ? 'bg-[#FFFBEB] border-amber-600/80 text-amber-100'
                   : threatReport.screenshot_assessment?.risk_level === 'MEDIUM'
                     ? 'bg-yellow-950/30 border-yellow-600/60 text-yellow-100'
                     : threatReport.screenshot_assessment?.risk_level === 'INSUFFICIENT_EVIDENCE'
-                      ? 'bg-slate-900/70 border-cyan-500/50 text-slate-200'
+                      ? 'bg-slate-900/70 border-cyan-500/50 text-[#0F172A]'
                       : threatReport.screenshot_assessment?.risk_level === 'LOW'
-                        ? 'bg-slate-900/60 border-slate-700 text-slate-200'
-                        : 'bg-emerald-950/40 border-emerald-600/80 text-emerald-100'
+                        ? 'bg-slate-900/60 border-slate-700 text-[#0F172A]'
+                        : 'bg-[#ECFDF5] border-emerald-600/80 text-emerald-100'
               }`}
           >
             {threatReport.screenshot_assessment?.risk_level === 'CRITICAL' ? (
-              <AlertOctagon className="w-5 h-5 shrink-0 mt-0.5 text-rose-400" />
+              <AlertOctagon className="w-5 h-5 shrink-0 mt-0.5 text-[#991B1B]" />
             ) : threatReport.screenshot_assessment?.risk_level === 'HIGH' ||
               threatReport.screenshot_assessment?.risk_level === 'MEDIUM' ? (
-              <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5 text-amber-400" />
+              <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5 text-[#92400E]" />
             ) : threatReport.screenshot_assessment?.risk_level === 'INSUFFICIENT_EVIDENCE' ? (
-              <HelpCircle className="w-5 h-5 shrink-0 mt-0.5 text-cyan-400" />
+              <HelpCircle className="w-5 h-5 shrink-0 mt-0.5 text-[#0F172A]" />
             ) : (
-              <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 text-emerald-400" />
+              <ShieldCheck className="w-5 h-5 shrink-0 mt-0.5 text-[#065F46]" />
             )}
 
             <div className="space-y-1.5 flex-1 min-w-0">
@@ -1360,7 +1360,7 @@ IMPORTANT STATIC LIMITATIONS:
                   {threatReport.screenshot_assessment.key_threat_factors.map((factor, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#131926] border border-[#1e293b] text-slate-200"
+                      className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A]"
                     >
                       {factor}
                     </span>
@@ -1376,47 +1376,47 @@ IMPORTANT STATIC LIMITATIONS:
             threatReport.social_engineering_indicators?.some(
               (i) => i.category === 'credential_harvesting' || i.category === 'otp_interception'
             )) && (
-              <div className="p-4 rounded-xl bg-rose-950/30 border border-rose-800/70 text-xs font-mono space-y-3">
-                <div className="flex items-center space-x-2 text-rose-300">
-                  <LifeBuoy className="w-4 h-4 text-rose-400" />
+              <div className="p-4 rounded-xl bg-[#FEF2F2] border border-[#FECACA] text-xs font-mono space-y-3">
+                <div className="flex items-center space-x-2 text-[#991B1B]">
+                  <LifeBuoy className="w-4 h-4 text-[#991B1B]" />
                   <span className="font-bold uppercase tracking-wider text-xs">
                     Urgent Indian Cybercrime Incident Response Protocol
                   </span>
                 </div>
-                <p className="text-slate-300 text-[11px] leading-relaxed">
+                <p className="text-[#334155] text-[11px] leading-relaxed">
                   If credentials, passwords, or OTPs were entered into this portal, take immediate defensive measures:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-                  <div className="p-2.5 rounded bg-[#131926] border border-rose-900/50 space-y-1">
-                    <div className="flex items-center gap-1.5 text-rose-300 font-bold">
+                  <div className="p-2.5 rounded bg-[#F8FAFC] border border-rose-900/50 space-y-1">
+                    <div className="flex items-center gap-1.5 text-[#991B1B] font-bold">
                       <PhoneCall className="w-3.5 h-3.5" />
                       <span>Dial 1930 Helpline</span>
                     </div>
-                    <p className="text-slate-400 text-[10px]">
+                    <p className="text-[#475569] text-[10px]">
                       National Cyber Financial Fraud Hotline (operated by I4C / MHA).
                     </p>
                   </div>
 
-                  <div className="p-2.5 rounded bg-[#131926] border border-rose-900/50 space-y-1">
-                    <div className="flex items-center gap-1.5 text-cyan-300 font-bold">
+                  <div className="p-2.5 rounded bg-[#F8FAFC] border border-rose-900/50 space-y-1">
+                    <div className="flex items-center gap-1.5 text-[#0F172A] font-bold">
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span>cybercrime.gov.in</span>
                     </div>
-                    <p className="text-slate-400 text-[10px]">
+                    <p className="text-[#475569] text-[10px]">
                       Register incident report on the official Government portal.
                     </p>
                   </div>
 
-                  <div className="p-2.5 rounded bg-[#131926] border border-rose-900/50 space-y-1">
-                    <span className="text-amber-300 font-bold block">Freeze Banking Channels</span>
-                    <p className="text-slate-400 text-[10px]">
+                  <div className="p-2.5 rounded bg-[#F8FAFC] border border-rose-900/50 space-y-1">
+                    <span className="text-[#92400E] font-bold block">Freeze Banking Channels</span>
+                    <p className="text-[#475569] text-[10px]">
                       Call bank emergency number to lock netbanking, UPI, and debit cards immediately.
                     </p>
                   </div>
 
-                  <div className="p-2.5 rounded bg-[#131926] border border-rose-900/50 space-y-1">
-                    <span className="text-emerald-300 font-bold block">Reset Credentials</span>
-                    <p className="text-slate-400 text-[10px]">
+                  <div className="p-2.5 rounded bg-[#F8FAFC] border border-rose-900/50 space-y-1">
+                    <span className="text-[#065F46] font-bold block">Reset Credentials</span>
+                    <p className="text-[#475569] text-[10px]">
                       Update netbanking and UPI passwords from a separate, clean device.
                     </p>
                   </div>
@@ -1429,7 +1429,7 @@ IMPORTANT STATIC LIMITATIONS:
             ref={tabsListRef}
             role="tablist"
             aria-label="Threat Evidence Dossier Sections"
-            className="flex border-b border-[#1e293b] space-x-1 sm:space-x-2 text-xs font-mono overflow-x-auto pb-1"
+            className="flex border-b border-[#E2E8F0] space-x-1 sm:space-x-2 text-xs font-mono overflow-x-auto pb-1"
           >
             <button
               id="tab-threats"
@@ -1441,8 +1441,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('threats')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'threats'
-                  ? 'border-b-2 border-cyan-400 text-cyan-300 font-bold'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                  : 'text-[#475569] hover:text-white'
                 }`}
             >
               Threat Signals ({threatReport.evidence?.length || 0})
@@ -1458,8 +1458,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('urls')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'urls'
-                  ? 'border-b-2 border-cyan-400 text-cyan-300 font-bold'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                  : 'text-[#475569] hover:text-white'
                 }`}
             >
               Extracted URLs ({threatReport.extracted_urls?.length || 0})
@@ -1475,8 +1475,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('brands')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'brands'
-                  ? 'border-b-2 border-cyan-400 text-cyan-300 font-bold'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                  : 'text-[#475569] hover:text-white'
                 }`}
             >
               Bank Brands ({threatReport.bank_brand_evidence?.length || 0})
@@ -1492,8 +1492,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('indicators')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'indicators'
-                  ? 'border-b-2 border-cyan-400 text-cyan-300 font-bold'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                  : 'text-[#475569] hover:text-white'
                 }`}
             >
               Social Engineering ({threatReport.social_engineering_indicators?.length || 0})
@@ -1509,8 +1509,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('ocr')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'ocr'
-                  ? 'border-b-2 border-cyan-400 text-cyan-300 font-bold'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                  : 'text-[#475569] hover:text-white'
                 }`}
             >
               Raw Typography ({threatReport.ocr_summary?.text_block_count || 0})
@@ -1526,7 +1526,7 @@ IMPORTANT STATIC LIMITATIONS:
               className="space-y-4"
             >
               <div className="space-y-2.5">
-                <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">
+                <span className="text-[10px] font-mono uppercase text-[#475569] font-bold block">
                   Identified Threat Signals & Evidence Log
                 </span>
 
@@ -1536,13 +1536,13 @@ IMPORTANT STATIC LIMITATIONS:
                       <div
                         key={idx}
                         className={`p-3.5 rounded-lg border text-xs font-mono flex items-start space-x-3 ${ev.severity === 'CRITICAL'
-                            ? 'bg-rose-950/20 border-rose-800/40 text-rose-200'
+                            ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
                             : ev.severity === 'HIGH'
-                              ? 'bg-amber-950/20 border-amber-800/40 text-amber-200'
-                              : 'bg-[#131926] border-[#1e293b] text-slate-300'
+                              ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
+                              : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#334155]'
                           }`}
                       >
-                        <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase shrink-0 mt-0.5 bg-[#07090e] border border-[#1e293b]">
+                        <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase shrink-0 mt-0.5 bg-[#F8FAFC] border border-[#E2E8F0]">
                           {ev.severity}
                         </span>
                         <div className="space-y-0.5 flex-1 min-w-0">
@@ -1555,20 +1555,20 @@ IMPORTANT STATIC LIMITATIONS:
                     ))}
                   </div>
                 ) : (
-                  <div className="p-4 rounded-lg bg-[#131926] border border-[#1e293b] text-xs text-slate-400 font-mono">
+                  <div className="p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#475569] font-mono">
                     Zero high-severity coercive threat markers were identified in this screenshot.
                   </div>
                 )}
               </div>
 
               {/* Actionable Recommendations */}
-              <div className="p-4 rounded-xl bg-[#131926] border border-[#1e293b] space-y-3">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-3">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#0F172A] font-bold flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-[#0F172A]" />
                   <span>Actionable Defensive Recommendations</span>
                 </span>
 
-                <ul className="space-y-2 text-xs font-mono text-slate-300 list-disc list-inside">
+                <ul className="space-y-2 text-xs font-mono text-[#334155] list-disc list-inside">
                   {(threatReport.recommendations || []).map((rec, idx) => (
                     <li key={idx} className="leading-relaxed">
                       {rec}
@@ -1588,7 +1588,7 @@ IMPORTANT STATIC LIMITATIONS:
               className="space-y-3"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">
+                <span className="text-[10px] font-mono uppercase text-[#475569] font-bold block">
                   Extracted URL Candidates & Offline Model Predictions ({threatReport.extracted_urls?.length || 0})
                 </span>
 
@@ -1597,17 +1597,17 @@ IMPORTANT STATIC LIMITATIONS:
                   <button
                     type="button"
                     onClick={() => setDefangUrls(!defangUrls)}
-                    className="cyber-btn-secondary text-[11px] px-2.5 py-1 flex items-center gap-1.5 text-cyan-300 hover:text-white focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                    className="cyber-btn-secondary text-[11px] px-2.5 py-1 flex items-center gap-1.5 text-[#0F172A] hover:text-white focus:outline-none focus:ring-1 focus:ring-cyan-500"
                     title="Toggle safe defanged display (hxxps://, [.])"
                   >
                     {defangUrls ? (
                       <>
-                        <EyeOff className="w-3.5 h-3.5 text-cyan-400" />
+                        <EyeOff className="w-3.5 h-3.5 text-[#0F172A]" />
                         <span>Defanged View Active (hxxps://)</span>
                       </>
                     ) : (
                       <>
-                        <Eye className="w-3.5 h-3.5 text-slate-400" />
+                        <Eye className="w-3.5 h-3.5 text-[#475569]" />
                         <span>Raw URL View</span>
                       </>
                     )}
@@ -1616,8 +1616,8 @@ IMPORTANT STATIC LIMITATIONS:
               </div>
 
               {/* Security Warning: Links are never clickable */}
-              <div className="p-2.5 rounded-lg bg-[#07090e] border border-amber-600/30 text-[11px] font-mono text-amber-300/90 flex items-center gap-2">
-                <Lock className="w-3.5 h-3.5 shrink-0 text-amber-400" />
+              <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-amber-600/30 text-[11px] font-mono text-[#92400E]/90 flex items-center gap-2">
+                <Lock className="w-3.5 h-3.5 shrink-0 text-[#92400E]" />
                 <span>
                   Defensive Policy: Detected URLs are rendered as safe code blocks and are NEVER clickable.
                 </span>
@@ -1634,35 +1634,35 @@ IMPORTANT STATIC LIMITATIONS:
                     return (
                       <div
                         key={idx}
-                        className="p-4 rounded-xl bg-[#131926] border border-[#1e293b] hover:border-cyan-500/30 transition-all space-y-3 text-xs font-mono"
+                        className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] hover:border-cyan-500/30 transition-all space-y-3 text-xs font-mono"
                       >
-                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-[#1e293b] pb-3">
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-[#E2E8F0] pb-3">
                           <div className="space-y-1.5 min-w-0 flex-1">
                             <div className="flex items-center gap-2">
-                              <span className="text-[10px] text-slate-500 uppercase">
+                              <span className="text-[10px] text-[#64748B] uppercase">
                                 Candidate #{idx + 1} Normalized Destination:
                               </span>
-                              <span className="px-1.5 py-0.5 rounded text-[9px] bg-[#07090e] text-cyan-400 border border-[#1e293b]">
+                              <span className="px-1.5 py-0.5 rounded text-[9px] bg-[#F8FAFC] text-[#0F172A] border border-[#E2E8F0]">
                                 {cand.reconstruction_status}
                               </span>
                             </div>
 
                             {/* Safe Non-Clickable Code Block */}
                             <div className="flex items-center gap-2 flex-wrap">
-                              <code className="text-cyan-300 font-bold text-xs sm:text-sm break-all bg-[#07090e] px-2.5 py-1 rounded border border-[#1e293b] select-all">
+                              <code className="text-[#0F172A] font-bold text-xs sm:text-sm break-all bg-[#F8FAFC] px-2.5 py-1 rounded border border-[#E2E8F0] select-all">
                                 {displayUrl}
                               </code>
 
                               <button
                                 type="button"
                                 onClick={() => handleCopySingleUrl(cand.normalized_url, idx)}
-                                className="cyber-btn-secondary text-[10px] px-2 py-1 text-slate-300 hover:text-white shrink-0"
+                                className="cyber-btn-secondary text-[10px] px-2 py-1 text-[#334155] hover:text-white shrink-0"
                                 title="Copy candidate URL"
                               >
                                 {copiedUrlIndex === idx ? (
                                   <>
-                                    <Check className="w-3 h-3 text-emerald-400" />
-                                    <span className="text-emerald-400">Copied!</span>
+                                    <Check className="w-3 h-3 text-[#065F46]" />
+                                    <span className="text-[#065F46]">Copied!</span>
                                   </>
                                 ) : (
                                   <>
@@ -1674,7 +1674,7 @@ IMPORTANT STATIC LIMITATIONS:
                             </div>
 
                             {cand.original_text !== cand.normalized_url && (
-                              <span className="text-[10px] text-slate-500 block truncate">
+                              <span className="text-[10px] text-[#64748B] block truncate">
                                 Raw OCR Text Extracted: "{cand.original_text}"
                               </span>
                             )}
@@ -1684,8 +1684,8 @@ IMPORTANT STATIC LIMITATIONS:
                             {uRes && (
                               <span
                                 className={`px-2.5 py-1 rounded text-[10px] font-bold ${uRes.is_phishing
-                                    ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                                    : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                                    ? 'bg-rose-950 text-[#991B1B] border border-rose-800'
+                                    : 'bg-emerald-950 text-[#065F46] border border-emerald-800'
                                   }`}
                               >
                                 {uRes.risk_level} ({uRes.risk_score}%)
@@ -1697,23 +1697,23 @@ IMPORTANT STATIC LIMITATIONS:
                         {/* ML Model Findings */}
                         {uRes && (
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] pt-1">
-                            <div className="p-2 rounded bg-[#07090e] border border-[#1e293b]">
-                              <span className="text-slate-500 block text-[10px]">Model Prediction</span>
+                            <div className="p-2 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
+                              <span className="text-[#64748B] block text-[10px]">Model Prediction</span>
                               <span className="text-white font-bold">
                                 {uRes.is_phishing ? 'Phishing Classified' : 'Legitimate Classified'}
                               </span>
                             </div>
 
-                            <div className="p-2 rounded bg-[#07090e] border border-[#1e293b]">
-                              <span className="text-slate-500 block text-[10px]">Brand Spoofing Check</span>
+                            <div className="p-2 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
+                              <span className="text-[#64748B] block text-[10px]">Brand Spoofing Check</span>
                               <span className="text-white font-bold">
                                 {bRes?.match_type || 'NONE'}
                               </span>
                             </div>
 
-                            <div className="p-2 rounded bg-[#07090e] border border-[#1e293b]">
-                              <span className="text-slate-500 block text-[10px]">OCR Confidence</span>
-                              <span className="text-cyan-400 font-bold">
+                            <div className="p-2 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
+                              <span className="text-[#64748B] block text-[10px]">OCR Confidence</span>
+                              <span className="text-[#0F172A] font-bold">
                                 {Math.round(cand.ocr_confidence * 100)}%
                               </span>
                             </div>
@@ -1722,15 +1722,15 @@ IMPORTANT STATIC LIMITATIONS:
 
                         {/* SHAP Explainability Highlights */}
                         {shapExp?.top_positive_contributors?.length > 0 && (
-                          <div className="pt-2 border-t border-[#1e293b] space-y-1.5">
-                            <span className="text-[10px] text-slate-400 block font-bold">
+                          <div className="pt-2 border-t border-[#E2E8F0] space-y-1.5">
+                            <span className="text-[10px] text-[#475569] block font-bold">
                               Key Random Forest TreeSHAP Phishing Risk Contributors:
                             </span>
                             <div className="flex flex-wrap gap-1.5">
                               {shapExp.top_positive_contributors.slice(0, 4).map((feat, fIdx) => (
                                 <span
                                   key={fIdx}
-                                  className="px-2 py-0.5 rounded text-[10px] bg-rose-950/40 text-rose-300 border border-rose-800/40"
+                                  className="px-2 py-0.5 rounded text-[10px] bg-[#FEF2F2] text-[#991B1B] border border-[#FECACA]"
                                 >
                                   {feat.feature_name} (SHAP: +{feat.shap_value?.toFixed(3)})
                                 </span>
@@ -1743,7 +1743,7 @@ IMPORTANT STATIC LIMITATIONS:
                   })}
                 </div>
               ) : (
-                <div className="p-6 rounded-xl bg-[#07090e] border border-dashed border-[#1e293b] text-center text-xs text-slate-500 font-mono">
+                <div className="p-6 rounded-xl bg-[#F8FAFC] border border-dashed border-[#E2E8F0] text-center text-xs text-[#64748B] font-mono">
                   No URL candidates were detected in the typography of this screenshot.
                 </div>
               )}
@@ -1758,7 +1758,7 @@ IMPORTANT STATIC LIMITATIONS:
               aria-labelledby="tab-brands"
               className="space-y-3"
             >
-              <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">
+              <span className="text-[10px] font-mono uppercase text-[#475569] font-bold block">
                 Indian Banking Registry Cross-Referencing ({threatReport.bank_brand_evidence?.length || 0})
               </span>
 
@@ -1768,25 +1768,25 @@ IMPORTANT STATIC LIMITATIONS:
                     <div
                       key={idx}
                       className={`p-4 rounded-xl border space-y-3 text-xs font-mono ${b.domain_mismatch_detected
-                          ? 'bg-rose-950/20 border-rose-800/60'
+                          ? 'bg-[#FEF2F2] border-[#FECACA]'
                           : b.is_official_match
-                            ? 'bg-emerald-950/20 border-emerald-800/60'
-                            : 'bg-[#131926] border-[#1e293b]'
+                            ? 'bg-[#ECFDF5] border-[#A7F3D0]'
+                            : 'bg-[#F8FAFC] border-[#E2E8F0]'
                         }`}
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1e293b] pb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-2">
                         <span className="text-white font-bold text-sm">{b.brand_name}</span>
                         <div className="flex items-center space-x-2">
                           {b.domain_mismatch_detected ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-300 border border-rose-800">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-[#991B1B] border border-rose-800">
                               DOMAIN MISMATCH DETECTED
                             </span>
                           ) : b.is_official_match ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-[#065F46] border border-emerald-800">
                               OFFICIAL DOMAIN VERIFIED
                             </span>
                           ) : (
-                            <span className="px-2 py-0.5 rounded text-[10px] bg-[#07090e] text-slate-300 border border-[#1e293b]">
+                            <span className="px-2 py-0.5 rounded text-[10px] bg-[#F8FAFC] text-[#334155] border border-[#E2E8F0]">
                               TEXT BRAND REFERENCE
                             </span>
                           )}
@@ -1795,22 +1795,22 @@ IMPORTANT STATIC LIMITATIONS:
 
                       {/* Mismatch Warning */}
                       {b.domain_mismatch_detected && (
-                        <div className="p-3 rounded-lg bg-rose-950/40 border border-rose-800/60 text-rose-200 text-[11px] flex items-start space-x-2">
-                          <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                        <div className="p-3 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-rose-200 text-[11px] flex items-start space-x-2">
+                          <AlertTriangle className="w-4 h-4 text-[#991B1B] shrink-0 mt-0.5" />
                           <p className="leading-relaxed">{b.mismatch_details}</p>
                         </div>
                       )}
 
                       {/* Official Domains Registry info */}
                       <div className="text-[11px] space-y-1">
-                        <span className="text-slate-500 block text-[10px]">
+                        <span className="text-[#64748B] block text-[10px]">
                           Official Registered Domains:
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {(b.official_domains || []).map((dom, dIdx) => (
                             <span
                               key={dIdx}
-                              className="px-2 py-0.5 rounded bg-[#07090e] border border-[#1e293b] text-slate-300 text-[10px]"
+                              className="px-2 py-0.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] text-[10px]"
                             >
                               {dom}
                             </span>
@@ -1821,7 +1821,7 @@ IMPORTANT STATIC LIMITATIONS:
                   ))}
                 </div>
               ) : (
-                <div className="p-6 rounded-xl bg-[#07090e] border border-dashed border-[#1e293b] text-center text-xs text-slate-500 font-mono">
+                <div className="p-6 rounded-xl bg-[#F8FAFC] border border-dashed border-[#E2E8F0] text-center text-xs text-[#64748B] font-mono">
                   No Indian banking brand names or registered institutional keywords detected.
                 </div>
               )}
@@ -1836,7 +1836,7 @@ IMPORTANT STATIC LIMITATIONS:
               aria-labelledby="tab-indicators"
               className="space-y-3"
             >
-              <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">
+              <span className="text-[10px] font-mono uppercase text-[#475569] font-bold block">
                 Social Engineering & Psychological Coercion Patterns ({threatReport.social_engineering_indicators?.length || 0})
               </span>
 
@@ -1845,17 +1845,17 @@ IMPORTANT STATIC LIMITATIONS:
                   {threatReport.social_engineering_indicators.map((ind, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 rounded-lg bg-[#131926] border border-[#1e293b] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono"
+                      className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono"
                     >
                       <div className="space-y-1 min-w-0 flex-1">
                         <div className="flex items-center space-x-2">
                           <span className="text-white font-bold">{ind.label}</span>
-                          <span className="text-[10px] text-slate-500">[{ind.category}]</span>
+                          <span className="text-[10px] text-[#64748B]">[{ind.category}]</span>
                         </div>
-                        <p className="text-[11px] text-slate-300">
-                          Matched evidence: <span className="text-cyan-300 font-bold">"{ind.matched_text}"</span>
+                        <p className="text-[11px] text-[#334155]">
+                          Matched evidence: <span className="text-[#0F172A] font-bold">"{ind.matched_text}"</span>
                         </p>
-                        <p className="text-[10px] text-slate-500 leading-relaxed">
+                        <p className="text-[10px] text-[#64748B] leading-relaxed">
                           {ind.explanation}
                         </p>
                       </div>
@@ -1863,12 +1863,12 @@ IMPORTANT STATIC LIMITATIONS:
                       <div className="shrink-0 self-end sm:self-center">
                         <span
                           className={`px-2 py-0.5 rounded text-[10px] font-bold ${ind.severity === 'CRITICAL'
-                              ? 'bg-rose-950 text-rose-300 border border-rose-800'
+                              ? 'bg-rose-950 text-[#991B1B] border border-rose-800'
                               : ind.severity === 'HIGH'
-                                ? 'bg-amber-950 text-amber-300 border border-amber-800'
+                                ? 'bg-amber-950 text-[#92400E] border border-amber-800'
                                 : ind.severity === 'BENIGN_ADVISORY'
-                                  ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                                  : 'bg-slate-800 text-slate-300 border border-slate-700'
+                                  ? 'bg-emerald-950 text-[#065F46] border border-emerald-800'
+                                  : 'bg-slate-800 text-[#334155] border border-slate-700'
                             }`}
                         >
                           {ind.severity}
@@ -1878,7 +1878,7 @@ IMPORTANT STATIC LIMITATIONS:
                   ))}
                 </div>
               ) : (
-                <div className="p-6 rounded-xl bg-[#07090e] border border-dashed border-[#1e293b] text-center text-xs text-slate-500 font-mono">
+                <div className="p-6 rounded-xl bg-[#F8FAFC] border border-dashed border-[#E2E8F0] text-center text-xs text-[#64748B] font-mono">
                   No social engineering, urgency, or credential theft patterns were detected.
                 </div>
               )}
@@ -1894,27 +1894,27 @@ IMPORTANT STATIC LIMITATIONS:
               className="space-y-3"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono uppercase text-slate-400 font-bold">
+                <span className="text-[10px] font-mono uppercase text-[#475569] font-bold">
                   Extracted Raw OCR Text Stream ({threatReport.ocr_summary?.text_block_count || 0} Blocks)
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyOcrText}
-                  className="cyber-btn-secondary text-[11px] px-2.5 py-1 text-slate-300 hover:text-cyan-300 flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                  className="cyber-btn-secondary text-[11px] px-2.5 py-1 text-[#334155] hover:text-[#0F172A] flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-500"
                 >
-                  {copiedOcrText ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copiedOcrText ? <Check className="w-3.5 h-3.5 text-[#065F46]" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{copiedOcrText ? 'Copied' : 'Copy Text'}</span>
                 </button>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#07090e] border border-[#1e293b] font-mono text-xs text-slate-200 leading-relaxed max-h-60 overflow-y-auto whitespace-pre-wrap select-all">
+              <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] font-mono text-xs text-[#0F172A] leading-relaxed max-h-60 overflow-y-auto whitespace-pre-wrap select-all">
                 {threatReport.ocr_summary?.extracted_text || 'No text extracted from this screenshot.'}
               </div>
             </div>
           )}
 
           {/* Footer Reset & New Scan */}
-          <div className="pt-3 border-t border-[#1e293b] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[11px] text-slate-400 font-mono">
+          <div className="pt-3 border-t border-[#E2E8F0] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[11px] text-[#475569] font-mono">
             <span>Threat Intelligence Analysis completed in {threatReport.processing_time_ms} ms</span>
             <button
               type="button"
@@ -1930,10 +1930,10 @@ IMPORTANT STATIC LIMITATIONS:
 
       {/* 4. OCR Only Results Section (Phase 5B fallback when user clicks OCR only) */}
       {!threatReport && ocrResult && (
-        <div className="cyber-card p-5 sm:p-6 border-cyan-500/30 space-y-5 bg-[#0d111a] animate-fadeIn">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1e293b] pb-3">
+        <div className="cyber-card p-5 sm:p-6 border-cyan-500/30 space-y-5 bg-white animate-fadeIn">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E2E8F0] pb-3">
             <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+              <CheckCircle2 className="w-4 h-4 text-[#0F172A]" />
               <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                 OCR Typography Extraction Dossier (Phase 5B)
               </h3>
@@ -1950,7 +1950,7 @@ IMPORTANT STATIC LIMITATIONS:
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#07090e] border border-[#1e293b] font-mono text-xs text-slate-200 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
+          <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] font-mono text-xs text-[#0F172A] leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
             {ocrResult.extracted_text || 'No readable text detected.'}
           </div>
         </div>

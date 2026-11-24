@@ -178,7 +178,7 @@ export default function AdminGovernanceView() {
   return (
     <div className="space-y-6">
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-[#0d111a] border border-[#1e293b]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-white border border-[#E2E8F0]">
         <div>
           <div className="flex items-center space-x-2">
             <Shield className="w-5 h-5 text-indigo-400" />
@@ -187,7 +187,7 @@ export default function AdminGovernanceView() {
               PHASE 6C
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[#475569] mt-1">
             Role-Based Access Control, Dynamic Institution Whitelist, Egress Webhooks, and Audit Provenance.
           </p>
         </div>
@@ -197,21 +197,21 @@ export default function AdminGovernanceView() {
           <div className="flex items-center space-x-3 bg-slate-900/80 px-3.5 py-2 rounded-lg border border-slate-800">
             <div className="flex items-center space-x-2 text-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-slate-300 font-mono">{currentUser.username}</span>
+              <span className="text-[#334155] font-mono">{currentUser.username}</span>
               <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-indigo-500/20 text-indigo-300">
                 {currentUser.role}
               </span>
             </div>
             <button
               onClick={handleLogout}
-              className="text-xs text-slate-400 hover:text-rose-400 p-1 transition-colors"
+              className="text-xs text-[#475569] hover:text-[#991B1B] p-1 transition-colors"
               title="Logout Session"
             >
               <LogOut className="w-3.5 h-3.5" />
             </button>
           </div>
         ) : (
-          <span className="text-xs text-amber-400 font-mono flex items-center gap-1.5 bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20">
+          <span className="text-xs text-[#92400E] font-mono flex items-center gap-1.5 bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20">
             <Lock className="w-3.5 h-3.5" /> Unauthenticated (Guest Mode)
           </span>
         )}
@@ -219,61 +219,61 @@ export default function AdminGovernanceView() {
 
       {/* Notifications */}
       {actionMessage && (
-        <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center justify-between">
+        <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-[#065F46] text-xs flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span>{actionMessage}</span>
           </div>
-          <button onClick={() => setActionMessage(null)} className="text-slate-400 hover:text-white text-xs">✕</button>
+          <button onClick={() => setActionMessage(null)} className="text-[#475569] hover:text-white text-xs">✕</button>
         </div>
       )}
       {actionError && (
-        <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center justify-between">
+        <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-[#991B1B] text-xs flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <AlertTriangle className="w-4 h-4 shrink-0" />
             <span>{actionError}</span>
           </div>
-          <button onClick={() => setActionError(null)} className="text-slate-400 hover:text-white text-xs">✕</button>
+          <button onClick={() => setActionError(null)} className="text-[#475569] hover:text-white text-xs">✕</button>
         </div>
       )}
 
       {/* Unauthenticated View: Login Modal */}
       {!currentUser && (
-        <div className="max-w-md mx-auto p-6 rounded-xl bg-[#0d111a] border border-[#1e293b] space-y-4">
+        <div className="max-w-md mx-auto p-6 rounded-xl bg-white border border-[#E2E8F0] space-y-4">
           <div className="text-center space-y-1">
             <Key className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
             <h3 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
               Administrator Authentication
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[#475569]">
               Enter credentials to access user management, audit trails, and bank registry governance.
             </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-3">
             <div>
-              <label className="text-[11px] font-mono text-slate-400 block mb-1">Username</label>
+              <label className="text-[11px] font-mono text-[#475569] block mb-1">Username</label>
               <input
                 type="text"
                 value={loginForm.username}
                 onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })}
-                className="w-full bg-[#07090e] border border-slate-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 required
               />
             </div>
             <div>
-              <label className="text-[11px] font-mono text-slate-400 block mb-1">Password</label>
+              <label className="text-[11px] font-mono text-[#475569] block mb-1">Password</label>
               <input
                 type="password"
                 placeholder="Default: PhishShieldAdmin#2026"
                 value={loginForm.password}
                 onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
-                className="w-full bg-[#07090e] border border-slate-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 required
               />
             </div>
 
-            {loginError && <p className="text-xs text-rose-400">{loginError}</p>}
+            {loginError && <p className="text-xs text-[#991B1B]">{loginError}</p>}
 
             <button
               type="submit"
@@ -290,7 +290,7 @@ export default function AdminGovernanceView() {
       {currentUser && (
         <div className="space-y-4">
           {/* Sub-tab Navigation */}
-          <div className="flex border-b border-[#1e293b] gap-2">
+          <div className="flex border-b border-[#E2E8F0] gap-2">
             {[
               { id: 'users', label: 'User Governance & RBAC', icon: Users },
               { id: 'banks', label: 'Whitelist Registry Administration', icon: Building2 },
@@ -306,7 +306,7 @@ export default function AdminGovernanceView() {
                   className={`flex items-center space-x-2 px-4 py-2.5 text-xs font-medium border-b-2 transition-all ${
                     isActive
                       ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5'
-                      : 'border-transparent text-slate-400 hover:text-slate-200'
+                      : 'border-transparent text-[#475569] hover:text-[#0F172A]'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -319,19 +319,19 @@ export default function AdminGovernanceView() {
           {/* TAB 1: USERS */}
           {activeSubTab === 'users' && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 rounded-xl bg-[#0d111a] border border-[#1e293b] p-5">
+              <div className="lg:col-span-2 rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
                     Registered Users ({users.length})
                   </h3>
-                  <button onClick={() => loadTabData('users')} className="text-xs text-slate-400 hover:text-white">
+                  <button onClick={() => loadTabData('users')} className="text-xs text-[#475569] hover:text-white">
                     <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                   </button>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800 text-slate-400">
+                      <tr className="border-b border-slate-800 text-[#475569]">
                         <th className="pb-2">User</th>
                         <th className="pb-2">Role</th>
                         <th className="pb-2">Status</th>
@@ -344,18 +344,18 @@ export default function AdminGovernanceView() {
                           <td className="py-2.5 text-white font-semibold">{u.username}</td>
                           <td className="py-2.5">
                             <span className={`px-2 py-0.5 rounded text-[10px] ${
-                              u.role === 'Administrator' ? 'bg-rose-500/20 text-rose-300' :
-                              u.role === 'Analyst' ? 'bg-indigo-500/20 text-indigo-300' : 'bg-slate-800 text-slate-300'
+                              u.role === 'Administrator' ? 'bg-rose-500/20 text-[#991B1B]' :
+                              u.role === 'Analyst' ? 'bg-indigo-500/20 text-indigo-300' : 'bg-slate-800 text-[#334155]'
                             }`}>
                               {u.role}
                             </span>
                           </td>
                           <td className="py-2.5">
-                            <span className={`px-2 py-0.5 rounded text-[10px] ${u.is_active ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}`}>
+                            <span className={`px-2 py-0.5 rounded text-[10px] ${u.is_active ? 'bg-emerald-500/20 text-[#065F46]' : 'bg-rose-500/20 text-[#991B1B]'}`}>
                               {u.is_active ? 'Active' : 'Disabled'}
                             </span>
                           </td>
-                          <td className="py-2.5 text-slate-400">{u.last_login ? new Date(u.last_login).toLocaleTimeString() : 'Never'}</td>
+                          <td className="py-2.5 text-[#475569]">{u.last_login ? new Date(u.last_login).toLocaleTimeString() : 'Never'}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -364,48 +364,48 @@ export default function AdminGovernanceView() {
               </div>
 
               {/* Create User Form */}
-              <div className="rounded-xl bg-[#0d111a] border border-[#1e293b] p-5">
+              <div className="rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono mb-3">
                   Provision New User
                 </h3>
                 <form onSubmit={handleCreateUser} className="space-y-3">
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Username</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Username</label>
                     <input
                       type="text"
                       value={newUser.username}
                       onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                       required
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Email</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Email</label>
                     <input
                       type="email"
                       value={newUser.email}
                       onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                       required
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Password</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Password</label>
                     <input
                       type="password"
                       value={newUser.password}
                       onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                       placeholder="Min 8 characters"
                       required
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Role Assignment</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Role Assignment</label>
                     <select
                       value={newUser.role}
                       onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                     >
                       <option value="Viewer">Viewer (Read-only)</option>
                       <option value="Analyst">Analyst (Scans & Exports)</option>
@@ -426,17 +426,17 @@ export default function AdminGovernanceView() {
           {/* TAB 2: BANK REGISTRY */}
           {activeSubTab === 'banks' && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 rounded-xl bg-[#0d111a] border border-[#1e293b] p-5">
+              <div className="lg:col-span-2 rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
                       Whitelist Institutions ({managedBanks.total_institutions || managedBanks.institutions?.length || 0})
                     </h3>
-                    <p className="text-[11px] text-slate-400 mt-0.5">
+                    <p className="text-[11px] text-[#475569] mt-0.5">
                       16 Canonical Core Banks are protected from deletion.
                     </p>
                   </div>
-                  <button onClick={() => loadTabData('banks')} className="text-xs text-slate-400 hover:text-white">
+                  <button onClick={() => loadTabData('banks')} className="text-xs text-[#475569] hover:text-white">
                     <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                   </button>
                 </div>
@@ -447,7 +447,7 @@ export default function AdminGovernanceView() {
                         <div className="flex items-center space-x-2">
                           <span className="text-xs font-bold text-white">{b.brand_name}</span>
                           {b.is_custom ? (
-                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">CUSTOM</span>
+                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-[#065F46]">CUSTOM</span>
                           ) : (
                             <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300">CANONICAL</span>
                           )}
@@ -457,7 +457,7 @@ export default function AdminGovernanceView() {
                       {b.is_custom && (
                         <button
                           onClick={() => handleDeleteBank(b.id, b.brand_name)}
-                          className="text-xs text-slate-400 hover:text-rose-400 p-1 transition-colors"
+                          className="text-xs text-[#475569] hover:text-[#991B1B] p-1 transition-colors"
                           title="Remove custom whitelist entry"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -469,41 +469,41 @@ export default function AdminGovernanceView() {
               </div>
 
               {/* Add Custom Bank Form */}
-              <div className="rounded-xl bg-[#0d111a] border border-[#1e293b] p-5">
+              <div className="rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono mb-3">
                   Add Approved Institution
                 </h3>
                 <form onSubmit={handleAddBank} className="space-y-3">
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Brand Name</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Brand Name</label>
                     <input
                       type="text"
                       placeholder="e.g. Bandhan Bank"
                       value={newBank.brand_name}
                       onChange={(e) => setNewBank({ ...newBank, brand_name: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                       required
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Primary Domain (FQDN)</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Primary Domain (FQDN)</label>
                     <input
                       type="text"
                       placeholder="e.g. bandhanbank.com"
                       value={newBank.primary_domain}
                       onChange={(e) => setNewBank({ ...newBank, primary_domain: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono"
                       required
                     />
-                    <p className="text-[10px] text-slate-500 mt-1">No protocols (https://) or wildcards (*).</p>
+                    <p className="text-[10px] text-[#64748B] mt-1">No protocols (https://) or wildcards (*).</p>
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Category</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Category</label>
                     <input
                       type="text"
                       value={newBank.category}
                       onChange={(e) => setNewBank({ ...newBank, category: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                     />
                   </div>
                   <button
@@ -520,23 +520,23 @@ export default function AdminGovernanceView() {
           {/* TAB 3: WEBHOOKS */}
           {activeSubTab === 'webhooks' && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2 rounded-xl bg-[#0d111a] border border-[#1e293b] p-5">
+              <div className="lg:col-span-2 rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
                       Outbound Alert Destinations ({webhooks.length})
                     </h3>
-                    <p className="text-[11px] text-slate-400 mt-0.5">
+                    <p className="text-[11px] text-[#475569] mt-0.5">
                       SSRF Defense enforces strict HTTPS & blocks private networks / loopbacks.
                     </p>
                   </div>
-                  <button onClick={() => loadTabData('webhooks')} className="text-xs text-slate-400 hover:text-white">
+                  <button onClick={() => loadTabData('webhooks')} className="text-xs text-[#475569] hover:text-white">
                     <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                   </button>
                 </div>
                 <div className="space-y-3">
                   {webhooks.length === 0 ? (
-                    <p className="text-xs text-slate-500 py-4 text-center">No alert webhooks configured.</p>
+                    <p className="text-xs text-[#64748B] py-4 text-center">No alert webhooks configured.</p>
                   ) : (
                     webhooks.map((w) => (
                       <div key={w.id} className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 space-y-2">
@@ -551,10 +551,10 @@ export default function AdminGovernanceView() {
                             </button>
                           </div>
                         </div>
-                        <p className="text-[11px] font-mono text-slate-400 truncate">{w.url}</p>
-                        <div className="flex items-center justify-between text-[10px] text-slate-500 pt-1 border-t border-slate-800/60">
+                        <p className="text-[11px] font-mono text-[#475569] truncate">{w.url}</p>
+                        <div className="flex items-center justify-between text-[10px] text-[#64748B] pt-1 border-t border-slate-800/60">
                           <span>Last Delivery: {w.last_delivery_status || 'Never'}</span>
-                          {w.last_error && <span className="text-rose-400 truncate max-w-[200px]">{w.last_error}</span>}
+                          {w.last_error && <span className="text-[#991B1B] truncate max-w-[200px]">{w.last_error}</span>}
                         </div>
                       </div>
                     ))
@@ -563,42 +563,42 @@ export default function AdminGovernanceView() {
               </div>
 
               {/* Add Webhook Form */}
-              <div className="rounded-xl bg-[#0d111a] border border-[#1e293b] p-5">
+              <div className="rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono mb-3">
                   Register Alert Webhook
                 </h3>
                 <form onSubmit={handleCreateWebhook} className="space-y-3">
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Destination Name</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Destination Name</label>
                     <input
                       type="text"
                       placeholder="e.g. SOC Slack Channel"
                       value={newWebhook.name}
                       onChange={(e) => setNewWebhook({ ...newWebhook, name: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                       required
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Webhook URL (HTTPS Only)</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Webhook URL (HTTPS Only)</label>
                     <input
                       type="url"
                       placeholder="https://hooks.slack.com/services/..."
                       value={newWebhook.url}
                       onChange={(e) => setNewWebhook({ ...newWebhook, url: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono"
                       required
                     />
-                    <p className="text-[10px] text-slate-500 mt-1">SSRF protection blocks localhost and private IPs.</p>
+                    <p className="text-[10px] text-[#64748B] mt-1">SSRF protection blocks localhost and private IPs.</p>
                   </div>
                   <div>
-                    <label className="text-[10px] font-mono text-slate-400 block mb-1">Secret Auth Token (Optional)</label>
+                    <label className="text-[10px] font-mono text-[#475569] block mb-1">Secret Auth Token (Optional)</label>
                     <input
                       type="password"
                       placeholder="Bearer token or secret"
                       value={newWebhook.secret_token}
                       onChange={(e) => setNewWebhook({ ...newWebhook, secret_token: e.target.value })}
-                      className="w-full bg-[#07090e] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
                     />
                   </div>
                   <button
@@ -614,17 +614,17 @@ export default function AdminGovernanceView() {
 
           {/* TAB 4: AUDIT TRAIL */}
           {activeSubTab === 'audit' && (
-            <div className="rounded-xl bg-[#0d111a] border border-[#1e293b] p-5 space-y-4">
+            <div className="rounded-xl bg-white border border-[#E2E8F0] p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
                     Administrative Security Audit Logs ({auditLogs.total})
                   </h3>
-                  <p className="text-[11px] text-slate-400 mt-0.5">
+                  <p className="text-[11px] text-[#475569] mt-0.5">
                     Immutable forensic log of user events, registry changes, and export actions.
                   </p>
                 </div>
-                <button onClick={() => loadTabData('audit')} className="text-xs text-slate-400 hover:text-white">
+                <button onClick={() => loadTabData('audit')} className="text-xs text-[#475569] hover:text-white">
                   <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                 </button>
               </div>
@@ -632,7 +632,7 @@ export default function AdminGovernanceView() {
               <div className="overflow-x-auto max-h-[500px]">
                 <table className="w-full text-left text-xs">
                   <thead>
-                    <tr className="border-b border-slate-800 text-slate-400 font-mono text-[11px]">
+                    <tr className="border-b border-slate-800 text-[#475569] font-mono text-[11px]">
                       <th className="pb-2">Timestamp</th>
                       <th className="pb-2">Actor</th>
                       <th className="pb-2">Role</th>
@@ -643,13 +643,13 @@ export default function AdminGovernanceView() {
                   <tbody className="divide-y divide-slate-800/60 font-mono text-[11px]">
                     {auditLogs.logs?.map((log) => (
                       <tr key={log.id} className="hover:bg-slate-800/30">
-                        <td className="py-2 text-slate-400 whitespace-nowrap">
+                        <td className="py-2 text-[#475569] whitespace-nowrap">
                           {log.timestamp ? new Date(log.timestamp).toLocaleString() : 'N/A'}
                         </td>
                         <td className="py-2 text-white font-semibold">{log.actor_username}</td>
                         <td className="py-2 text-indigo-400">{log.actor_role}</td>
-                        <td className="py-2 text-emerald-400 font-bold">{log.action}</td>
-                        <td className="py-2 text-slate-400 max-w-xs truncate">
+                        <td className="py-2 text-[#065F46] font-bold">{log.action}</td>
+                        <td className="py-2 text-[#475569] max-w-xs truncate">
                           {log.details ? JSON.stringify(log.details) : '-'}
                         </td>
                       </tr>

@@ -47,42 +47,42 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
     {
       label: 'Fake SBI YONO KYC Block',
       category: 'Banking Smishing',
-      badgeColor: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+      badgeColor: 'border-rose-500/30 text-[#991B1B] bg-rose-500/10',
       text: 'Dear SBI User, your YONO account is blocked today due to pending KYC. Click http://onlinesbi-pan-kyc-verification.com/login.php to update immediately.',
       desc: 'SBI brand impersonation with urgent KYC suspension lure and phishing link.',
     },
     {
       label: 'Electricity Power Cut Threat',
       category: 'Utility Smishing',
-      badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
+      badgeColor: 'border-amber-500/30 text-[#92400E] bg-amber-500/10',
       text: 'Electricity Power Cut Alert: Dear consumer, your electricity connection will be disconnected tonight at 9:30 PM due to unpaid bill. Pay immediately at http://ebill-update.xyz to avoid cutoff.',
       desc: 'Urgency & extortion lure impersonating state electricity board with untrusted link.',
     },
     {
       label: 'Fake HDFC Points Redemption',
       category: 'Reward Smishing',
-      badgeColor: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+      badgeColor: 'border-rose-500/30 text-[#991B1B] bg-rose-500/10',
       text: 'Dear HDFC customer, your reward points worth Rs 7,500 will expire tonight. Redeem cash in your account at http://hdfcbank-rewardpoint-redeem.in/claim now.',
       desc: 'Cash reward lure with lookalike HDFC subdomain typosquatting link.',
     },
     {
       label: 'Official SBI NEFT Credit Alert',
       category: 'Official Transaction',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+      badgeColor: 'border-emerald-500/30 text-[#065F46] bg-emerald-500/10',
       text: 'Dear SBI Customer, your A/C ending 4589 is credited with Rs 45,000.00 on 15-Nov-26 by NEFT. Available Bal: Rs 68,450.00. Official portal: https://retail.onlinesbi.sbi -State Bank of India',
       desc: 'Authentic banking transaction alert containing verified official SBI portal.',
     },
     {
       label: 'Legitimate Bank OTP (No Link)',
       category: 'Official OTP',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+      badgeColor: 'border-emerald-500/30 text-[#065F46] bg-emerald-500/10',
       text: '349812 is your OTP for login to SBI NetBanking. Do not share this OTP with anyone, including bank staff. Valid for 10 minutes. -State Bank of India',
       desc: 'Authentic 2FA OTP message containing security advisory and no external links.',
     },
     {
       label: 'Axis Bank Security Alert',
       category: 'Banking Smishing',
-      badgeColor: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+      badgeColor: 'border-rose-500/30 text-[#991B1B] bg-rose-500/10',
       text: 'Urgent: Your Axis Bank NetBanking access has been suspended due to unusual activity. Verify your pan card now at http://axisbank-security-portal.com to restore access.',
       desc: 'Security panic lure targeting Axis Bank customers with credential harvester.',
     },
@@ -178,7 +178,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
     <div className="space-y-6">
       {/* 1. SMS INPUT CONSOLE */}
       <div className="cyber-card p-5 sm:p-6 space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1e293b] pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-4">
           <div>
             <div className="flex items-center space-x-2 text-purple-400 mb-1">
               <MessageSquare className="w-4 h-4" />
@@ -186,12 +186,12 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 SMS Phishing (Smishing) & Multi-URL Defense Console
               </h2>
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[#475569]">
               Dual-stage analysis: TF-IDF + Logistic Regression for NLP language urgency, with automatic deep-scanning of every embedded link.
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131926] text-purple-400 border border-[#1e293b]">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-purple-400 border border-[#E2E8F0]">
               NLP + RF Multi-URL Engine
             </span>
           </div>
@@ -205,16 +205,16 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
               placeholder="Paste suspicious SMS message text here (e.g. 'Dear SBI user, your YONO account is blocked today due to pending KYC. Click http://...')..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full p-4 rounded-lg bg-[#131926] border border-[#1e293b] text-xs font-mono text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 resize-y transition-all"
+              className="w-full p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 resize-y transition-all"
             />
-            <div className="absolute right-3 bottom-3 text-[10px] font-mono text-slate-500 bg-[#0d111a]/80 px-2 py-0.5 rounded border border-[#1e293b]">
+            <div className="absolute right-3 bottom-3 text-[10px] font-mono text-[#64748B] bg-white/80 px-2 py-0.5 rounded border border-[#E2E8F0]">
               {message.length} characters
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
-            <span className="text-[11px] text-slate-500 flex items-center space-x-1">
-              <Lock className="w-3 h-3 text-emerald-400" />
+            <span className="text-[11px] text-[#64748B] flex items-center space-x-1">
+              <Lock className="w-3 h-3 text-[#065F46]" />
               <span>In-Memory Evaluation: URLs are extracted syntactically and analyzed without HTTP execution.</span>
             </span>
 
@@ -254,8 +254,8 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-lg bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 flex items-start space-x-2.5">
-            <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start space-x-2.5">
+            <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
             <div className="flex-1">
               <span className="font-semibold block">Scan Error:</span>
               <span className="opacity-90">{error}</span>
@@ -264,12 +264,12 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
         )}
 
         {/* Preset Sample Targets */}
-        <div className="pt-3 border-t border-[#1e293b]">
+        <div className="pt-3 border-t border-[#E2E8F0]">
           <div className="flex items-center justify-between mb-2.5">
-            <p className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-1.5">
+            <p className="text-[11px] font-mono uppercase tracking-wider text-[#475569] font-semibold flex items-center gap-1.5">
               <span>Preset Indian Smishing Attacks & Official Alerts:</span>
             </p>
-            <span className="text-[10px] text-slate-500">Click to test instant detection</span>
+            <span className="text-[10px] text-[#64748B]">Click to test instant detection</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -281,10 +281,10 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                   setMessage(item.text);
                   handleScan(item.text);
                 }}
-                className="text-left p-3 rounded-lg bg-[#131926]/70 border border-[#1e293b] hover:border-purple-500/40 hover:bg-[#1a2234] transition-all group relative overflow-hidden"
+                className="text-left p-3 rounded-lg bg-[#F8FAFC]/70 border border-[#E2E8F0] hover:border-purple-500/40 hover:bg-[#F1F5F9] transition-all group relative overflow-hidden"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
-                  <span className="text-xs font-semibold text-slate-200 group-hover:text-purple-300 truncate">
+                  <span className="text-xs font-semibold text-[#0F172A] group-hover:text-purple-300 truncate">
                     {item.label}
                   </span>
                   <span
@@ -293,10 +293,10 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                     {item.category}
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-400 line-clamp-2 mb-1.5 leading-normal font-mono">
+                <p className="text-[10px] text-[#475569] line-clamp-2 mb-1.5 leading-normal font-mono">
                   "{item.text}"
                 </p>
-                <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 group-hover:text-purple-400/80">
+                <div className="flex items-center justify-between text-[10px] font-mono text-[#64748B] group-hover:text-purple-400/80">
                   <span className="truncate max-w-[200px]">{item.desc}</span>
                   <ArrowRight className="w-3 h-3 shrink-0 ml-1 transition-transform group-hover:translate-x-0.5" />
                 </div>
@@ -312,32 +312,32 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
           {/* Hero Assessment Card */}
           <div className="cyber-card p-5 sm:p-6 space-y-5 border-purple-500/20">
             {/* Header info */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#1e293b]">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#E2E8F0]">
               <div className="min-w-0 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-[11px] font-mono text-purple-400 uppercase tracking-wider font-semibold">
                     Composite Smishing Assessment
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131926] text-slate-400 border border-[#1e293b]">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0]">
                     Model v{scanResult.sms_text_analysis?.model_version || '1.0.0'}
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500">
+                  <span className="text-[10px] font-mono text-[#64748B]">
                     {scanResult.analyzed_at}
                   </span>
                 </div>
 
                 <div className="flex items-start space-x-2 pt-1">
-                  <p className="text-xs font-mono text-slate-200 leading-relaxed max-w-3xl line-clamp-2">
+                  <p className="text-xs font-mono text-[#0F172A] leading-relaxed max-w-3xl line-clamp-2">
                     "{scanResult.message}"
                   </p>
                   <button
                     type="button"
                     onClick={() => handleCopyMessage(scanResult.message)}
-                    className="p-1.5 rounded bg-[#131926] hover:bg-[#1a2234] text-slate-400 hover:text-white border border-[#1e293b] shrink-0 mt-0.5"
+                    className="p-1.5 rounded bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#475569] hover:text-white border border-[#E2E8F0] shrink-0 mt-0.5"
                     title="Copy message text"
                   >
                     {copiedMessage ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <Check className="w-3.5 h-3.5 text-[#065F46]" />
                     ) : (
                       <Copy className="w-3.5 h-3.5" />
                     )}
@@ -353,23 +353,23 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             {/* Actionable Safety Recommendation Directive */}
             <div
               className={`p-4 rounded-xl border flex items-start space-x-3.5 ${scanResult.composite_risk_level === 'CRITICAL'
-                  ? 'bg-rose-950/30 border-rose-800/70 text-rose-200'
+                  ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
                   : scanResult.composite_risk_level === 'HIGH'
                     ? 'bg-orange-950/30 border-orange-800/70 text-orange-200'
                     : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS'
-                      ? 'bg-amber-950/30 border-amber-800/70 text-amber-200'
-                      : 'bg-emerald-950/30 border-emerald-800/70 text-emerald-200'
+                      ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
+                      : 'bg-[#ECFDF5] border-[#A7F3D0] text-emerald-200'
                 }`}
             >
               <div className="shrink-0 mt-0.5">
                 {scanResult.composite_risk_level === 'CRITICAL' ? (
-                  <ShieldAlert className="w-5 h-5 text-rose-400 animate-pulse" />
+                  <ShieldAlert className="w-5 h-5 text-[#991B1B] animate-pulse" />
                 ) : scanResult.composite_risk_level === 'HIGH' ? (
                   <AlertOctagon className="w-5 h-5 text-orange-400" />
                 ) : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS' ? (
-                  <AlertTriangle className="w-5 h-5 text-amber-400" />
+                  <AlertTriangle className="w-5 h-5 text-[#92400E]" />
                 ) : (
-                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                  <ShieldCheck className="w-5 h-5 text-[#065F46]" />
                 )}
               </div>
               <div className="flex-1 text-xs">
@@ -385,9 +385,9 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             {/* 3 Telemetry Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Telemetry 1: Composite Threat Score */}
-              <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col justify-between space-y-3">
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono uppercase text-slate-400 font-semibold">
+                  <span className="text-[11px] font-mono uppercase text-[#475569] font-semibold">
                     Composite Risk Score
                   </span>
                   <span className="text-[10px] font-mono text-purple-400">NLP + URL Threat</span>
@@ -396,24 +396,24 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 <div className="flex items-baseline space-x-2">
                   <span
                     className={`text-3xl font-black font-mono ${scanResult.composite_risk_score >= 80
-                        ? 'text-rose-400'
+                        ? 'text-[#991B1B]'
                         : scanResult.composite_risk_score >= 60
                           ? 'text-orange-400'
                           : scanResult.composite_risk_score >= 30
-                            ? 'text-amber-400'
-                            : 'text-emerald-400'
+                            ? 'text-[#92400E]'
+                            : 'text-[#065F46]'
                       }`}
                   >
                     {scanResult.composite_risk_score}%
                   </span>
-                  <span className="text-xs text-slate-500 font-mono">
+                  <span className="text-xs text-[#64748B] font-mono">
                     (Text NLP: {scanResult.sms_text_analysis?.sms_risk_score}%)
                   </span>
                 </div>
 
                 {/* Meter Bar */}
                 <div className="space-y-1">
-                  <div className="w-full bg-[#131926] h-2 rounded-full overflow-hidden border border-[#1e293b]">
+                  <div className="w-full bg-[#F8FAFC] h-2 rounded-full overflow-hidden border border-[#E2E8F0]">
                     <div
                       className={`h-full rounded-full transition-all duration-700 ${scanResult.composite_risk_score >= 80
                           ? 'bg-rose-500'
@@ -426,7 +426,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                       style={{ width: `${Math.max(4, scanResult.composite_risk_score)}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-[9px] font-mono text-slate-500">
+                  <div className="flex justify-between text-[9px] font-mono text-[#64748B]">
                     <span>Safe (0-30%)</span>
                     <span>Suspicious (30-60%)</span>
                     <span>Phishing (80%+)</span>
@@ -435,32 +435,32 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
               </div>
 
               {/* Telemetry 2: SMS NLP Classifier Probability */}
-              <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col justify-between space-y-3">
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono uppercase text-slate-400 font-semibold flex items-center gap-1.5">
+                  <span className="text-[11px] font-mono uppercase text-[#475569] font-semibold flex items-center gap-1.5">
                     <Cpu className="w-3.5 h-3.5 text-purple-400" />
                     <span>Language Model</span>
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500">TF-IDF + LR</span>
+                  <span className="text-[10px] font-mono text-[#64748B]">TF-IDF + LR</span>
                 </div>
 
                 <div className="space-y-1.5 text-xs">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400">Legitimate Confidence:</span>
-                    <span className="font-mono text-emerald-400 font-bold">
+                    <span className="text-[#475569]">Legitimate Confidence:</span>
+                    <span className="font-mono text-[#065F46] font-bold">
                       {((scanResult.sms_text_analysis?.probabilities?.legitimate || 0) * 100).toFixed(1)}%
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400">Phishing/Smish Prob:</span>
-                    <span className="font-mono text-rose-400 font-bold">
+                    <span className="text-[#475569]">Phishing/Smish Prob:</span>
+                    <span className="font-mono text-[#991B1B] font-bold">
                       {((scanResult.sms_text_analysis?.probabilities?.phishing || 0) * 100).toFixed(1)}%
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400">Smishing Classification:</span>
+                    <span className="text-[#475569]">Smishing Classification:</span>
                     <span
-                      className={`font-mono text-[11px] font-semibold ${scanResult.is_smishing ? 'text-rose-400' : 'text-emerald-400'
+                      className={`font-mono text-[11px] font-semibold ${scanResult.is_smishing ? 'text-[#991B1B]' : 'text-[#065F46]'
                         }`}
                     >
                       {scanResult.is_smishing ? 'CONFIRMED SMISHING' : 'AUTHENTIC / SAFE'}
@@ -468,19 +468,19 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                   </div>
                 </div>
 
-                <div className="text-[10px] text-slate-500 font-mono">
+                <div className="text-[10px] text-[#64748B] font-mono">
                   Word & character n-grams trained on Indian scams
                 </div>
               </div>
 
               {/* Telemetry 3: Target Brand & Embedded Links */}
-              <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col justify-between space-y-3">
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono uppercase text-slate-400 font-semibold flex items-center gap-1.5">
-                    <Landmark className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-[11px] font-mono uppercase text-[#475569] font-semibold flex items-center gap-1.5">
+                    <Landmark className="w-3.5 h-3.5 text-[#0F172A]" />
                     <span>Targeted Institution</span>
                   </span>
-                  <span className="text-[10px] font-mono text-cyan-400">
+                  <span className="text-[10px] font-mono text-[#0F172A]">
                     {scanResult.url_count} Link{scanResult.url_count !== 1 ? 's' : ''}
                   </span>
                 </div>
@@ -488,28 +488,28 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 <div>
                   {scanResult.target_brand ? (
                     <div className="space-y-1">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-rose-500/10 text-rose-300 border border-rose-500/30 text-xs font-bold font-mono">
-                        <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-rose-500/10 text-[#991B1B] border border-rose-500/30 text-xs font-bold font-mono">
+                        <ShieldAlert className="w-3.5 h-3.5 text-[#991B1B]" />
                         <span>Spoofing: {scanResult.target_brand}</span>
                       </span>
-                      <p className="text-[11px] text-rose-400 font-mono mt-1">
+                      <p className="text-[11px] text-[#991B1B] font-mono mt-1">
                         Brand impersonation detected in message links
                       </p>
                     </div>
                   ) : (
                     <div className="space-y-1">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium font-mono">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-[#334155] border border-slate-700 text-xs font-medium font-mono">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#475569]" />
                         <span>General / Unbranded</span>
                       </span>
-                      <p className="text-[11px] text-slate-500 font-mono mt-1">
+                      <p className="text-[11px] text-[#64748B] font-mono mt-1">
                         No specific Indian bank trademark identified
                       </p>
                     </div>
                   )}
                 </div>
 
-                <div className="text-[10px] text-slate-500 font-mono">
+                <div className="text-[10px] text-[#64748B] font-mono">
                   Extracted Links: {scanResult.url_count} evaluated
                 </div>
               </div>
@@ -519,14 +519,14 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
           {/* 3. IDENTIFIED SMISHING & FINANCIAL LURE TOKENS */}
           {scanResult.sms_text_analysis?.keywords_detected?.length > 0 && (
             <div className="cyber-card p-5 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#1e293b] pb-2.5">
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
                 <div className="flex items-center space-x-2">
                   <Sparkles className="w-4 h-4 text-purple-400" />
                   <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                     Identified Urgency & Financial Coercion Tokens
                   </h3>
                 </div>
-                <span className="text-[10px] font-mono text-slate-400">
+                <span className="text-[10px] font-mono text-[#475569]">
                   {scanResult.sms_text_analysis.keywords_detected.length} High-Threat Keywords
                 </span>
               </div>
@@ -542,7 +542,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                   </span>
                 ))}
               </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed">
+              <p className="text-[11px] text-[#475569] leading-relaxed">
                 Attackers exploit artificial urgency tokens ("blocked", "kyc", "immediately", "expire") to induce panic and force victims into entering credentials or clicking unverified links.
               </p>
             </div>
@@ -550,14 +550,14 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
 
           {/* 4. EXTRACTED URLS AUTOMATIC DEEP SCAN */}
           <div className="cyber-card p-5 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1e293b] pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center space-x-2">
-                <LinkIcon className="w-4 h-4 text-cyan-400" />
+                <LinkIcon className="w-4 h-4 text-[#0F172A]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                   Extracted URLs Deep Analysis ({scanResult.url_count} Link{scanResult.url_count !== 1 ? 's' : ''})
                 </h3>
               </div>
-              <span className="text-[10px] font-mono text-slate-400">
+              <span className="text-[10px] font-mono text-[#475569]">
                 26-Feature RF + Indian Banking Registry + TreeSHAP
               </span>
             </div>
@@ -573,15 +573,15 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                   return (
                     <div
                       key={idx}
-                      className="p-4 rounded-xl bg-[#131926] border border-[#1e293b] space-y-3 hover:border-slate-700 transition-all"
+                      className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-3 hover:border-[#CBD5E1] transition-all"
                     >
                       {/* URL Card Header */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-[#1e293b]">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-[#E2E8F0]">
                         <div className="flex items-center space-x-2 min-w-0">
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#0d111a] text-cyan-400 border border-[#1e293b] shrink-0 font-bold">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white text-[#0F172A] border border-[#E2E8F0] shrink-0 font-bold">
                             LINK #{idx + 1}
                           </span>
-                          <span className="text-xs font-mono text-cyan-300 truncate font-bold">
+                          <span className="text-xs font-mono text-[#0F172A] truncate font-bold">
                             {urlRes.url}
                           </span>
                         </div>
@@ -590,11 +590,11 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                           <button
                             type="button"
                             onClick={() => handleCopyUrl(urlRes.url, idx)}
-                            className="p-1.5 rounded bg-[#0d111a] text-slate-400 hover:text-white border border-[#1e293b] transition-colors"
+                            className="p-1.5 rounded bg-white text-[#475569] hover:text-white border border-[#E2E8F0] transition-colors"
                             title="Copy extracted URL (Warning: Do not open in browser)"
                           >
                             {copiedIndex === idx ? (
-                              <Check className="w-3.5 h-3.5 text-emerald-400" />
+                              <Check className="w-3.5 h-3.5 text-[#065F46]" />
                             ) : (
                               <Copy className="w-3.5 h-3.5" />
                             )}
@@ -605,44 +605,44 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
 
                       {/* URL Diagnostics Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
-                        <div className="p-3 rounded-lg bg-[#0d111a] border border-[#1e293b]">
-                          <span className="text-[10px] font-mono text-slate-400 block uppercase">
+                        <div className="p-3 rounded-lg bg-white border border-[#E2E8F0]">
+                          <span className="text-[10px] font-mono text-[#475569] block uppercase">
                             Calibrated Threat Score
                           </span>
-                          <span className="font-mono font-bold text-slate-100 mt-1 block">
+                          <span className="font-mono font-bold text-[#0F172A] mt-1 block">
                             {urlRes.risk_score}%
-                            <span className="text-slate-500 text-[11px] font-normal ml-1.5">
+                            <span className="text-[#64748B] text-[11px] font-normal ml-1.5">
                               (ML: {(urlRes.probabilities?.phishing * 100).toFixed(1)}%)
                             </span>
                           </span>
                         </div>
 
-                        <div className="p-3 rounded-lg bg-[#0d111a] border border-[#1e293b]">
-                          <span className="text-[10px] font-mono text-slate-400 block uppercase">
+                        <div className="p-3 rounded-lg bg-white border border-[#E2E8F0]">
+                          <span className="text-[10px] font-mono text-[#475569] block uppercase">
                             Brand Impersonation Status
                           </span>
                           <span className="font-mono font-bold mt-1 block truncate">
                             {bData?.is_official_domain ? (
-                              <span className="text-emerald-400 flex items-center gap-1">
+                              <span className="text-[#065F46] flex items-center gap-1">
                                 <CheckCircle2 className="w-3.5 h-3.5" />
                                 <span>Verified {bData.detected_brand}</span>
                               </span>
                             ) : bData?.impersonation_suspected ? (
-                              <span className="text-rose-400 flex items-center gap-1">
+                              <span className="text-[#991B1B] flex items-center gap-1">
                                 <ShieldAlert className="w-3.5 h-3.5" />
                                 <span>Spoofing {bData.detected_brand}</span>
                               </span>
                             ) : (
-                              <span className="text-slate-400">None (Unbranded)</span>
+                              <span className="text-[#475569]">None (Unbranded)</span>
                             )}
                           </span>
                         </div>
 
-                        <div className="p-3 rounded-lg bg-[#0d111a] border border-[#1e293b]">
-                          <span className="text-[10px] font-mono text-slate-400 block uppercase">
+                        <div className="p-3 rounded-lg bg-white border border-[#E2E8F0]">
+                          <span className="text-[10px] font-mono text-[#475569] block uppercase">
                             Match Vector & Distance
                           </span>
-                          <span className="font-mono text-slate-300 mt-1 block truncate">
+                          <span className="font-mono text-[#334155] mt-1 block truncate">
                             {bData?.match_type ? bData.match_type.replace(/_/g, ' ') : 'N/A'}
                             {bData?.edit_distance >= 0 && ` (Dist: ${bData.edit_distance})`}
                           </span>
@@ -651,13 +651,13 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
 
                       {/* SHAP Summary */}
                       {sData && sData.summary && (
-                        <div className="p-3 rounded-lg bg-[#0d111a] border border-[#1e293b] text-xs text-slate-300 flex items-start space-x-2">
+                        <div className="p-3 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#334155] flex items-start space-x-2">
                           <Sparkles className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                           <div className="space-y-0.5">
                             <span className="text-[10px] font-mono uppercase text-purple-400 font-bold block">
                               TreeSHAP AI Explanation:
                             </span>
-                            <p className="italic text-slate-300 leading-relaxed text-[11px]">
+                            <p className="italic text-[#334155] leading-relaxed text-[11px]">
                               "{sData.summary}"
                             </p>
                           </div>
@@ -666,8 +666,8 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
 
                       {/* Recommendation text */}
                       {rData && rData.recommendation_text && (
-                        <div className="p-3 rounded-lg bg-[#07090e] border border-[#1e293b] text-[11px] text-slate-300 flex items-start space-x-2">
-                          <Info className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                        <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[11px] text-[#334155] flex items-start space-x-2">
+                          <Info className="w-3.5 h-3.5 text-[#0F172A] shrink-0 mt-0.5" />
                           <span className="leading-relaxed">{rData.recommendation_text}</span>
                         </div>
                       )}
@@ -678,7 +678,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                           <button
                             type="button"
                             onClick={() => toggleUrlFeatures(idx)}
-                            className="flex items-center space-x-1.5 text-[10px] font-mono text-slate-400 hover:text-cyan-400 pt-1 transition-colors"
+                            className="flex items-center space-x-1.5 text-[10px] font-mono text-[#475569] hover:text-[#0F172A] pt-1 transition-colors"
                           >
                             <Layers className="w-3 h-3" />
                             <span>
@@ -692,16 +692,16 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                           </button>
 
                           {isFeaturesOpen && (
-                            <div className="mt-2 p-3 rounded-lg bg-[#07090e] border border-[#1e293b] grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 text-[10px] font-mono">
+                            <div className="mt-2 p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2 text-[10px] font-mono">
                               {Object.entries(urlRes.features).map(([fKey, fVal]) => (
                                 <div
                                   key={fKey}
-                                  className="p-1.5 rounded bg-[#131926] border border-[#1e293b] truncate"
+                                  className="p-1.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] truncate"
                                 >
-                                  <span className="text-slate-500 block truncate" title={fKey}>
+                                  <span className="text-[#64748B] block truncate" title={fKey}>
                                     {fKey}
                                   </span>
-                                  <span className="text-slate-200 font-bold block mt-0.5">
+                                  <span className="text-[#0F172A] font-bold block mt-0.5">
                                     {typeof fVal === 'number'
                                       ? Number.isInteger(fVal)
                                         ? fVal
@@ -719,10 +719,10 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 })}
               </div>
             ) : (
-              <div className="p-4 rounded-xl bg-[#131926] border border-[#1e293b] text-xs text-slate-400 flex items-start space-x-3">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#475569] flex items-start space-x-3">
+                <CheckCircle2 className="w-4 h-4 text-[#065F46] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <span className="font-semibold text-slate-200 block">
+                  <span className="font-semibold text-[#0F172A] block">
                     Zero Embedded Hyperlinks Detected:
                   </span>
                   <p className="leading-relaxed">
@@ -735,7 +735,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
 
           {/* 5. INDIAN BANKING CUSTOMER CYBER-DEFENSE ADVISORY */}
           <div className="cyber-card p-5 space-y-4">
-            <div className="flex items-center space-x-2 text-cyan-400 border-b border-[#1e293b] pb-2.5">
+            <div className="flex items-center space-x-2 text-[#0F172A] border-b border-[#E2E8F0] pb-2.5">
               <Shield className="w-4 h-4" />
               <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                 Indian Citizen Cyber Defense Advisory
@@ -743,39 +743,39 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b] space-y-1">
-                <span className="font-mono text-cyan-400 font-bold block text-[11px]">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-1">
+                <span className="font-mono text-[#0F172A] font-bold block text-[11px]">
                   1. Zero-Trust OTP Rule
                 </span>
-                <p className="text-slate-400 leading-relaxed text-[11px]">
+                <p className="text-[#475569] leading-relaxed text-[11px]">
                   Under RBI guidelines, no bank executive or official will ever ask for OTPs, UPI PINs, or NetBanking passwords. Never share OTPs over SMS or calls.
                 </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b] space-y-1">
-                <span className="font-mono text-cyan-400 font-bold block text-[11px]">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-1">
+                <span className="font-mono text-[#0F172A] font-bold block text-[11px]">
                   2. Official Header Verification
                 </span>
-                <p className="text-slate-400 leading-relaxed text-[11px]">
-                  Legitimate Indian bank alerts originate from certified 6-character Alpha sender headers (e.g. <span className="font-mono text-slate-200">VM-SBIINB</span>, <span className="font-mono text-slate-200">AD-HDFCBK</span>), never from 10-digit mobile numbers.
+                <p className="text-[#475569] leading-relaxed text-[11px]">
+                  Legitimate Indian bank alerts originate from certified 6-character Alpha sender headers (e.g. <span className="font-mono text-[#0F172A]">VM-SBIINB</span>, <span className="font-mono text-[#0F172A]">AD-HDFCBK</span>), never from 10-digit mobile numbers.
                 </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b] space-y-1">
-                <span className="font-mono text-cyan-400 font-bold block text-[11px]">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-1">
+                <span className="font-mono text-[#0F172A] font-bold block text-[11px]">
                   3. Verify Domain Apex (.sbi / .com)
                 </span>
-                <p className="text-slate-400 leading-relaxed text-[11px]">
-                  Always verify official apex domains. For instance, State Bank of India operates exclusively under canonical <span className="font-mono text-emerald-400">.sbi</span> or official registry domains.
+                <p className="text-[#475569] leading-relaxed text-[11px]">
+                  Always verify official apex domains. For instance, State Bank of India operates exclusively under canonical <span className="font-mono text-[#065F46]">.sbi</span> or official registry domains.
                 </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#131926] border border-[#1e293b] space-y-1">
-                <span className="font-mono text-cyan-400 font-bold block text-[11px]">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-1">
+                <span className="font-mono text-[#0F172A] font-bold block text-[11px]">
                   4. Report to Cybercrime (1930)
                 </span>
-                <p className="text-slate-400 leading-relaxed text-[11px]">
-                  Report smishing or fraudulent financial debit immediately to the National Cyber Crime Helpline <span className="font-mono text-amber-400 font-bold">1930</span> or register an incident at <span className="font-mono text-slate-200">cybercrime.gov.in</span>.
+                <p className="text-[#475569] leading-relaxed text-[11px]">
+                  Report smishing or fraudulent financial debit immediately to the National Cyber Crime Helpline <span className="font-mono text-[#92400E] font-bold">1930</span> or register an incident at <span className="font-mono text-[#0F172A]">cybercrime.gov.in</span>.
                 </p>
               </div>
             </div>
@@ -784,7 +784,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
           {/* 6. THREAT AUDIT LOG FINDINGS */}
           {scanResult.reasons && scanResult.reasons.length > 0 && (
             <div className="cyber-card p-5 space-y-3">
-              <div className="flex items-center space-x-2 text-slate-300 border-b border-[#1e293b] pb-2.5">
+              <div className="flex items-center space-x-2 text-[#334155] border-b border-[#E2E8F0] pb-2.5">
                 <FileText className="w-4 h-4 text-purple-400" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Threat Intelligence & Audit Log
@@ -792,7 +792,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
               </div>
               <ul className="space-y-1.5 pl-1">
                 {scanResult.reasons.map((reason, idx) => (
-                  <li key={idx} className="text-xs text-slate-300 flex items-start space-x-2">
+                  <li key={idx} className="text-xs text-[#334155] flex items-start space-x-2">
                     <span className="text-purple-400 font-bold shrink-0 mt-0.5">•</span>
                     <span className="leading-relaxed">{reason}</span>
                   </li>

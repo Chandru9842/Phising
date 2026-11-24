@@ -20,9 +20,9 @@ const AdminGovernanceView = React.lazy(() => import('./components/admin/AdminGov
 
 function TabLoadingFallback() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[350px] space-y-3 bg-[#0d111a]/40 rounded-xl border border-[#1e293b]/60 p-8">
-      <div className="w-8 h-8 border-2 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin" />
-      <span className="text-xs text-slate-400 font-mono tracking-wider">
+    <div className="flex flex-col items-center justify-center min-h-[350px] space-y-3 bg-white rounded-lg border border-[#E2E8F0] shadow-sm p-8">
+      <div className="w-8 h-8 border-2 border-slate-200 border-t-[#0F172A] rounded-full animate-spin" />
+      <span className="text-sm text-[#475569] font-mono tracking-wider">
         Loading cybersecurity module...
       </span>
     </div>
@@ -124,7 +124,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0E14] text-[#F3F4F6] flex flex-col font-sans selection:bg-[#2563EB]/30 selection:text-[#93C5FD]">
+    <div className="min-h-screen bg-[#F6F8FA] text-[#0F172A] flex flex-col font-sans selection:bg-slate-200 selection:text-[#0F172A]">
       {/* Top Application Bar */}
       <Navbar
         health={health}
@@ -206,16 +206,16 @@ export default function App() {
               />
 
               {/* Compact Protected Banks Summary Banner */}
-              <div className="p-4 rounded-md bg-[#12161F] border border-[#1E2430] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="p-4 rounded-lg bg-white border border-[#E2E8F0] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center space-x-3">
-                  <div className="p-2 rounded-md bg-[#0E121A] text-[#9CA3AF] border border-[#1E2430] shrink-0">
+                  <div className="p-2 rounded-md bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0] shrink-0">
                     <Building2 className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-[#F3F4F6] uppercase tracking-wider font-mono">
+                    <h4 className="text-xs font-semibold text-[#0F172A] uppercase tracking-wider font-mono">
                       Protected Indian Banking Registry
                     </h4>
-                    <p className="text-xs text-[#9CA3AF]">
+                    <p className="text-sm text-[#475569]">
                       {banksData.length > 0
                         ? `${banksData.length} canonical institutions actively guarded against typosquatting & impersonation.`
                         : 'Loading canonical whitelist...'}
@@ -310,8 +310,8 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#0B0E14] border-t border-[#1E2430] px-6 py-4 text-center text-xs text-[#6B7280]">
-        <p className="font-mono text-[11px]">
+      <footer className="bg-white border-t border-[#E2E8F0] px-6 py-4 text-center text-xs text-[#64748B]">
+        <p className="font-mono text-xs">
           PhishShield — Brand-Aware, Explainable Phishing Protection for Indian Banking Customers.
         </p>
       </footer>

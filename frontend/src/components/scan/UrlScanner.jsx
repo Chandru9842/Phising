@@ -99,7 +99,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
     {
       label: 'Fake SBI KYC Scam',
       badge: 'Critical Phishing',
-      badgeColor: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+      badgeColor: 'border-rose-500/30 text-[#991B1B] bg-rose-500/10',
       url: 'http://onlinesbi-pan-kyc-verification.com/login.php',
       desc: 'Lookalike domain spoofing State Bank of India with urgent KYC lure & HTTP.',
     },
@@ -113,28 +113,28 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
     {
       label: 'Official SBI Retail Portal',
       badge: 'Verified Official',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+      badgeColor: 'border-emerald-500/30 text-[#065F46] bg-emerald-500/10',
       url: 'https://retail.onlinesbi.sbi/retail/login.htm',
       desc: 'Canonical State Bank of India portal under the official .sbi apex domain.',
     },
     {
       label: 'Official ICICI NetBanking',
       badge: 'Verified Official',
-      badgeColor: 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10',
+      badgeColor: 'border-emerald-500/30 text-[#065F46] bg-emerald-500/10',
       url: 'https://infinity.icicibank.com/corp/AuthenticationController',
       desc: 'Official ICICI corporate banking gateway with authenticated controller.',
     },
     {
       label: 'HDFC Points Expiry Scam',
       badge: 'Reward Phishing',
-      badgeColor: 'border-rose-500/30 text-rose-400 bg-rose-500/10',
+      badgeColor: 'border-rose-500/30 text-[#991B1B] bg-rose-500/10',
       url: 'http://hdfcbank-rewardpoint-redeem.in/claim',
       desc: 'Monetary reward lure exploiting HDFC Bank brand keyword in .in domain.',
     },
     {
       label: 'Direct IP Evasion Attack',
       badge: 'IP Obfuscation',
-      badgeColor: 'border-amber-500/30 text-amber-400 bg-amber-500/10',
+      badgeColor: 'border-amber-500/30 text-[#92400E] bg-amber-500/10',
       url: 'http://192.168.1.105:8080/secure-update/login',
       desc: 'Raw IPv4 address host with non-standard port bypassing hostname filtering.',
     },
@@ -273,20 +273,20 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
     <div className="space-y-6">
       {/* 1. SCANNER INPUT CONSOLE */}
       <div className="cyber-card p-5 sm:p-6 space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1e293b] pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-4">
           <div>
-            <div className="flex items-center space-x-2 text-cyan-400 mb-1">
+            <div className="flex items-center space-x-2 text-[#0F172A] mb-1">
               <Cpu className="w-4 h-4" />
               <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
                 URL Threat Intelligence Console
               </h2>
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[#475569]">
               Evaluates URLs via 26-feature Random Forest, Indian Banking Trademark verification, and TreeSHAP explainability.
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131926] text-slate-400 border border-[#1e293b]">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0]">
               Static Analysis (Zero Fetch)
             </span>
           </div>
@@ -296,16 +296,16 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
         <div className="space-y-2">
           <div className="flex flex-col sm:flex-row gap-2.5">
             <div className="relative flex-1">
-              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center space-x-1.5 text-slate-400">
-                <Globe className="w-4 h-4 text-cyan-400" />
+              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center space-x-1.5 text-[#475569]">
+                <Globe className="w-4 h-4 text-[#0F172A]" />
                 {protocolDetails && (
                   <span
                     className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
                       protocolDetails.secure
-                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                        ? 'bg-emerald-500/10 text-[#065F46] border-emerald-500/20'
                         : protocolDetails.protocol === 'http'
-                        ? 'bg-rose-500/10 text-rose-400 border-rose-500/20'
-                        : 'bg-slate-800 text-slate-400 border-slate-700'
+                        ? 'bg-rose-500/10 text-[#991B1B] border-rose-500/20'
+                        : 'bg-slate-800 text-[#475569] border-slate-700'
                     }`}
                   >
                     {protocolDetails.protocol.toUpperCase()}
@@ -319,14 +319,14 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && executeScan()}
-                className="w-full pl-28 pr-10 py-3 rounded-lg bg-[#131926] border border-[#1e293b] text-xs font-mono text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+                className="w-full pl-28 pr-10 py-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#0F172A] focus:ring-1 focus:ring-cyan-400 transition-all"
               />
 
               {url && (
                 <button
                   type="button"
                   onClick={() => setUrl('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-[#334155] p-1"
                   title="Clear input"
                 >
                   <XCircle className="w-4 h-4" />
@@ -367,17 +367,17 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[11px] text-slate-500 px-1">
+          <div className="flex items-center justify-between text-[11px] text-[#64748B] px-1">
             <span className="flex items-center space-x-1">
-              <Lock className="w-3 h-3 text-emerald-400" />
+              <Lock className="w-3 h-3 text-[#065F46]" />
               <span>Safe Sandbox: URLs are never connected, fetched, or executed over HTTP.</span>
             </span>
           </div>
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-lg bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 flex items-start space-x-2.5">
-            <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400 mt-0.5" />
+          <div className="p-3.5 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#991B1B] flex items-start space-x-2.5">
+            <AlertTriangle className="w-4 h-4 shrink-0 text-[#991B1B] mt-0.5" />
             <div className="flex-1">
               <span className="font-semibold block">Scan Error:</span>
               <span className="opacity-90">{error}</span>
@@ -386,12 +386,12 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
         )}
 
         {/* Preset Sample Targets */}
-        <div className="pt-3 border-t border-[#1e293b]">
+        <div className="pt-3 border-t border-[#E2E8F0]">
           <div className="flex items-center justify-between mb-2.5">
-            <p className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-1.5">
+            <p className="text-[11px] font-mono uppercase tracking-wider text-[#475569] font-semibold flex items-center gap-1.5">
               <span>Preset Targets & Banking Test Vectors:</span>
             </p>
-            <span className="text-[10px] text-slate-500">Click to instantly populate and run scan</span>
+            <span className="text-[10px] text-[#64748B]">Click to instantly populate and run scan</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -403,10 +403,10 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                   setUrl(item.url);
                   executeScan(item.url);
                 }}
-                className="text-left p-3 rounded-lg bg-[#131926]/70 border border-[#1e293b] hover:border-cyan-500/40 hover:bg-[#1a2234] transition-all group relative overflow-hidden"
+                className="text-left p-3 rounded-lg bg-[#F8FAFC]/70 border border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F1F5F9] transition-all group relative overflow-hidden"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
-                  <span className="text-xs font-semibold text-slate-200 group-hover:text-cyan-300 truncate">
+                  <span className="text-xs font-semibold text-[#0F172A] group-hover:text-[#0F172A] truncate">
                     {item.label}
                   </span>
                   <span
@@ -415,10 +415,10 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                     {item.badge}
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-400 line-clamp-1 mb-1.5 leading-normal">
+                <p className="text-[10px] text-[#475569] line-clamp-1 mb-1.5 leading-normal">
                   {item.desc}
                 </p>
-                <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 group-hover:text-cyan-400/80">
+                <div className="flex items-center justify-between text-[10px] font-mono text-[#64748B] group-hover:text-[#0F172A]/80">
                   <span className="truncate max-w-[200px]">{item.url}</span>
                   <ArrowRight className="w-3 h-3 shrink-0 ml-1 transition-transform group-hover:translate-x-0.5" />
                 </div>
@@ -432,18 +432,18 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
       {scanResult && (
         <div className="space-y-6">
           {/* Hero Assessment Card */}
-          <div className="cyber-card p-5 sm:p-6 space-y-5 border-cyan-500/20">
+          <div className="cyber-card p-5 sm:p-6 space-y-5 border-[#E2E8F0]">
             {/* Header info */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#1e293b]">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#E2E8F0]">
               <div className="min-w-0 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-wider font-semibold">
+                  <span className="text-[11px] font-mono text-[#0F172A] uppercase tracking-wider font-semibold">
                     Evaluated Target
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131926] text-slate-400 border border-[#1e293b]">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0]">
                     Model v{scanResult.model_version}
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500">
+                  <span className="text-[10px] font-mono text-[#64748B]">
                     {scanResult.analyzed_at}
                   </span>
                 </div>
@@ -455,11 +455,11 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                   <button
                     type="button"
                     onClick={() => handleCopy(scanResult.url)}
-                    className="p-1.5 rounded bg-[#131926] hover:bg-[#1a2234] text-slate-400 hover:text-white border border-[#1e293b] shrink-0"
+                    className="p-1.5 rounded bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#475569] hover:text-white border border-[#E2E8F0] shrink-0"
                     title="Copy URL string"
                   >
                     {copiedUrl ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <Check className="w-3.5 h-3.5 text-[#065F46]" />
                     ) : (
                       <Copy className="w-3.5 h-3.5" />
                     )}
@@ -477,23 +477,23 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
               <div
                 className={`p-4 rounded-xl border flex items-start space-x-3.5 ${
                   riskAssessment.risk_level === 'CRITICAL'
-                    ? 'bg-rose-950/30 border-rose-800/70 text-rose-200'
+                    ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
                     : riskAssessment.risk_level === 'HIGH'
                     ? 'bg-orange-950/30 border-orange-800/70 text-orange-200'
                     : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS'
-                    ? 'bg-amber-950/30 border-amber-800/70 text-amber-200'
-                    : 'bg-emerald-950/30 border-emerald-800/70 text-emerald-200'
+                    ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
+                    : 'bg-[#ECFDF5] border-[#A7F3D0] text-emerald-200'
                 }`}
               >
                 <div className="shrink-0 mt-0.5">
                   {riskAssessment.risk_level === 'CRITICAL' ? (
-                    <ShieldAlert className="w-5 h-5 text-rose-400 animate-pulse" />
+                    <ShieldAlert className="w-5 h-5 text-[#991B1B] animate-pulse" />
                   ) : riskAssessment.risk_level === 'HIGH' ? (
                     <AlertOctagon className="w-5 h-5 text-orange-400" />
                   ) : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS' ? (
-                    <AlertTriangle className="w-5 h-5 text-amber-400" />
+                    <AlertTriangle className="w-5 h-5 text-[#92400E]" />
                   ) : (
-                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                    <ShieldCheck className="w-5 h-5 text-[#065F46]" />
                   )}
                 </div>
                 <div className="flex-1 text-xs">
@@ -510,36 +510,36 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
             {/* Core Telemetry 3-Card Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Telemetry 1: Calibrated Threat Score */}
-              <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col justify-between space-y-3">
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono uppercase text-slate-400 font-semibold">
+                  <span className="text-[11px] font-mono uppercase text-[#475569] font-semibold">
                     Calibrated Threat Score
                   </span>
-                  <span className="text-[10px] font-mono text-cyan-400">Zero-Trust Metric</span>
+                  <span className="text-[10px] font-mono text-[#0F172A]">Zero-Trust Metric</span>
                 </div>
 
                 <div className="flex items-baseline space-x-2">
                   <span
                     className={`text-3xl font-black font-mono ${
                       scanResult.risk_score >= 80
-                        ? 'text-rose-400'
+                        ? 'text-[#991B1B]'
                         : scanResult.risk_score >= 60
                         ? 'text-orange-400'
                         : scanResult.risk_score >= 30
-                        ? 'text-amber-400'
-                        : 'text-emerald-400'
+                        ? 'text-[#92400E]'
+                        : 'text-[#065F46]'
                     }`}
                   >
                     {scanResult.risk_score}%
                   </span>
-                  <span className="text-xs text-slate-500 font-mono">
+                  <span className="text-xs text-[#64748B] font-mono">
                     (ML: {(scanResult.probabilities?.phishing * 100).toFixed(1)}%)
                   </span>
                 </div>
 
                 {/* Meter Bar */}
                 <div className="space-y-1">
-                  <div className="w-full bg-[#131926] h-2 rounded-full overflow-hidden border border-[#1e293b]">
+                  <div className="w-full bg-[#F8FAFC] h-2 rounded-full overflow-hidden border border-[#E2E8F0]">
                     <div
                       className={`h-full rounded-full transition-all duration-700 ${
                         scanResult.risk_score >= 80
@@ -553,7 +553,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                       style={{ width: `${Math.max(4, scanResult.risk_score)}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-[9px] font-mono text-slate-500">
+                  <div className="flex justify-between text-[9px] font-mono text-[#64748B]">
                     <span>Safe (0-30%)</span>
                     <span>Suspicious (30-60%)</span>
                     <span>Phishing (80%+)</span>
@@ -562,60 +562,60 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
               </div>
 
               {/* Telemetry 2: Brand Impersonation Authentication */}
-              <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col justify-between space-y-3">
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono uppercase text-slate-400 font-semibold flex items-center gap-1.5">
-                    <Landmark className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-[11px] font-mono uppercase text-[#475569] font-semibold flex items-center gap-1.5">
+                    <Landmark className="w-3.5 h-3.5 text-[#0F172A]" />
                     <span>Brand Authentication</span>
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500">16 Bank Registry</span>
+                  <span className="text-[10px] font-mono text-[#64748B]">16 Bank Registry</span>
                 </div>
 
                 <div>
                   {brandData?.is_official_domain ? (
                     <div className="space-y-1">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 text-xs font-bold font-mono">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-500/10 text-[#065F46] border border-emerald-500/30 text-xs font-bold font-mono">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#065F46]" />
                         <span>{brandData.detected_brand}</span>
                       </span>
-                      <p className="text-[11px] text-emerald-400 font-mono mt-1 truncate">
+                      <p className="text-[11px] text-[#065F46] font-mono mt-1 truncate">
                         Official: {brandData.official_domain}
                       </p>
                     </div>
                   ) : brandData?.impersonation_suspected ? (
                     <div className="space-y-1">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-rose-500/10 text-rose-300 border border-rose-500/30 text-xs font-bold font-mono">
-                        <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-rose-500/10 text-[#991B1B] border border-rose-500/30 text-xs font-bold font-mono">
+                        <ShieldAlert className="w-3.5 h-3.5 text-[#991B1B]" />
                         <span>Spoofing: {brandData.detected_brand}</span>
                       </span>
-                      <p className="text-[11px] text-rose-400 font-mono mt-1 truncate">
+                      <p className="text-[11px] text-[#991B1B] font-mono mt-1 truncate">
                         {brandData.match_type.replace(/_/g, ' ')}
                         {brandData.edit_distance >= 0 && ` (Dist: ${brandData.edit_distance})`}
                       </p>
                     </div>
                   ) : (
                     <div className="space-y-1">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium font-mono">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-[#334155] border border-slate-700 text-xs font-medium font-mono">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#475569]" />
                         <span>No Bank Impersonated</span>
                       </span>
-                      <p className="text-[11px] text-slate-500 font-mono mt-1">
+                      <p className="text-[11px] text-[#64748B] font-mono mt-1">
                         Domain has no Indian bank trademark
                       </p>
                     </div>
                   )}
                 </div>
 
-                <div className="text-[10px] text-slate-500 font-mono">
+                <div className="text-[10px] text-[#64748B] font-mono">
                   Technique: {brandData?.match_type ? brandData.match_type.replace(/_/g, ' ') : 'N/A'}
                 </div>
               </div>
 
               {/* Telemetry 3: AI Model & Explainability */}
-              <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col justify-between space-y-3">
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono uppercase text-slate-400 font-semibold flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-[11px] font-mono uppercase text-[#475569] font-semibold flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#92400E]" />
                     <span>Explainable AI Model</span>
                   </span>
                   <span className="text-[10px] font-mono text-purple-400">TreeSHAP v1.0</span>
@@ -623,24 +623,24 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
 
                 <div className="space-y-1.5 text-xs">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400">Prior Base Value:</span>
-                    <span className="font-mono text-slate-300 font-semibold">
+                    <span className="text-[#475569]">Prior Base Value:</span>
+                    <span className="font-mono text-[#334155] font-semibold">
                       {shapData ? (shapData.base_value * 100).toFixed(1) : '50.0'}%
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400">Model Output Prob:</span>
-                    <span className="font-mono text-cyan-300 font-bold">
+                    <span className="text-[#475569]">Model Output Prob:</span>
+                    <span className="font-mono text-[#0F172A] font-bold">
                       {shapData ? (shapData.model_output * 100).toFixed(1) : `${scanResult.risk_score}%`}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400">Total Decision Trees:</span>
-                    <span className="font-mono text-slate-300">150 Trees</span>
+                    <span className="text-[#475569]">Total Decision Trees:</span>
+                    <span className="font-mono text-[#334155]">150 Trees</span>
                   </div>
                 </div>
 
-                <div className="text-[10px] text-slate-500 font-mono">
+                <div className="text-[10px] text-[#64748B] font-mono">
                   Additive feature attribution across 26 metrics
                 </div>
               </div>
@@ -650,22 +650,22 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
           {/* 3. BRAND IMPERSONATION DEEP ANALYSIS CARD */}
           {brandData && (
             <div className="cyber-card p-5 space-y-4">
-              <div className="flex items-center justify-between border-b border-[#1e293b] pb-3">
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
                 <div className="flex items-center space-x-2">
-                  <Landmark className="w-4 h-4 text-cyan-400" />
+                  <Landmark className="w-4 h-4 text-[#0F172A]" />
                   <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                     Indian Banking Brand Impersonation Audit
                   </h3>
                 </div>
-                <span className="text-[10px] font-mono text-slate-400">
+                <span className="text-[10px] font-mono text-[#475569]">
                   Damerau-Levenshtein & Canonical Registry Verification
                 </span>
               </div>
 
               {/* Impersonation vs Legit Comparison Box */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-3.5 rounded-lg bg-[#131926] border border-[#1e293b] space-y-2">
-                  <div className="text-[10px] font-mono text-slate-400 uppercase">
+                <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-2">
+                  <div className="text-[10px] font-mono text-[#475569] uppercase">
                     Submitted Domain Analyzed
                   </div>
                   <div className="font-mono text-xs font-bold text-white break-all flex items-center gap-2">
@@ -675,32 +675,32 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                     ) : brandData.impersonation_suspected ? (
                       <span className="cyber-badge cyber-badge-danger text-[9px]">SPOOFED</span>
                     ) : (
-                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-slate-800 text-[#475569]">
                         NON-BANK
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[11px] text-[#475569]">
                     Extracted registered domain via multi-part TLD parsing (`tldextract`).
                   </p>
                 </div>
 
-                <div className="p-3.5 rounded-lg bg-[#131926] border border-[#1e293b] space-y-2">
-                  <div className="text-[10px] font-mono text-slate-400 uppercase">
+                <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-2">
+                  <div className="text-[10px] font-mono text-[#475569] uppercase">
                     Canonical Institution Registry Reference
                   </div>
-                  <div className="font-mono text-xs font-bold text-emerald-400 break-all flex items-center gap-2">
+                  <div className="font-mono text-xs font-bold text-[#065F46] break-all flex items-center gap-2">
                     <span>{brandData.official_domain || 'No Direct Trademark Match'}</span>
                     {brandData.official_domain && (
-                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-[#065F46] border border-emerald-500/30">
                         {brandData.detected_brand}
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-slate-400">
-                    Similarity Score: <span className="font-mono text-cyan-300 font-bold">{(brandData.similarity_score * 100).toFixed(1)}%</span>
+                  <p className="text-[11px] text-[#475569]">
+                    Similarity Score: <span className="font-mono text-[#0F172A] font-bold">{(brandData.similarity_score * 100).toFixed(1)}%</span>
                     {brandData.edit_distance >= 0 && (
-                      <span className="ml-2 font-mono text-slate-300">
+                      <span className="ml-2 font-mono text-[#334155]">
                         | Edit Distance: {brandData.edit_distance}
                       </span>
                     )}
@@ -710,14 +710,14 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
 
               {/* Reasons if any */}
               {brandData.reasons && brandData.reasons.length > 0 && (
-                <div className="p-3 rounded-lg bg-[#07090e] border border-[#1e293b] space-y-1.5">
-                  <span className="text-[10px] font-mono uppercase text-slate-400 font-semibold block">
+                <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-1.5">
+                  <span className="text-[10px] font-mono uppercase text-[#475569] font-semibold block">
                     Brand Analysis Findings:
                   </span>
                   <ul className="space-y-1">
                     {brandData.reasons.map((r, i) => (
-                      <li key={i} className="text-xs text-slate-300 flex items-start space-x-2">
-                        <span className="text-cyan-400 font-mono font-bold">•</span>
+                      <li key={i} className="text-xs text-[#334155] flex items-start space-x-2">
+                        <span className="text-[#0F172A] font-mono font-bold">•</span>
                         <span>{r}</span>
                       </li>
                     ))}
@@ -730,19 +730,19 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
           {/* 4. SHAP EXPLAINABILITY VISUALIZER */}
           {shapData && chartData.length > 0 && (
             <div className="cyber-card p-5 space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1e293b] pb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-3">
                 <div className="flex items-center space-x-2">
-                  <BarChart3 className="w-4 h-4 text-cyan-400" />
+                  <BarChart3 className="w-4 h-4 text-[#0F172A]" />
                   <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                     TreeSHAP Feature Attributions (Phishing Class Impact)
                   </h3>
                 </div>
                 <div className="flex items-center space-x-3 text-[11px] font-mono">
-                  <span className="flex items-center space-x-1.5 text-rose-400">
+                  <span className="flex items-center space-x-1.5 text-[#991B1B]">
                     <span className="w-2.5 h-2.5 rounded-sm bg-rose-500 inline-block" />
                     <span>+ Pushes toward Phishing</span>
                   </span>
-                  <span className="flex items-center space-x-1.5 text-emerald-400">
+                  <span className="flex items-center space-x-1.5 text-[#065F46]">
                     <span className="w-2.5 h-2.5 rounded-sm bg-emerald-500 inline-block" />
                     <span>- Pushes toward Safe</span>
                   </span>
@@ -750,13 +750,13 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
               </div>
 
               {/* Natural Language AI Summary */}
-              <div className="p-3.5 rounded-lg bg-[#131926] border border-[#1e293b] text-xs text-slate-300 flex items-start space-x-2.5">
-                <Sparkles className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+              <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#334155] flex items-start space-x-2.5">
+                <Sparkles className="w-4 h-4 text-[#92400E] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <span className="font-mono uppercase text-[10px] text-amber-400 font-bold block">
+                  <span className="font-mono uppercase text-[10px] text-[#92400E] font-bold block">
                     SHAP Decision Path Summary
                   </span>
-                  <p className="leading-relaxed italic text-slate-200">
+                  <p className="leading-relaxed italic text-[#0F172A]">
                     "{shapData.summary}"
                   </p>
                 </div>
@@ -787,11 +787,11 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                         if (active && payload && payload.length) {
                           const data = payload[0].payload;
                           return (
-                            <div className="p-3 bg-[#0d111a] border border-[#334155] rounded-lg shadow-2xl text-xs space-y-1.5 max-w-sm">
-                              <p className="font-mono font-bold text-white uppercase text-[11px] border-b border-[#1e293b] pb-1">
+                            <div className="p-3 bg-white border border-[#CBD5E1] rounded-lg shadow-2xl text-xs space-y-1.5 max-w-sm">
+                              <p className="font-mono font-bold text-white uppercase text-[11px] border-b border-[#E2E8F0] pb-1">
                                 {data.name}
                               </p>
-                              <div className="flex justify-between text-slate-300 font-mono text-[11px]">
+                              <div className="flex justify-between text-[#334155] font-mono text-[11px]">
                                 <span>Feature Value:</span>
                                 <span className="font-bold text-white">{String(data.value)}</span>
                               </div>
@@ -799,14 +799,14 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                                 <span>SHAP Attribution:</span>
                                 <span
                                   className={`font-bold ${
-                                    data.shap > 0 ? 'text-rose-400' : 'text-emerald-400'
+                                    data.shap > 0 ? 'text-[#991B1B]' : 'text-[#065F46]'
                                   }`}
                                 >
                                   {data.shap > 0 ? '+' : ''}
                                   {data.shap.toFixed(4)}
                                 </span>
                               </div>
-                              <p className="text-[11px] text-slate-400 pt-1 border-t border-[#1e293b]/50 leading-relaxed">
+                              <p className="text-[11px] text-[#475569] pt-1 border-t border-[#E2E8F0]/50 leading-relaxed">
                                 {data.desc}
                               </p>
                             </div>
@@ -828,20 +828,20 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 </ResponsiveContainer>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#07090e] border border-[#1e293b] text-[11px] text-slate-400 flex items-center justify-between">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[11px] text-[#475569] flex items-center justify-between">
                 <span>
                   SHAP values calculate exact Shapley additive attributions for the 150-tree Random Forest classifier.
                 </span>
-                <span className="font-mono text-cyan-400 text-[10px]">TreeExplainer v1.0</span>
+                <span className="font-mono text-[#0F172A] text-[10px]">TreeExplainer v1.0</span>
               </div>
             </div>
           )}
 
           {/* 5. 26 EXTRACTED URL FEATURES BREAKDOWN */}
           <div className="cyber-card p-5 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1e293b] pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center space-x-2">
-                <Layers className="w-4 h-4 text-cyan-400" />
+                <Layers className="w-4 h-4 text-[#0F172A]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
                   Extracted Feature Vector ({Object.keys(scanResult.features || {}).length} Features)
                 </h3>
@@ -867,8 +867,8 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                         onClick={() => setActiveCategory(cat)}
                         className={`px-2.5 py-1 rounded text-[11px] font-mono font-medium transition-all ${
                           activeCategory === cat
-                            ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40'
-                            : 'bg-[#131926] text-slate-400 border border-[#1e293b] hover:text-slate-200'
+                            ? 'bg-cyan-500/15 text-[#0F172A] border border-[#CBD5E1]'
+                            : 'bg-[#F8FAFC] text-[#475569] border border-[#E2E8F0] hover:text-[#0F172A]'
                         }`}
                       >
                         {cat}
@@ -877,13 +877,13 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                   </div>
 
                   <div className="relative">
-                    <Search className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2" />
+                    <Search className="w-3.5 h-3.5 text-[#64748B] absolute left-2.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       placeholder="Filter features..."
                       value={featureSearch}
                       onChange={(e) => setFeatureSearch(e.target.value)}
-                      className="pl-8 pr-3 py-1 rounded bg-[#131926] border border-[#1e293b] text-xs font-mono text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 w-full sm:w-44"
+                      className="pl-8 pr-3 py-1 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#0F172A] w-full sm:w-44"
                     />
                   </div>
                 </div>
@@ -905,14 +905,14 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                     return (
                       <div
                         key={key}
-                        className={`p-2.5 rounded-lg bg-[#131926] border transition-all ${
+                        className={`p-2.5 rounded-lg bg-[#F8FAFC] border transition-all ${
                           isFlagged
-                            ? 'border-rose-500/40 bg-rose-950/10'
-                            : 'border-[#1e293b] hover:border-slate-700'
+                            ? 'border-rose-500/40 bg-[#FEF2F2]'
+                            : 'border-[#E2E8F0] hover:border-[#CBD5E1]'
                         }`}
                         title={meta.desc}
                       >
-                        <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 mb-1">
+                        <div className="flex items-center justify-between text-[10px] font-mono text-[#64748B] mb-1">
                           <span className="truncate" title={key}>
                             {key}
                           </span>
@@ -922,7 +922,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                         </div>
                         <div
                           className={`text-xs font-mono font-bold truncate ${
-                            isFlagged ? 'text-rose-400' : 'text-slate-200'
+                            isFlagged ? 'text-[#991B1B]' : 'text-[#0F172A]'
                           }`}
                         >
                           {typeof val === 'number'
@@ -931,7 +931,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                               : val.toFixed(3)
                             : String(val)}
                         </div>
-                        <span className="text-[9px] text-slate-500 block truncate mt-1">
+                        <span className="text-[9px] text-[#64748B] block truncate mt-1">
                           {meta.cat}
                         </span>
                       </div>
@@ -945,16 +945,16 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
           {/* 6. KEY THREAT AUDIT FINDINGS */}
           {riskAssessment && riskAssessment.reasons && riskAssessment.reasons.length > 0 && (
             <div className="cyber-card p-5 space-y-3">
-              <div className="flex items-center space-x-2 text-slate-300 border-b border-[#1e293b] pb-2.5">
-                <FileText className="w-4 h-4 text-cyan-400" />
+              <div className="flex items-center space-x-2 text-[#334155] border-b border-[#E2E8F0] pb-2.5">
+                <FileText className="w-4 h-4 text-[#0F172A]" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Threat Intelligence & Audit Findings
                 </h4>
               </div>
               <ul className="space-y-1.5 pl-1">
                 {riskAssessment.reasons.map((reason, idx) => (
-                  <li key={idx} className="text-xs text-slate-300 flex items-start space-x-2">
-                    <span className="text-cyan-400 font-bold shrink-0 mt-0.5">•</span>
+                  <li key={idx} className="text-xs text-[#334155] flex items-start space-x-2">
+                    <span className="text-[#0F172A] font-bold shrink-0 mt-0.5">•</span>
                     <span className="leading-relaxed">{reason}</span>
                   </li>
                 ))}
