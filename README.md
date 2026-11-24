@@ -174,6 +174,8 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
 
 ## 🧠 Step-by-Step Internal Mechanics: How Every Algorithm Works Under the Hood
 
+---
+
 ### 1. Random Forest URL Classifier (26-Feature Lexical Engine)
 
 The URL classification pipeline executes a deterministic, four-step feature extraction and tree-ensemble evaluation:
@@ -234,6 +236,22 @@ The URL classification pipeline executes a deterministic, four-step feature extr
   Each tree $b$ outputs a class probability distribution $p_b(x)$. The final phishing probability is computed as the ensemble mean:
   $$\hat{P}(\text{phishing} \mid x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)$$
 
+#### 💡 Concrete Walkthrough Example:
+> **Input:** Chandru pastes the following suspicious URL into the dashboard:  
+> `http://sbi-netbanking-verify.xyz/update-pan.html?acct=9876543210`
+>
+> 1. **Parsing:** `tldextract` isolates Registered Domain = `sbi-netbanking-verify.xyz` and Suffix = `xyz`.
+> 2. **Feature Calculation:**
+>    * `url_length` = 63, `domain_length` = 25, `count_hyphens` = 3, `count_dots` = 2.
+>    * `has_suspicious_tld` = 1 (`.xyz` flagged as predatory).
+>    * `has_bank_in_domain_token` = 1 (`sbi` present in unverified domain).
+>    * `domain_entropy`: Evaluating characters in `sbi-netbanking-verify` (21 characters, 13 unique symbols: `s,b,i,-,n,e,t,a,k,g,v,r,y`):  
+>      $$P(\text{'e'}) = \frac{3}{21}, \quad P(\text{'i'}) = \frac{3}{21}, \quad P(\text{'-'}) = \frac{2}{21}, \quad \dots$$
+>      $$H(X) = -\sum p_i \log_2(p_i) = \mathbf{3.42 \text{ bits}} \quad (\text{Elevated Shannon Entropy})$$
+> 3. **Tree Traversal:** The vector passes through all 100 trees. Trees traverse split conditions (`has_suspicious_tld > 0.5` $\rightarrow$ Right; `count_hyphens > 1.5` $\rightarrow$ Right; `has_bank_in_domain_token > 0.5` $\rightarrow$ Right).
+> 4. **Result:** 96 out of 100 trees vote for Phishing.  
+>    $$\hat{P}(\text{phishing} \mid x) = \frac{96}{100} = \mathbf{96.0\%} \quad \longrightarrow \quad \mathbf{CRITICAL\ PHISHING\ VERDICT}$$
+
 ---
 
 ### 2. TreeSHAP Explainable AI Attribution Engine
@@ -261,7 +279,7 @@ To make predictions transparent and auditable for cybersecurity incident respond
 ```
 
 * **Step 1: Background Value Initialization:**
-  Computes the base prediction expectation $E[f(x)] = \phi_0$ across the global training baseline (the average probability of phishing in the dataset).
+  Computes the base prediction expectation $E[f(x)] = \phi_0$ across the global training baseline (the average probability of phishing in the dataset, which is 12.0%).
 * **Step 2: Recursive Tree Traversal:**
   Rather than evaluating all $2^{26}$ feature combinations (which is NP-hard), TreeSHAP recursively tracks the proportion of training samples flowing down each sub-branch of each decision tree when features are known vs. unknown. It completes in polynomial time $O(T L D^2)$, where $T$ is the number of trees (100), $L$ is maximum leaves, and $D$ is tree depth.
 * **Step 3: Shapley Attribution Calculation:**
@@ -271,7 +289,24 @@ To make predictions transparent and auditable for cybersecurity incident respond
   Verifies that the sum of all 26 feature attributions exactly equals the difference between the model's prediction and the base expected value:
   $$\sum_{i=1}^{26} \phi_i(x) = f(x) - \phi_0$$
 * **Step 5: Visual Feature Ranking:**
-  Features with large positive $\phi_i$ are flagged in the UI as **Primary Risk Drivers** (e.g., `is_ip = True (+24.2%)`, `has_bank_in_path = True (+18.5%)`), while negative $\phi_i$ are highlighted as **Protective Factors** (e.g., `official_domain_match = True (-35.1%)`).
+  Features with large positive $\phi_i$ are flagged in the UI as **Primary Risk Drivers**, while negative $\phi_i$ are highlighted as **Protective Factors**.
+
+#### 💡 Concrete Walkthrough Example:
+> **Input:** Explaining the 96.0% phishing score calculated for `http://sbi-netbanking-verify.xyz/update-pan.html?acct=9876543210`:
+>
+> 1. **Baseline Base Value:** $\phi_0 = 0.12$ (12.0% average baseline risk across legitimate training URLs).
+> 2. **Target Prediction:** $f(x) = 0.96$ (96.0%).
+> 3. **Net Shift to Explain:** $\Delta = f(x) - \phi_0 = 0.96 - 0.12 = \mathbf{+0.84\ (+84.0\%)}$.
+> 4. **TreeSHAP Attributions Computed for the 26 Features:**
+>    * $\phi_{\text{has\_bank\_in\_domain}} = \mathbf{+0.28}$ *(SBI token in unverified domain adds +28% risk)*
+>    * $\phi_{\text{has\_suspicious\_tld}} = \mathbf{+0.22}$ *(Predatory `.xyz` extension adds +22% risk)*
+>    * $\phi_{\text{count\_hyphens}} = \mathbf{+0.16}$ *(Multiple hyphens in domain add +16% risk)*
+>    * $\phi_{\text{digit\_ratio}} = \mathbf{+0.10}$ *(Excessive numerical digits in query add +10% risk)*
+>    * $\phi_{\text{domain\_entropy}} = \mathbf{+0.08}$ *(Elevated character randomness adds +8% risk)*
+>    * $\phi_{\text{other\_21\_features}} = \mathbf{0.00}$ *(Neutral impact)*
+> 5. **Mathematical Verification of Efficiency Axiom:**
+>    $$\phi_0 + \sum_{i=1}^{26} \phi_i = 0.12 + (0.28 + 0.22 + 0.16 + 0.10 + 0.08) = 0.12 + 0.84 = \mathbf{0.96\ (100\%\ Matched)}$$
+> 6. **Dashboard Output:** The user sees a clear waterfall chart detailing exactly why the URL was flagged, removing black-box uncertainty.
 
 ---
 
@@ -314,6 +349,25 @@ Detects deceptive brand spoofs even when attackers register brand-new domains wi
   If $\text{Sim} \ge 0.82$, typosquatting is flagged (e.g., `0nlinesbi.com` vs `onlinesbi.com`).
 * **Step 4: Zero-Trust Triangulation:**
   * If bank branding is detected in the typography or subdomains, but the registered domain is **NOT** in the official RBI domain list $\rightarrow$ Immediately flags a **Brand/Domain Mismatch Anomaly** and triggers an automatic **CRITICAL** risk verdict.
+
+#### 💡 Concrete Walkthrough Example:
+> **Input:** An attacker registers `https://0nlinesbi-kyc.com/login` and Chandru tests it:
+>
+> 1. **Token Extraction:** Dissects domain `0nlinesbi-kyc`.
+> 2. **Typosquatting Check against Canonical Registry:**
+>    * Target Brand: `State Bank of India` (Official: `onlinesbi.sbi`).
+>    * String 1: `0nlinesbi`
+>    * String 2: `onlinesbi`
+>    * $\text{Levenshtein}("0nlinesbi", "onlinesbi") = 1$ (character `'0'` substituted for `'o'`).
+>    * Max string length = 9.
+>    $$\text{Similarity} = 1 - \frac{1}{9} = \mathbf{0.889 \quad (88.9\% \ge 82.0\%\ Threshold)}$$
+> 3. **Triangulation Decision:**
+>    * Brand Claimed: `State Bank of India`
+>    * Official Domains: `["onlinesbi.sbi", "sbi.co.in"]`
+>    * Actual Registered Domain: `0nlinesbi-kyc.com` (NOT in official list!)
+> 4. **Verdict Triggered:**  
+>    $$\mathbf{CRITICAL\ ALERT:\ Severe\ Typosquatting\ \&\ Brand\ Impersonation\ Detected!}$$
+>    Dashboard immediately instructs user: *"DO NOT enter MPIN or NetBanking Password. Report to 1930."*
 
 ---
 
@@ -362,6 +416,24 @@ Processes deceptive mobile SMS text, identifies financial coercion, and traces e
 * **Step 5: Deep Embedded Link Harvesting:**
   Any embedded HTTP/HTTPS links are isolated, resolved past shortener redirects, and dispatched to the Phase 2 Random Forest classifier. The final SMS risk score combines linguistic coercion with URL malice.
 
+#### 💡 Concrete Walkthrough Example:
+> **Input:** Chandru pastes an SMS received on mobile:  
+> `"Dear SBI Customer, your YONO NetBanking account is BLOCKED today due to incomplete KYC! Please verify immediately at http://sbi-kyc.top to prevent permanent closure."`
+>
+> 1. **Preprocessing & Tokenization:**  
+>    `["dear", "sbi", "customer", "yono", "netbanking", "account", "blocked", "today", "due", "incomplete", "kyc", "verify", "immediately", "<URL>", "prevent", "permanent", "closure"]` (Total words = 17).
+> 2. **TF-IDF Weight Calculation:**
+>    * Term `"blocked"`: $\text{TF} = 1/17 = 0.0588$, $\text{IDF} = 4.85 \rightarrow \mathbf{Weight = 0.285}$
+>    * Term `"kyc"`: $\text{TF} = 1/17 = 0.0588$, $\text{IDF} = 5.12 \rightarrow \mathbf{Weight = 0.301}$
+>    * Term `"immediately"`: $\text{TF} = 1/17 = 0.0588$, $\text{IDF} = 4.20 \rightarrow \mathbf{Weight = 0.247}$
+>    * Term `"yono"`: $\text{TF} = 1/17 = 0.0588$, $\text{IDF} = 4.60 \rightarrow \mathbf{Weight = 0.270}$
+> 3. **Sigmoid Logit Scoring:**
+>    $$z = \beta_0 + \sum \beta_j X_j = -2.10 + 1.35(\text{blocked}) + 1.25(\text{kyc}) + 0.95(\text{immediately}) + 1.10(\text{yono}) + \dots = \mathbf{+3.28}$$
+>    $$P(\text{smishing}) = \sigma(3.28) = \frac{1}{1 + e^{-3.28}} = \frac{1}{1 + 0.0376} = \mathbf{0.9637 \quad (96.4\%)}$$
+> 4. **Deep Embedded Link Extraction:**  
+>    Extractor isolates `http://sbi-kyc.top` $\rightarrow$ passes to URL Classifier $\rightarrow$ Random Forest flags predatory `.top` TLD (98.2% risk).
+> 5. **Verdict:** **CRITICAL SMISHING THREAT (97.3%)** with Coercion Flag: *Urgent Account Block + Fake KYC Verification*.
+
 ---
 
 ### 5. EasyOCR PyTorch Visual Threat Pipeline
@@ -405,6 +477,26 @@ Processes screenshot uploads entirely in RAM, performing deep optical text extra
   * Corrected numeric substitutions in domains (e.g., `sb1.co.in` $\rightarrow$ `sbi.co.in`).
 * **Step 5: Concurrency Guarding:**
   To prevent CPU core exhaustion on cloud instances, `OCRController` executes extractions through a bounded semaphore (`threading.Semaphore(1)`). Incoming requests receive an asynchronous `HTTP 202 Accepted` job ID to poll while the CPU processes the image.
+
+#### 💡 Concrete Walkthrough Example:
+> **Input:** Chandru takes a phone screenshot of an unfamiliar portal claiming to be HDFC Bank and uploads `hdfc_screen.png`:
+>
+> 1. **In-Memory Buffer Ingestion:** Byte-stream verified as PNG magic bytes. Decoded via `cv2.imdecode` into $1920 \times 1080 \times 3$ BGR NumPy array in RAM.
+> 2. **CRAFT Detection:** The neural network detects 3 primary typography clusters on the page:
+>    * Bounding Box 1: `[x: 120, y: 45, w: 320, h: 50]` $\rightarrow$ Confidence 98.4%
+>    * Bounding Box 2: `[x: 140, y: 120, w: 450, h: 40]` $\rightarrow$ Confidence 95.1%
+>    * Bounding Box 3: `[x: 140, y: 280, w: 380, h: 35]` $\rightarrow$ Confidence 92.7%
+> 3. **ResNet + BiLSTM + CTC Recognition:**
+>    * Text 1: `"HDFC Bank NetBanking Portal"`
+>    * Text 2: `"Enter Customer ID / User ID and Password"`
+>    * Text 3: `"https://hdfc-verify-portal.net/auth"`
+> 4. **Normalization:** Regex repairs minor optical fuzziness.
+> 5. **Triangulation Engine Evaluation:**
+>    * Visual Brand Detected: `HDFC Bank` (Canonical official domain: `hdfcbank.com`).
+>    * Address Bar Hostname Detected in OCR: `hdfc-verify-portal.net`.
+>    * Cross-Reference: `hdfc-verify-portal.net` is **NOT** owned by HDFC Bank!
+> 6. **Result:**  
+>    $$\mathbf{CRITICAL\ VERDICT:\ Active\ Credential\ Harvesting\ Impersonating\ HDFC\ Bank\ (98.0\%)}$$
 
 ---
 
@@ -491,6 +583,24 @@ Provides immutable, blockchain-grade governance tracking for every administrativ
   1. Checks if `record[i].prev_hash == record[i-1].entry_hash`.
   2. Re-computes `SHA-256(record[i])` and checks if it matches `record[i].entry_hash`.
   If an attacker manually deletes an audit row or modifies details directly in SQLite, the link is broken and the system flags **`TAMPER_DETECTED`** identifying the exact corrupted record ID.
+
+#### 💡 Concrete Walkthrough Example:
+> **Event:** Administrator Chandru adds a new authorized custom banking domain: `netbanking.sbicard.com`.
+>
+> 1. **Prior Audit Row in DB (#105):**  
+>    `entry_hash` = `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+> 2. **Predecessor Pointer for Row #106:**  
+>    `prev_hash` = `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+> 3. **Constructing the Deterministic String:**  
+>    `e3b0c442...|2026-11-24 09:30:00|chandru|CREATE_BANK|bank_registry|17|{"brand_name": "SBI Card", "domain": "sbicard.com"}`
+> 4. **SHA-256 Computation:**  
+>    $$\text{entry\_hash} = \text{SHA256}(\text{String}) = \mathbf{a7f938c21e64b8590117d91e84a2f8c5b018591e4a1795b281f01c48271e9841}$$
+> 5. **Attempted Tampering Scenario:**  
+>    Suppose a rogue insider hacks the SQLite database directly and edits `chandru` $\rightarrow$ `anonymous_admin`:
+>    When the auditor clicks **"Verify Audit Chain"**, the system re-computes `SHA256(tampered_string)`.
+>    $$\text{Recomputed} = \mathbf{f48a192...} \quad \ne \quad \text{Stored} = \mathbf{a7f938c...}$$
+>    The system raises a forensic red flag:  
+>    $$\mathbf{TAMPER\_DETECTED:\ Cryptographic\ integrity\ failed\ at\ record\ \#106.\ Payload\ altered!}$$
 
 ---
 
