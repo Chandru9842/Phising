@@ -90,11 +90,10 @@ export default function QuickScanCard({ onNavigateToScanner }) {
                     handleAnalyze();
                   }
                 }}
-                className={`w-full h-11 pl-10 pr-9 rounded-md bg-white text-[13.5px] text-[#0F172A] placeholder-[#94A3B8] font-mono transition-colors focus:outline-none ${
-                  validationError
+                className={`w-full h-11 pl-10 pr-9 rounded-md bg-white text-[13.5px] text-[#0F172A] placeholder-[#94A3B8] font-mono transition-colors focus:outline-none ${validationError
                     ? 'border border-[#EF4444] focus:border-[#EF4444]'
                     : 'border border-[#CBD5E1] focus:border-[#0F172A] focus:ring-2 focus:ring-[#0F172A]/10'
-                }`}
+                  }`}
               />
               {inputUrl && (
                 <button
@@ -144,11 +143,10 @@ export default function QuickScanCard({ onNavigateToScanner }) {
                   key={idx}
                   type="button"
                   onClick={() => handleSelectSample(sample.url)}
-                  className={`text-left p-2.5 rounded-md border transition-colors ${
-                    isSelected
+                  className={`text-left p-2.5 rounded-md border transition-colors ${isSelected
                       ? 'bg-[#F1F5F9] border-[#0F172A]'
                       : 'bg-white border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between text-[13px] font-medium gap-2">
                     <span className="text-[#0F172A] font-semibold truncate flex items-center gap-1.5">

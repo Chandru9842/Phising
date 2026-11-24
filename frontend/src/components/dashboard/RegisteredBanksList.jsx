@@ -117,17 +117,15 @@ export default function RegisteredBanksList({ banks = [] }) {
                 key={catName}
                 type="button"
                 onClick={() => setSelectedCategory(catName)}
-                className={`text-xs font-mono px-3 py-1.5 rounded-md transition-colors flex items-center space-x-1.5 ${
-                  isSelected
+                className={`text-xs font-mono px-3 py-1.5 rounded-md transition-colors flex items-center space-x-1.5 ${isSelected
                     ? 'bg-[#0F172A] text-white font-semibold shadow-sm'
                     : 'bg-[#F1F5F9] text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0]'
-                }`}
+                  }`}
               >
                 <span>{catName === 'ALL' ? 'All Institutions' : catName}</span>
                 <span
-                  className={`text-[11px] px-1.5 py-0.2 rounded ${
-                    isSelected ? 'bg-[#1E293B] text-slate-200' : 'bg-white text-[#64748B]'
-                  }`}
+                  className={`text-[11px] px-1.5 py-0.2 rounded ${isSelected ? 'bg-[#1E293B] text-slate-200' : 'bg-white text-[#64748B]'
+                    }`}
                 >
                   {count}
                 </span>

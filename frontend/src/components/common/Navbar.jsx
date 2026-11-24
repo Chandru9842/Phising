@@ -78,13 +78,12 @@ export default function Navbar({
             <span className="text-[#64748B] font-mono text-xs hidden sm:inline-block">Engine:</span>
             <div className="flex items-center space-x-1.5">
               <span
-                className={`w-2 h-2 rounded-full ${
-                  isChecking
+                className={`w-2 h-2 rounded-full ${isChecking
                     ? 'bg-[#D97706] animate-pulse'
                     : isHealthy
-                    ? 'bg-[#059669]'
-                    : 'bg-[#DC2626]'
-                }`}
+                      ? 'bg-[#059669]'
+                      : 'bg-[#DC2626]'
+                  }`}
               />
               <span className="font-mono text-xs font-medium text-[#475569]">
                 {isChecking ? 'Checking' : isHealthy ? 'Online' : 'Degraded'}

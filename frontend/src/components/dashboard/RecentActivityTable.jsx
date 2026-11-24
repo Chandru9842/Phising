@@ -79,8 +79,8 @@ export default function RecentActivityTable({
           item.risk_score >= 70
             ? 'text-[#991B1B] font-bold'
             : item.risk_score >= 30
-            ? 'text-[#92400E] font-semibold'
-            : 'text-[#065F46] font-semibold'
+              ? 'text-[#92400E] font-semibold'
+              : 'text-[#065F46] font-semibold'
         }
       >
         {val}%

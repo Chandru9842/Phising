@@ -30,9 +30,8 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
           {/* Core API Service */}
           <div className="p-3.5 rounded-md bg-[#F8FAFC] border border-[#E2E8F0] flex items-center space-x-3">
             <div
-              className={`w-2.5 h-2.5 rounded-full shrink-0 ${
-                isHealthy ? 'bg-[#059669]' : 'bg-[#DC2626]'
-              }`}
+              className={`w-2.5 h-2.5 rounded-full shrink-0 ${isHealthy ? 'bg-[#059669]' : 'bg-[#DC2626]'
+                }`}
             />
             <div className="min-w-0">
               <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">Inference Engine</p>
@@ -59,7 +58,7 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
             <div className="min-w-0">
               <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">Registry</p>
               <p className="text-[13px] font-semibold text-[#0F172A] font-mono truncate">
-                {health?.services?.supported_banks_count || 16} Verified Banks
+                {health?.services?.supported_banks_count || 16} RBI Banks
               </p>
             </div>
           </div>
