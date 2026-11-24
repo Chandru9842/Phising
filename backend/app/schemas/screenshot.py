@@ -101,5 +101,7 @@ class ScreenshotThreatAnalysisResponse(BaseModel):
     recommendations: List[str] = []
     processing_time_ms: float
     analyzed_at: str
+    language: Optional[str] = "en"
+    ocr_engine_language: Optional[str] = "en"
 
 

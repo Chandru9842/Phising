@@ -3,7 +3,8 @@ FastAPI Router for PhishShield Screenshot Upload & Safe Processing
 """
 
 import os
-from fastapi import APIRouter, UploadFile, File, HTTPException, status, Depends, BackgroundTasks
+from typing import Optional, Dict, Any, List
+from fastapi import APIRouter, UploadFile, File, HTTPException, status, Depends, BackgroundTasks, Header
 from sqlalchemy.orm import Session
 import numpy as np
 import cv2
@@ -18,6 +19,7 @@ from app.schemas.screenshot import (
 from app.core.ocr_engine import extract_text_from_image
 from app.core.screenshot_threat_service import analyze_screenshot_threats
 from app.core.ocr_queue import ocr_controller, JobStatus
+from app.core.localization import normalize_language_code
 from app.core.screenshot_processor import (
     process_screenshot_bytes,
     validate_magic_bytes,
@@ -228,6 +230,7 @@ async def ocr_screenshot(
 )
 async def analyze_screenshot_endpoint(
     file: UploadFile = File(..., description="Screenshot image file (PNG, JPEG, WEBP, max 5MB)"),
+    accept_language: Optional[str] = Header(None, alias="Accept-Language"),
     db: Session = Depends(get_db)
 ):
     """
@@ -361,6 +364,11 @@ async def analyze_screenshot_endpoint(
         except Exception as db_err:
             logger.warning(f"Failed to persist screenshot scan record to database: {db_err}")
             db.rollback()
+
+        # Set localization metadata
+        lang = normalize_language_code(accept_language)
+        threat_report["language"] = lang
+        threat_report["ocr_engine_language"] = "en"  # EasyOCR runs on English text models
 
         return ScreenshotThreatAnalysisResponse(**threat_report)
 

@@ -3,7 +3,7 @@ PhishShield SMS Smishing Scanning & Multi-URL Diagnostic API Endpoints
 """
 
 import logging
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.orm import Session
 from typing import Dict, Any, Optional
 
@@ -15,6 +15,12 @@ from app.ml.sms.predict_sms import (
     DEFAULT_SMS_MODEL_PATH
 )
 from app.schemas.sms_scan import SMSScanRequest, SMSScanResponse
+from app.core.localization import (
+    normalize_language_code,
+    get_localized_directive,
+    get_localized_risk_level,
+    get_localized_recommendation
+)
 
 logger = logging.getLogger("phishshield.api.sms")
 
@@ -22,7 +28,11 @@ router = APIRouter(prefix="/sms", tags=["SMS Smishing Scanner"])
 
 
 @router.post("/scan", response_model=SMSScanResponse)
-def scan_sms_endpoint(payload: SMSScanRequest, db: Session = Depends(get_db)):
+def scan_sms_endpoint(
+    payload: SMSScanRequest,
+    accept_language: Optional[str] = Header(None, alias="Accept-Language"),
+    db: Session = Depends(get_db)
+):
     """
     Performs comprehensive SMS phishing (smishing) detection:
     1. Evaluates text via TF-IDF + Logistic Regression pipeline.
@@ -68,6 +78,23 @@ def scan_sms_endpoint(payload: SMSScanRequest, db: Session = Depends(get_db)):
     except Exception as db_err:
         logger.warning(f"Failed to persist SMS scan record to database: {db_err}")
         db.rollback()
+
+    # Localize SMS response if Accept-Language header is specified
+    lang = normalize_language_code(accept_language)
+    if lang != "en":
+        rec_code = result.get("recommendation", "SAFE_TO_PROCEED")
+        risk_level = result.get("composite_risk_level", "LOW")
+        result["language"] = lang
+        result["localized_directive"] = get_localized_directive(rec_code, lang)
+        result["localized_risk_level"] = get_localized_risk_level(risk_level, lang)
+        if rec_code == "BLOCK_AND_REPORT":
+            result["recommendation_text"] = get_localized_recommendation("SMS_CRITICAL", None, lang)
+        elif rec_code == "SAFE_TO_PROCEED":
+            result["recommendation_text"] = get_localized_recommendation("SMS_OTP_SAFE", None, lang)
+        elif rec_code == "DO_NOT_ENTER_CREDENTIALS":
+            result["recommendation_text"] = get_localized_recommendation("GENERIC_HIGH", None, lang)
+    else:
+        result["language"] = "en"
 
     return result
 

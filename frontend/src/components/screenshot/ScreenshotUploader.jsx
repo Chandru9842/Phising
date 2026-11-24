@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { apiService } from '../../services/api';
+import { useTranslation } from '../../i18n/LanguageContext';
 import {
   UploadCloud,
   Image as ImageIcon,
@@ -91,6 +92,7 @@ async function copyTextToClipboard(text) {
 }
 
 export default function ScreenshotUploader({ onScanComplete }) {
+  const { t, localizeVerdict, localizeReason, localizeDirective, localizeRecommendation } = useTranslation();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [imageDimensions, setImageDimensions] = useState(null);
@@ -672,7 +674,7 @@ IMPORTANT STATIC LIMITATIONS:
             aria-label="Critical Phishing Threat"
           >
             <AlertOctagon className="w-4 h-4 text-[#DC2626] shrink-0" aria-hidden="true" />
-            <span>CRITICAL PHISHING THREAT</span>
+            <span>{localizeVerdict('CRITICAL')}</span>
           </span>
         );
       case 'HIGH':
@@ -683,7 +685,7 @@ IMPORTANT STATIC LIMITATIONS:
             aria-label="High Risk Phishing"
           >
             <AlertTriangle className="w-4 h-4 text-[#D97706] shrink-0" aria-hidden="true" />
-            <span>HIGH RISK PHISHING</span>
+            <span>{localizeVerdict('HIGH')}</span>
           </span>
         );
       case 'MEDIUM':
@@ -694,7 +696,7 @@ IMPORTANT STATIC LIMITATIONS:
             aria-label="Medium Risk Caution"
           >
             <AlertTriangle className="w-4 h-4 text-[#D97706] shrink-0" aria-hidden="true" />
-            <span>MEDIUM RISK (CAUTION)</span>
+            <span>{localizeVerdict('MEDIUM')}</span>
           </span>
         );
       case 'LOW':
@@ -705,7 +707,7 @@ IMPORTANT STATIC LIMITATIONS:
             aria-label="Low Risk Informational"
           >
             <ShieldCheck className="w-4 h-4 text-[#475569] shrink-0" aria-hidden="true" />
-            <span>LOW RISK / INFORMATIONAL</span>
+            <span>{localizeVerdict('LOW')}</span>
           </span>
         );
       case 'SAFE':
@@ -716,7 +718,7 @@ IMPORTANT STATIC LIMITATIONS:
             aria-label="Authentic Verified Portal"
           >
             <ShieldCheck className="w-4 h-4 text-[#059669] shrink-0" aria-hidden="true" />
-            <span>AUTHENTIC VERIFIED PORTAL</span>
+            <span>{localizeVerdict('SAFE')}</span>
           </span>
         );
       case 'INSUFFICIENT_EVIDENCE':
@@ -728,7 +730,7 @@ IMPORTANT STATIC LIMITATIONS:
             aria-label="Insufficient Typography / Unconfirmed"
           >
             <HelpCircle className="w-4 h-4 text-[#0F172A] shrink-0" aria-hidden="true" />
-            <span>INSUFFICIENT EVIDENCE</span>
+            <span>{localizeVerdict('UNKNOWN')}</span>
           </span>
         );
     }
@@ -832,6 +834,14 @@ IMPORTANT STATIC LIMITATIONS:
             </p>
           </div>
         </div>
+
+        {/* Multilingual OCR Capability Notice */}
+        <div className="p-3.5 rounded-lg bg-[#EFF6FF] border border-[#BFDBFE] flex items-center space-x-2.5 text-xs text-[#1D4ED8]">
+          <Info className="w-4 h-4 shrink-0 text-[#1D4ED8]" />
+          <span className="font-sans leading-relaxed">
+            {t('screenshotScan.ocrNotice', {}, 'OCR Engine: EasyOCR runs on English text models. The selected language applies to interface verdicts, threat analysis, and safety directives.')}
+          </span>
+        </div>
       </div>
 
       {/* 2. Upload Zone or Preview Panel */}
@@ -854,8 +864,8 @@ IMPORTANT STATIC LIMITATIONS:
               role="button"
               aria-label="Upload banking screenshot or phishing image"
               className={`p-8 sm:p-12 rounded-xl border-2 border-dashed transition-all cursor-pointer text-center space-y-4 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 ${isDragging
-                  ? 'border-[#1D4ED8] bg-[#EFF6FF] shadow-lg shadow-[#1D4ED8]/10'
-                  : 'border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]/50 bg-white'
+                ? 'border-[#1D4ED8] bg-[#EFF6FF] shadow-lg shadow-[#1D4ED8]/10'
+                : 'border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]/50 bg-white'
                 }`}
             >
               <input
@@ -1316,15 +1326,14 @@ IMPORTANT STATIC LIMITATIONS:
 
           {/* Executive Summary Banner (Task 3) */}
           <div
-            className={`p-4 rounded-xl border flex items-start space-x-3 text-xs shadow-sm ${
-              threatReport.screenshot_assessment?.risk_level === 'CRITICAL' || threatReport.screenshot_assessment?.risk_level === 'HIGH'
+            className={`p-4 rounded-xl border flex items-start space-x-3 text-xs shadow-sm ${threatReport.screenshot_assessment?.risk_level === 'CRITICAL' || threatReport.screenshot_assessment?.risk_level === 'HIGH'
                 ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
                 : threatReport.screenshot_assessment?.risk_level === 'MEDIUM' || threatReport.screenshot_assessment?.risk_level === 'SUSPICIOUS'
-                ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
-                : threatReport.screenshot_assessment?.risk_level === 'INSUFFICIENT_EVIDENCE' || threatReport.screenshot_assessment?.risk_level === 'LOW'
-                ? 'bg-[#F8FAFC] border-[#E2E8F0] text-[#475569]'
-                : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
-            }`}
+                  ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
+                  : threatReport.screenshot_assessment?.risk_level === 'INSUFFICIENT_EVIDENCE' || threatReport.screenshot_assessment?.risk_level === 'LOW'
+                    ? 'bg-[#F8FAFC] border-[#E2E8F0] text-[#475569]'
+                    : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
+              }`}
           >
             {threatReport.screenshot_assessment?.risk_level === 'CRITICAL' || threatReport.screenshot_assessment?.risk_level === 'HIGH' ? (
               <AlertOctagon className="w-5 h-5 shrink-0 mt-0.5 text-[#DC2626]" />
@@ -1436,8 +1445,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('threats')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'threats'
-                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
-                  : 'text-[#475569] hover:text-white'
+                ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                : 'text-[#475569] hover:text-white'
                 }`}
             >
               Threat Signals ({threatReport.evidence?.length || 0})
@@ -1453,8 +1462,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('urls')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'urls'
-                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
-                  : 'text-[#475569] hover:text-white'
+                ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                : 'text-[#475569] hover:text-white'
                 }`}
             >
               Extracted URLs ({threatReport.extracted_urls?.length || 0})
@@ -1470,8 +1479,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('brands')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'brands'
-                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
-                  : 'text-[#475569] hover:text-white'
+                ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                : 'text-[#475569] hover:text-white'
                 }`}
             >
               Bank Brands ({threatReport.bank_brand_evidence?.length || 0})
@@ -1487,8 +1496,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('indicators')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'indicators'
-                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
-                  : 'text-[#475569] hover:text-white'
+                ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                : 'text-[#475569] hover:text-white'
                 }`}
             >
               Social Engineering ({threatReport.social_engineering_indicators?.length || 0})
@@ -1504,8 +1513,8 @@ IMPORTANT STATIC LIMITATIONS:
               type="button"
               onClick={() => setActiveTab('ocr')}
               className={`pb-2 px-3 transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded-t ${activeTab === 'ocr'
-                  ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
-                  : 'text-[#475569] hover:text-white'
+                ? 'border-b-2 border-[#0F172A] text-[#0F172A] font-bold'
+                : 'text-[#475569] hover:text-white'
                 }`}
             >
               Raw Typography ({threatReport.ocr_summary?.text_block_count || 0})
@@ -1530,13 +1539,12 @@ IMPORTANT STATIC LIMITATIONS:
                     {threatReport.evidence.map((ev, idx) => (
                       <div
                         key={idx}
-                        className={`p-3.5 rounded-lg border text-xs font-mono flex items-start space-x-3 ${
-                          ev.severity === 'CRITICAL' || ev.severity === 'HIGH'
+                        className={`p-3.5 rounded-lg border text-xs font-mono flex items-start space-x-3 ${ev.severity === 'CRITICAL' || ev.severity === 'HIGH'
                             ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
                             : ev.severity === 'MEDIUM'
                               ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
                               : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#334155]'
-                        }`}
+                          }`}
                       >
                         <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase shrink-0 mt-0.5 bg-[#F8FAFC] border border-[#E2E8F0]">
                           {ev.severity}
@@ -1567,7 +1575,7 @@ IMPORTANT STATIC LIMITATIONS:
                 <ul className="space-y-2 text-xs font-mono text-[#334155] list-disc list-inside">
                   {(threatReport.recommendations || []).map((rec, idx) => (
                     <li key={idx} className="leading-relaxed">
-                      {rec}
+                      {localizeReason(rec)}
                     </li>
                   ))}
                 </ul>
@@ -1680,8 +1688,8 @@ IMPORTANT STATIC LIMITATIONS:
                             {uRes && (
                               <span
                                 className={`px-2.5 py-1 rounded text-[10px] font-bold ${uRes.is_phishing
-                                    ? 'bg-rose-950 text-[#991B1B] border border-rose-800'
-                                    : 'bg-emerald-950 text-[#065F46] border border-emerald-800'
+                                  ? 'bg-rose-950 text-[#991B1B] border border-rose-800'
+                                  : 'bg-emerald-950 text-[#065F46] border border-emerald-800'
                                   }`}
                               >
                                 {uRes.risk_level} ({uRes.risk_score}%)
@@ -1764,10 +1772,10 @@ IMPORTANT STATIC LIMITATIONS:
                     <div
                       key={idx}
                       className={`p-4 rounded-xl border space-y-3 text-xs font-mono ${b.domain_mismatch_detected
-                          ? 'bg-[#FEF2F2] border-[#FECACA]'
-                          : b.is_official_match
-                            ? 'bg-[#ECFDF5] border-[#A7F3D0]'
-                            : 'bg-[#F8FAFC] border-[#E2E8F0]'
+                        ? 'bg-[#FEF2F2] border-[#FECACA]'
+                        : b.is_official_match
+                          ? 'bg-[#ECFDF5] border-[#A7F3D0]'
+                          : 'bg-[#F8FAFC] border-[#E2E8F0]'
                         }`}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-2">
@@ -1859,12 +1867,12 @@ IMPORTANT STATIC LIMITATIONS:
                       <div className="shrink-0 self-end sm:self-center">
                         <span
                           className={`px-2 py-0.5 rounded text-[10px] font-bold ${ind.severity === 'CRITICAL'
-                              ? 'bg-rose-950 text-[#991B1B] border border-rose-800'
-                              : ind.severity === 'HIGH'
-                                ? 'bg-amber-950 text-[#92400E] border border-amber-800'
-                                : ind.severity === 'BENIGN_ADVISORY'
-                                  ? 'bg-emerald-950 text-[#065F46] border border-emerald-800'
-                                  : 'bg-slate-800 text-[#334155] border border-slate-700'
+                            ? 'bg-rose-950 text-[#991B1B] border border-rose-800'
+                            : ind.severity === 'HIGH'
+                              ? 'bg-amber-950 text-[#92400E] border border-amber-800'
+                              : ind.severity === 'BENIGN_ADVISORY'
+                                ? 'bg-emerald-950 text-[#065F46] border border-emerald-800'
+                                : 'bg-slate-800 text-[#334155] border border-slate-700'
                             }`}
                         >
                           {ind.severity}

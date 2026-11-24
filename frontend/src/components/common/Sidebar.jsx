@@ -12,6 +12,7 @@ import {
   Shield,
   Lock
 } from 'lucide-react';
+import { useTranslation } from '../../i18n/LanguageContext';
 
 export default function Sidebar({
   activeTab,
@@ -19,50 +20,52 @@ export default function Sidebar({
   isOpen = false,
   onCloseMobile
 }) {
+  const { t } = useTranslation();
+
   const navItems = [
     {
       id: 'dashboard',
-      label: 'Overview',
+      label: t('nav.overview', {}, 'Overview'),
       icon: LayoutDashboard,
     },
     {
       id: 'url_scan',
-      label: 'URL Scanner',
+      label: t('nav.urlScanner', {}, 'URL Scanner'),
       icon: Globe,
     },
     {
       id: 'sms_scan',
-      label: 'SMS Scanner',
+      label: t('nav.smsScanner', {}, 'SMS Scanner'),
       icon: MessageSquare,
     },
     {
       id: 'screenshot',
-      label: 'Screenshot Threat Scanner',
+      label: t('nav.screenshotScanner', {}, 'Screenshot Threat Scanner'),
       icon: Camera,
     },
     {
       id: 'history',
-      label: 'Scan History',
+      label: t('nav.scanHistory', {}, 'Scan History'),
       icon: History,
     },
     {
       id: 'brand_registry',
-      label: 'Bank Threat Intel',
+      label: t('nav.bankIntel', {}, 'Bank Threat Intel'),
       icon: Building2,
     },
     {
       id: 'model_insights',
-      label: 'Model Insights & SHAP',
+      label: t('nav.modelInsights', {}, 'Model Insights & SHAP'),
       icon: Cpu,
     },
     {
       id: 'diagnostics',
-      label: 'System Diagnostics',
+      label: t('nav.systemDiagnostics', {}, 'System Diagnostics'),
       icon: Activity,
     },
     {
       id: 'governance',
-      label: 'Governance & RBAC',
+      label: t('nav.governance', {}, 'Governance & RBAC'),
       icon: Shield,
     },
   ];
@@ -94,7 +97,7 @@ export default function Sidebar({
           {/* Section Header */}
           <div className="px-3">
             <p className="text-xs font-mono font-semibold tracking-wider uppercase text-[#64748B]">
-              Navigation
+              {t('common.filter', {}, 'Navigation')}
             </p>
           </div>
 
@@ -137,13 +140,13 @@ export default function Sidebar({
             <div className="flex items-center space-x-1.5">
               <ShieldCheck className="w-4 h-4 text-[#065F46]" />
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#0F172A]">
-                Zero-Trust Active
+                {t('nav.zeroTrustActive', {}, 'Zero-Trust Active')}
               </span>
             </div>
             <Lock className="w-3.5 h-3.5 text-[#065F46]" />
           </div>
           <p className="text-xs text-[#475569] leading-snug">
-            Strict domain validation against 16 official Indian banking registries.
+            {t('nav.zeroTrustDesc', {}, 'Strict domain validation against 16 official Indian banking registries.')}
           </p>
         </div>
       </aside>

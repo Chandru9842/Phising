@@ -1,7 +1,9 @@
 import React from 'react';
 import { Database, Server, Shield, RefreshCw, Cpu } from 'lucide-react';
+import { useTranslation } from '../../i18n/LanguageContext';
 
 export default function SystemStatus({ health, isChecking, onRefresh }) {
+  const { t } = useTranslation();
   const isHealthy = health?.status === 'healthy';
   const dbStatus = health?.services?.database || 'unknown';
 
@@ -12,7 +14,7 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
           <div className="flex items-center space-x-2">
             <Server className="w-4 h-4 text-[#475569]" />
             <h3 className="text-xs font-mono font-semibold text-[#0F172A] uppercase tracking-wider">
-              System Diagnostics
+              {t('dashboard.systemDiagnostics', {}, 'System Diagnostics')}
             </h3>
           </div>
           <button
@@ -22,7 +24,7 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
             title="Refresh Health Status"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isChecking ? 'animate-spin' : ''}`} />
-            <span className="font-mono text-xs">Ping</span>
+            <span className="font-mono text-xs">{t('common.ping', {}, 'Ping')}</span>
           </button>
         </div>
 
@@ -31,9 +33,15 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
           <div className="p-3.5 rounded-md bg-[#F8FAFC] border border-[#E2E8F0] flex items-center space-x-3">
             <Cpu className="w-4 h-4 text-[#475569] shrink-0" />
             <div className="min-w-0">
-              <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">Inference Engine</p>
+              <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">
+                {t('dashboard.inferenceEngine', {}, 'Inference Engine')}
+              </p>
               <p className="text-[13px] font-semibold text-[#0F172A] font-mono truncate">
-                {isChecking ? 'Checking...' : isHealthy ? 'Online (v0.2.0)' : 'Offline / Error'}
+                {isChecking
+                  ? t('common.checking', {}, 'Checking...')
+                  : isHealthy
+                  ? `${t('common.online', {}, 'Online')} (v0.2.0)`
+                  : `${t('common.offline', {}, 'Offline')} / Error`}
               </p>
             </div>
           </div>
@@ -42,9 +50,15 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
           <div className="p-3.5 rounded-md bg-[#F8FAFC] border border-[#E2E8F0] flex items-center space-x-3">
             <Database className="w-4 h-4 text-[#475569] shrink-0" />
             <div className="min-w-0">
-              <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">SQLite Storage</p>
+              <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">
+                {t('dashboard.sqliteStorage', {}, 'SQLite Storage')}
+              </p>
               <p className="text-[13px] font-semibold text-[#0F172A] font-mono capitalize truncate">
-                {isChecking ? 'Connecting...' : dbStatus === 'connected' ? 'Connected' : dbStatus}
+                {isChecking
+                  ? t('common.checking', {}, 'Connecting...')
+                  : dbStatus === 'connected'
+                  ? t('common.online', {}, 'Connected')
+                  : dbStatus}
               </p>
             </div>
           </div>
@@ -53,9 +67,11 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
           <div className="p-3.5 rounded-md bg-[#F8FAFC] border border-[#E2E8F0] flex items-center space-x-3">
             <Shield className="w-4 h-4 text-[#475569] shrink-0" />
             <div className="min-w-0">
-              <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">Registry</p>
+              <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">
+                {t('dashboard.registry', {}, 'Registry')}
+              </p>
               <p className="text-[13px] font-semibold text-[#0F172A] font-mono truncate">
-                {health?.services?.supported_banks_count || 16} RBI Banks
+                {health?.services?.supported_banks_count || 16} {t('dashboard.rbiBanks', {}, 'RBI Banks')}
               </p>
             </div>
           </div>

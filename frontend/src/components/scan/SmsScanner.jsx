@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { apiService } from '../../services/api';
 import NetworkErrorCard from '../common/NetworkErrorCard';
 import { SkeletonScanDossier } from '../common/SkeletonLoader';
+import { useTranslation } from '../../i18n/LanguageContext';
 import {
   MessageSquare,
   ShieldAlert,
@@ -31,6 +32,7 @@ import {
 } from 'lucide-react';
 
 export default function SmsScanner({ initialMessage, onScanComplete }) {
+  const { t, localizeVerdict, localizeDirective, localizeRecommendation, localizeReason } = useTranslation();
   const [message, setMessage] = useState(initialMessage || '');
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
@@ -149,7 +151,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
       return (
         <span className="cyber-badge cyber-badge-safe">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>LEGITIMATE / SAFE</span>
+          <span>{localizeVerdict('SAFE')}</span>
         </span>
       );
     }
@@ -157,7 +159,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
       return (
         <span className="cyber-badge cyber-badge-warn">
           <AlertTriangle className="w-3.5 h-3.5" />
-          <span>SUSPICIOUS RISK</span>
+          <span>{localizeVerdict('SUSPICIOUS')}</span>
         </span>
       );
     }
@@ -165,14 +167,14 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
       return (
         <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold px-2.5 py-0.5 rounded bg-orange-500/10 text-orange-400 border border-orange-500/30">
           <AlertOctagon className="w-3.5 h-3.5" />
-          <span>HIGH THREAT</span>
+          <span>{localizeVerdict('HIGH')}</span>
         </span>
       );
     }
     return (
       <span className="cyber-badge cyber-badge-danger animate-pulse">
         <ShieldAlert className="w-3.5 h-3.5" />
-        <span>CRITICAL SMISHING</span>
+        <span>{localizeVerdict('CRITICAL')}</span>
       </span>
     );
   };
@@ -205,7 +207,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
           <div className="relative">
             <textarea
               rows={4}
-              placeholder="Paste suspicious SMS message text here (e.g. 'Dear SBI user, your YONO account is blocked today due to pending KYC. Click http://...')..."
+              placeholder={t('smsScan.inputPlaceholder', {}, "Paste suspicious SMS message text here (e.g. 'Dear SBI user, your YONO account is blocked today due to pending KYC. Click http://...')...")}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="w-full p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 resize-y transition-all"
@@ -218,7 +220,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
             <span className="text-[11px] text-[#64748B] flex items-center space-x-1">
               <Lock className="w-3 h-3 text-[#065F46]" />
-              <span>In-Memory Evaluation: URLs are extracted syntactically and analyzed without HTTP execution.</span>
+              <span>{t('nav.sandboxNotice', {}, 'In-Memory Evaluation: URLs are extracted syntactically and analyzed without HTTP execution.')}</span>
             </span>
 
             <div className="flex items-center space-x-2 shrink-0 self-end sm:self-auto">
@@ -230,7 +232,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                   title="Reset console"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
-                  <span>Reset</span>
+                  <span>{t('common.reset', {}, 'Reset')}</span>
                 </button>
               )}
 
@@ -243,11 +245,11 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 {isScanning ? (
                   <>
                     <RefreshCw className="w-4 h-4 animate-spin text-white" />
-                    <span>Analyzing SMS & URLs...</span>
+                    <span>{t('smsScan.evaluating', {}, 'Analyzing SMS & URLs...')}</span>
                   </>
                 ) : (
                   <>
-                    <span>Analyze SMS Security</span>
+                    <span>{t('smsScan.analyzeButton', {}, 'Analyze SMS Security')}</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
@@ -368,13 +370,12 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
 
             {/* Actionable Safety Recommendation Directive */}
             <div
-              className={`p-4 rounded-xl border flex items-start space-x-3.5 shadow-sm ${
-                scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH'
+              className={`p-4 rounded-xl border flex items-start space-x-3.5 shadow-sm ${scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH'
                   ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
                   : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS'
-                  ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
-                  : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
-              }`}
+                    ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
+                    : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
+                }`}
             >
               <div className="shrink-0 mt-0.5">
                 {scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH' ? (
@@ -388,18 +389,19 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
               <div className="flex-1 text-xs">
                 <div className="flex flex-wrap items-center gap-2 mb-1">
                   <span
-                    className={`font-mono font-bold tracking-wider uppercase text-[11px] ${
-                      scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH'
+                    className={`font-mono font-bold tracking-wider uppercase text-[11px] ${scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH'
                         ? 'text-[#991B1B]'
                         : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS'
-                        ? 'text-[#92400E]'
-                        : 'text-[#065F46]'
-                    }`}
+                          ? 'text-[#92400E]'
+                          : 'text-[#065F46]'
+                      }`}
                   >
-                    ACTION DIRECTIVE: {scanResult.recommendation.replace(/_/g, ' ')}
+                    {localizeDirective(scanResult.recommendation)}
                   </span>
                 </div>
-                <p className="leading-relaxed opacity-95">{scanResult.recommendation_text}</p>
+                <p className="leading-relaxed opacity-95">
+                  {localizeRecommendation(scanResult.recommendation_text, scanResult.recommendation)}
+                </p>
               </div>
             </div>
 
@@ -815,7 +817,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 {scanResult.reasons.map((reason, idx) => (
                   <li key={idx} className="text-xs text-[#334155] flex items-start space-x-2">
                     <span className="text-purple-400 font-bold shrink-0 mt-0.5">•</span>
-                    <span className="leading-relaxed">{reason}</span>
+                    <span className="leading-relaxed">{localizeReason(reason)}</span>
                   </li>
                 ))}
               </ul>

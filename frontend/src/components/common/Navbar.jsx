@@ -9,18 +9,20 @@ import {
   RefreshCw,
   AlertCircle
 } from 'lucide-react';
+import { useTranslation } from '../../i18n/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
-const TAB_TITLES = {
-  dashboard: 'Overview',
-  url_scan: 'URL Phishing Scanner',
-  sms_scan: 'SMS Smishing Scanner',
-  history: 'Scan History & Audit Logs',
-  brand_registry: 'Threat Intelligence & Banking Registry',
-  model_insights: 'Model Insights & Explainability',
-  diagnostics: 'System & Engine Diagnostics',
-  screenshot: 'Screenshot Threat Scanner',
-  governance: 'Governance & RBAC',
-  architecture: 'System Architecture',
+const TAB_KEY_MAP = {
+  dashboard: 'nav.overview',
+  url_scan: 'nav.urlScanner',
+  sms_scan: 'nav.smsScanner',
+  history: 'nav.scanHistory',
+  brand_registry: 'nav.bankIntel',
+  model_insights: 'nav.modelInsights',
+  diagnostics: 'nav.systemDiagnostics',
+  screenshot: 'nav.screenshotScanner',
+  governance: 'nav.governance',
+  architecture: 'nav.architecture',
 };
 
 export default function Navbar({
@@ -30,6 +32,7 @@ export default function Navbar({
   isSidebarOpen,
   onToggleSidebar
 }) {
+  const { t } = useTranslation();
   const isHealthy = health?.status === 'healthy';
 
   return (
@@ -65,31 +68,34 @@ export default function Navbar({
 
           {/* Breadcrumb Context (Desktop) */}
           <div className="hidden lg:flex items-center space-x-2 pl-3 border-l border-[#E2E8F0] text-xs">
-            <span className="text-[#64748B] font-mono">Console</span>
+            <span className="text-[#64748B] font-mono">{t('nav.console', {}, 'Console')}</span>
             <ChevronRight className="w-3 h-3 text-[#94A3B8]" />
             <span className="text-[#0F172A] font-medium truncate max-w-[240px]">
-              {TAB_TITLES[activeTab] || 'Overview'}
+              {t(TAB_KEY_MAP[activeTab] || 'nav.overview', {}, 'Overview')}
             </span>
           </div>
         </div>
 
-        {/* Right Section: Real-time API Status */}
+        {/* Right Section: Language Selector + Real-time API Status */}
         <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+          {/* Global User-Selectable Multilingual Switcher */}
+          <LanguageSelector />
+
           {/* Backend Engine Status Pill */}
           {isChecking ? (
             <div className="flex items-center space-x-1.5 bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] font-mono text-xs px-2.5 py-1 rounded-md">
               <RefreshCw className="w-3.5 h-3.5 text-[#D97706] animate-spin" />
-              <span>Engine: Checking</span>
+              <span>{t('nav.engineChecking', {}, 'Engine: Checking')}</span>
             </div>
           ) : isHealthy ? (
             <div className="flex items-center space-x-1.5 bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] font-mono text-xs px-2.5 py-1 rounded-md">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#059669]" />
-              <span>Engine: Online</span>
+              <span>{t('nav.engineOnline', {}, 'Engine: Online')}</span>
             </div>
           ) : (
             <div className="flex items-center space-x-1.5 bg-[#FEF2F2] border border-[#FECACA] text-[#991B1B] font-mono text-xs px-2.5 py-1 rounded-md">
               <AlertCircle className="w-3.5 h-3.5 text-[#DC2626]" />
-              <span>Engine: Degraded</span>
+              <span>{t('nav.engineDegraded', {}, 'Engine: Degraded')}</span>
             </div>
           )}
         </div>

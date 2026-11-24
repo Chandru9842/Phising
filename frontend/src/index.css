@@ -42,7 +42,7 @@
   body {
     background-color: var(--bg-canvas);
     color: var(--text-primary);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Malayalam', sans-serif;
     font-size: 13.5px;
     line-height: 1.5;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -57,7 +57,7 @@
   h5,
   h6,
   .font-heading {
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, 'Segoe UI', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Malayalam', sans-serif;
     color: var(--text-primary);
     letter-spacing: -0.02em;
   }

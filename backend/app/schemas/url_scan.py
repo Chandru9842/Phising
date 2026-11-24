@@ -62,6 +62,9 @@ class RiskAssessmentResponse(BaseModel):
     recommendation_text: str
     reasons: List[str] = []
     factors: Dict[str, Any] = {}
+    language: Optional[str] = "en"
+    localized_directive: Optional[str] = None
+    localized_risk_level: Optional[str] = None
 
 
 class URLScanResponse(BaseModel):

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { apiService } from '../../services/api';
 import NetworkErrorCard from '../common/NetworkErrorCard';
 import { SkeletonScanDossier } from '../common/SkeletonLoader';
+import { useTranslation } from '../../i18n/LanguageContext';
 import {
   Globe,
   ShieldAlert,
@@ -77,6 +78,7 @@ const FEATURE_CATEGORIES = {
 };
 
 export default function UrlScanner({ initialUrl, onScanComplete }) {
+  const { t, localizeVerdict, localizeDirective, localizeRecommendation, localizeReason } = useTranslation();
   const [url, setUrl] = useState(initialUrl || '');
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
@@ -201,7 +203,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
       return (
         <span className="cyber-badge cyber-badge-safe">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>ZERO-TRUST SAFE</span>
+          <span>{localizeVerdict('SAFE')}</span>
         </span>
       );
     }
@@ -209,7 +211,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
       return (
         <span className="cyber-badge cyber-badge-warn">
           <AlertTriangle className="w-3.5 h-3.5" />
-          <span>SUSPICIOUS RISK</span>
+          <span>{localizeVerdict('SUSPICIOUS')}</span>
         </span>
       );
     }
@@ -217,14 +219,14 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
       return (
         <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold px-2.5 py-0.5 rounded bg-orange-500/10 text-orange-400 border border-orange-500/30">
           <AlertOctagon className="w-3.5 h-3.5" />
-          <span>HIGH THREAT</span>
+          <span>{localizeVerdict('HIGH')}</span>
         </span>
       );
     }
     return (
       <span className="cyber-badge cyber-badge-danger animate-pulse">
         <ShieldAlert className="w-3.5 h-3.5" />
-        <span>CRITICAL PHISHING</span>
+        <span>{localizeVerdict('CRITICAL')}</span>
       </span>
     );
   };
@@ -315,7 +317,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
 
               <input
                 type="text"
-                placeholder="Enter or paste suspicious URL (e.g. http://onlinesbi-pan-kyc-verification.com/login.php)..."
+                placeholder={t('urlScan.inputPlaceholder', {}, 'Enter or paste suspicious URL (e.g. http://onlinesbi-pan-kyc-verification.com/login.php)...')}
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && executeScan()}
@@ -344,11 +346,11 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 {isScanning ? (
                   <>
                     <RefreshCw className="w-4 h-4 animate-spin text-[#07090e]" />
-                    <span>Executing Inference...</span>
+                    <span>{t('common.scanning', {}, 'Executing Inference...')}</span>
                   </>
                 ) : (
                   <>
-                    <span>Analyze Security</span>
+                    <span>{t('common.scanSecurity', {}, 'Analyze Security')}</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
@@ -370,7 +372,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
           <div className="flex items-center justify-between text-[11px] text-[#64748B] px-1">
             <span className="flex items-center space-x-1">
               <Lock className="w-3 h-3 text-[#065F46]" />
-              <span>Safe Sandbox: URLs are never connected, fetched, or executed over HTTP.</span>
+              <span>{t('nav.sandboxNotice', {}, 'Safe Sandbox: URLs are never connected, fetched, or executed over HTTP.')}</span>
             </span>
           </div>
         </div>
@@ -488,17 +490,16 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
             {/* Actionable Recommendation Directive */}
             {riskAssessment && (
               <div
-                className={`p-4 rounded-xl border flex items-start space-x-3.5 shadow-sm ${
-                  riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH'
-                    ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
-                    : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS'
+                className={`p-4 rounded-xl border flex items-start space-x-3.5 shadow-sm ${riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH'
+                  ? 'bg-[#FEF2F2] border-[#FECACA] text-[#7F1D1D]'
+                  : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS'
                     ? 'bg-[#FFFBEB] border-[#FDE68A] text-[#78350F]'
                     : 'bg-[#ECFDF5] border-[#A7F3D0] text-[#064E3B]'
-                }`}
+                  }`}
               >
                 <div className="shrink-0 mt-0.5">
                   {riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH' ? (
-                    <ShieldAlert className="w-5 h-5 text-[#DC2626]" />
+                    <ShieldAlert className="w-5 h-5 text-[#DC2626] animate-pulse" />
                   ) : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS' ? (
                     <AlertTriangle className="w-5 h-5 text-[#D97706]" />
                   ) : (
@@ -508,18 +509,19 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 <div className="flex-1 text-xs">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <span
-                      className={`font-mono font-bold tracking-wider uppercase text-[11px] ${
-                        riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH'
-                          ? 'text-[#991B1B]'
-                          : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS'
+                      className={`font-mono font-bold tracking-wider uppercase text-[11px] ${riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH'
+                        ? 'text-[#991B1B]'
+                        : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS'
                           ? 'text-[#92400E]'
                           : 'text-[#065F46]'
-                      }`}
+                        }`}
                     >
-                      DIRECTIVE: {riskAssessment.recommendation.replace(/_/g, ' ')}
+                      {localizeDirective(riskAssessment.recommendation)}
                     </span>
                   </div>
-                  <p className="leading-relaxed opacity-95">{riskAssessment.recommendation_text}</p>
+                  <p className="leading-relaxed opacity-95">
+                    {localizeRecommendation(riskAssessment.recommendation_text, riskAssessment.recommendation)}
+                  </p>
                 </div>
               </div>
             )}
@@ -966,7 +968,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 {riskAssessment.reasons.map((reason, idx) => (
                   <li key={idx} className="text-xs text-[#334155] flex items-start space-x-2">
                     <span className="text-[#0F172A] font-bold shrink-0 mt-0.5">•</span>
-                    <span className="leading-relaxed">{reason}</span>
+                    <span className="leading-relaxed">{localizeReason(reason)}</span>
                   </li>
                 ))}
               </ul>

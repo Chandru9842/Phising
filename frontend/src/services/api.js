@@ -10,6 +10,15 @@ const apiClient = axios.create({
   timeout: 45000,
 });
 
+/**
+ * Updates the global Accept-Language header for backend requests
+ */
+export function setApiLanguage(langCode) {
+  if (langCode) {
+    apiClient.defaults.headers.common['Accept-Language'] = langCode;
+  }
+}
+
 // API Service Functions
 export const apiService = {
   // Health & System

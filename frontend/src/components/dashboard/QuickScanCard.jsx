@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import { Globe, ArrowRight, ShieldCheck, AlertCircle, X, Check } from 'lucide-react';
+import { useTranslation } from '../../i18n/LanguageContext';
 
 export default function QuickScanCard({ onNavigateToScanner }) {
+  const { t } = useTranslation();
   const [inputUrl, setInputUrl] = useState('');
   const [validationError, setValidationError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sampleTargets = [
     {
-      label: 'Fake SBI KYC Update',
+      label: t('dashboard.fakeSbiTitle', {}, 'Fake SBI KYC Update'),
       url: 'http://onlinesbi.co-verify.in/login.php',
       risk: 'Impersonation',
       brand: 'SBI',
       isOfficial: false,
     },
     {
-      label: 'Fake HDFC Points Claim',
+      label: t('dashboard.fakeHdfcTitle', {}, 'Fake HDFC Points Claim'),
       url: 'https://hdfcbank-rewardpoint-redeem.in/claim',
       risk: 'Spoofing',
       brand: 'HDFC',
       isOfficial: false,
     },
     {
-      label: 'Official ICICI NetBanking',
+      label: t('dashboard.officialIciciTitle', {}, 'Official ICICI NetBanking'),
       url: 'https://infinity.icicibank.com/corp/AuthenticationController',
       risk: 'Canonical',
       brand: 'ICICI',
@@ -33,7 +35,7 @@ export default function QuickScanCard({ onNavigateToScanner }) {
   const handleAnalyze = (targetUrl) => {
     const urlToTest = (targetUrl || inputUrl).trim();
     if (!urlToTest) {
-      setValidationError('Please enter or select a URL to analyze.');
+      setValidationError(t('urlScan.inputPlaceholder', {}, 'Please enter or select a URL to analyze.'));
       return;
     }
 
@@ -56,11 +58,11 @@ export default function QuickScanCard({ onNavigateToScanner }) {
             <div className="flex items-center space-x-2 mb-1">
               <ShieldCheck className="w-4 h-4 text-[#065F46]" />
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#64748B]">
-                Zero-Trust Scan
+                {t('nav.zeroTrustActive', {}, 'Zero-Trust Scan')}
               </span>
             </div>
             <h2 className="text-lg font-heading font-bold text-[#0F172A] tracking-tight">
-              Analyze URL & Banking Brand Legitimacy
+              {t('dashboard.quickScanTitle', {}, 'Analyze URL & Banking Brand Legitimacy')}
             </h2>
           </div>
           <span className="text-xs font-mono text-[#475569] bg-[#F1F5F9] px-2.5 py-1 rounded border border-[#E2E8F0] self-start sm:self-auto">
@@ -69,7 +71,7 @@ export default function QuickScanCard({ onNavigateToScanner }) {
         </div>
 
         <p className="text-[13.5px] text-[#475569] max-w-2xl leading-relaxed">
-          Extracts 26 structural features, verifies registered apex domains, executes Damerau-Levenshtein distance checks against canonical Indian banks, and calculates inference probabilities.
+          {t('dashboard.quickScanSubtitle', {}, 'Extracts 26 structural features, verifies registered apex domains, executes Damerau-Levenshtein distance checks against canonical Indian banks, and calculates inference probabilities.')}
         </p>
 
         {/* Input Command Bar */}
@@ -79,7 +81,7 @@ export default function QuickScanCard({ onNavigateToScanner }) {
               <Globe className="w-4 h-4 text-[#94A3B8] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Paste suspicious banking URL (e.g. http://onlinesbi.co-verify.in)..."
+                placeholder={t('dashboard.quickScanPlaceholder', {}, 'Paste suspicious banking URL (e.g. http://onlinesbi.co-verify.in)...')}
                 value={inputUrl}
                 onChange={(e) => {
                   setInputUrl(e.target.value);
@@ -116,7 +118,7 @@ export default function QuickScanCard({ onNavigateToScanner }) {
               disabled={isSubmitting}
               className="cyber-btn-primary h-11 px-5 shrink-0 text-[13.5px] font-medium"
             >
-              <span>{isSubmitting ? 'Evaluating...' : 'Analyze URL'}</span>
+              <span>{isSubmitting ? t('common.analyzing', {}, 'Evaluating...') : t('dashboard.quickScanButton', {}, 'Analyze URL')}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -133,7 +135,7 @@ export default function QuickScanCard({ onNavigateToScanner }) {
         {/* Quick Sample Presets as compact low-profile pills */}
         <div className="pt-3 border-t border-[#E2E8F0]">
           <p className="text-xs font-mono font-semibold text-[#64748B] mb-2 uppercase tracking-wider">
-            Test Vectors:
+            {t('dashboard.testVectors', {}, 'TEST VECTORS:')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
             {sampleTargets.map((sample, idx) => {

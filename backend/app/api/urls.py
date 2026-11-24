@@ -3,7 +3,7 @@ PhishShield URL Scanning and Model Diagnostics API Endpoints
 """
 
 import logging
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.orm import Session
 from typing import Dict, Any, Optional
 
@@ -11,6 +11,7 @@ from app.database import get_db
 from app.models.scan import ScanRecord
 from app.ml.predict import scan_url_full, get_classifier, DEFAULT_MODEL_PATH
 from app.schemas.url_scan import URLScanRequest, URLScanResponse
+from app.core.localization import normalize_language_code, localize_unified_risk_assessment
 
 logger = logging.getLogger("phishshield.api.urls")
 
@@ -18,7 +19,11 @@ router = APIRouter(prefix="/urls", tags=["URL Scanner"])
 
 
 @router.post("/scan", response_model=URLScanResponse)
-def scan_url(payload: URLScanRequest, db: Session = Depends(get_db)):
+def scan_url(
+    payload: URLScanRequest,
+    accept_language: Optional[str] = Header(None, alias="Accept-Language"),
+    db: Session = Depends(get_db)
+):
     """
     Performs comprehensive Machine Learning and Brand-Aware cybersecurity scanning:
     1. Extracts 26 lexical, structural, and brand features.
@@ -71,6 +76,11 @@ def scan_url(payload: URLScanRequest, db: Session = Depends(get_db)):
     except Exception as db_err:
         logger.warning(f"Failed to persist scan record to database: {db_err}")
         db.rollback()
+
+    # Localize risk assessment if Accept-Language header is specified
+    lang = normalize_language_code(accept_language)
+    if "risk_assessment" in result and result["risk_assessment"]:
+        localize_unified_risk_assessment(result["risk_assessment"], lang=lang)
 
     return result
 

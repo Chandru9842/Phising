@@ -9,6 +9,7 @@ import RecentActivityTable from './components/dashboard/RecentActivityTable';
 import ArchitectureOverview from './components/dashboard/ArchitectureOverview';
 import NetworkErrorCard from './components/common/NetworkErrorCard';
 import { SkeletonMetricCards } from './components/common/SkeletonLoader';
+import { useTranslation } from './i18n/LanguageContext';
 
 // Lazy-loaded views for optimal code-splitting and bundle performance
 const UrlScanner = React.lazy(() => import('./components/scan/UrlScanner'));
@@ -21,11 +22,12 @@ const ScreenshotUploader = React.lazy(() => import('./components/screenshot/Scre
 const AdminGovernanceView = React.lazy(() => import('./components/admin/AdminGovernanceView'));
 
 function TabLoadingFallback() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center justify-center min-h-[350px] space-y-3 bg-white rounded-lg border border-[#E2E8F0] shadow-sm p-8">
       <div className="w-8 h-8 border-2 border-slate-200 border-t-[#0F172A] rounded-full animate-spin" />
       <span className="text-sm text-[#475569] font-mono tracking-wider">
-        Loading cybersecurity module...
+        {t('common.loading', {}, 'Loading cybersecurity module...')}
       </span>
     </div>
   );
@@ -50,6 +52,7 @@ import {
 } from 'lucide-react';
 
 export default function App() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [health, setHealth] = useState({
     status: 'healthy',
@@ -189,8 +192,8 @@ export default function App() {
           {/* Network Offline Alert (Pic-1 Style) */}
           {networkError && (
             <NetworkErrorCard
-              title="Security Gateway Connection Offline"
-              message="An error occurred while establishing a connection with the PhishShield detection engine. Please check your internet connection and verify that the backend server is running at http://127.0.0.1:8000."
+              title={t('network.offlineTitle', {}, 'Security Gateway Connection Offline')}
+              message={t('network.offlineMessage', {}, 'An error occurred while establishing a connection with the PhishShield detection engine. Please check your internet connection and verify that the backend server is running at http://127.0.0.1:8000.')}
               details={networkError}
               onRetry={fetchHealthAndData}
               isRetrying={isCheckingHealth}
@@ -206,34 +209,34 @@ export default function App() {
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fadeIn">
                   <MetricCard
-                    title="Total Scans"
+                    title={t('dashboard.totalScans', {}, 'Total Scans')}
                     value={stats?.total_scans !== undefined ? stats.total_scans : 0}
-                    subtext="Persistent SQLite audit logs"
+                    subtext={t('dashboard.totalScansSub', {}, 'Persistent SQLite audit logs')}
                     icon={Activity}
                     color="blue"
                   />
                   <MetricCard
-                    title="Phishing Detected"
+                    title={t('dashboard.phishingDetected', {}, 'Phishing Detected')}
                     value={stats?.phishing_detected !== undefined ? stats.phishing_detected : 0}
                     subtext={
                       stats?.total_scans > 0
-                        ? `${((stats.phishing_detected / stats.total_scans) * 100).toFixed(1)}% detection rate`
+                        ? `${((stats.phishing_detected / stats.total_scans) * 100).toFixed(1)}% ${t('dashboard.detectionRate', {}, 'detection rate')}`
                         : 'ML + Zero-Trust flagged'
                     }
                     icon={ShieldAlert}
                     color="rose"
                   />
                   <MetricCard
-                    title="Brand Impersonations"
+                    title={t('dashboard.brandImpersonations', {}, 'Brand Impersonations')}
                     value={stats?.brand_impersonations !== undefined ? stats.brand_impersonations : 0}
-                    subtext="Targeting Indian banks"
+                    subtext={t('dashboard.targetingBanks', {}, 'Targeting Indian banks')}
                     icon={AlertTriangle}
                     color="amber"
                   />
                   <MetricCard
-                    title="Safe Verified"
+                    title={t('dashboard.safeVerified', {}, 'Safe Verified')}
                     value={stats?.safe_scans !== undefined ? stats.safe_scans : 0}
-                    subtext="Canonical banking whitelist"
+                    subtext={t('dashboard.safeVerifiedSub', {}, 'Canonical banking whitelist')}
                     icon={ShieldCheck}
                     color="emerald"
                   />
@@ -269,11 +272,11 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-[#0F172A] uppercase tracking-wider font-mono">
-                      Protected Indian Banking Registry
+                      {t('dashboard.protectedRegistry', {}, 'Protected Indian Banking Registry')}
                     </h4>
                     <p className="text-sm text-[#475569]">
                       {banksData.length > 0
-                        ? `${banksData.length} canonical institutions actively guarded against typosquatting & impersonation.`
+                        ? `${banksData.length} ${t('dashboard.protectedRegistryDesc', {}, 'canonical institutions actively guarded against typosquatting & impersonation.')}`
                         : 'Loading canonical whitelist...'}
                     </p>
                   </div>
@@ -284,7 +287,7 @@ export default function App() {
                   onClick={() => setActiveTab('brand_registry')}
                   className="cyber-btn-secondary text-xs self-start sm:self-auto shrink-0"
                 >
-                  <span>Explore All {banksData.length || 25} Banks</span>
+                  <span>{t('dashboard.exploreAllBanks', {}, 'Explore All Banks')} ({banksData.length || 25})</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

@@ -36,3 +36,6 @@ class SMSScanResponse(BaseModel):
     target_brand: Optional[str] = None
     reasons: List[str] = []
     analyzed_at: str
+    language: Optional[str] = "en"
+    localized_directive: Optional[str] = None
+    localized_risk_level: Optional[str] = None

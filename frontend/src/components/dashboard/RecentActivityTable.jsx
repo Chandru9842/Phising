@@ -1,5 +1,6 @@
 import React from 'react';
 import { SkeletonTableRows } from '../common/SkeletonLoader';
+import { useTranslation } from '../../i18n/LanguageContext';
 import {
   History,
   ArrowRight,
@@ -19,6 +20,7 @@ export default function RecentActivityTable({
   onViewAllHistory,
   onSelectUrlForScan
 }) {
+  const { t, localizeVerdict } = useTranslation();
   const displayScans = scans.slice(0, 6);
 
   const formatTimestamp = (isoString) => {
@@ -36,34 +38,34 @@ export default function RecentActivityTable({
     if (level === 'CRITICAL' || level === 'PHISHING' || item.is_phishing) {
       return (
         <span className="cyber-badge cyber-badge-danger">
-          <XCircle className="w-3.5 h-3.5 text-[#991B1B]" /> Phishing
+          <XCircle className="w-3.5 h-3.5 text-[#991B1B]" /> {localizeVerdict('CRITICAL')}
         </span>
       );
     }
     if (level === 'HIGH') {
       return (
         <span className="cyber-badge cyber-badge-warn">
-          <AlertOctagon className="w-3.5 h-3.5 text-[#92400E]" /> High Risk
+          <AlertOctagon className="w-3.5 h-3.5 text-[#92400E]" /> {localizeVerdict('HIGH')}
         </span>
       );
     }
     if (level === 'SUSPICIOUS' || level === 'MEDIUM') {
       return (
         <span className="cyber-badge cyber-badge-warn">
-          <AlertTriangle className="w-3.5 h-3.5 text-[#92400E]" /> Suspicious
+          <AlertTriangle className="w-3.5 h-3.5 text-[#92400E]" /> {localizeVerdict('SUSPICIOUS')}
         </span>
       );
     }
     if (level === 'INSUFFICIENT_EVIDENCE') {
       return (
         <span className="cyber-badge cyber-badge-neutral">
-          <HelpCircle className="w-3.5 h-3.5 text-[#475569]" /> Unconfirmed
+          <HelpCircle className="w-3.5 h-3.5 text-[#475569]" /> {localizeVerdict('UNKNOWN')}
         </span>
       );
     }
     return (
       <span className="cyber-badge cyber-badge-safe">
-        <CheckCircle2 className="w-3.5 h-3.5 text-[#065F46]" /> Safe
+        <CheckCircle2 className="w-3.5 h-3.5 text-[#065F46]" /> {localizeVerdict('SAFE')}
       </span>
     );
   };
@@ -100,7 +102,7 @@ export default function RecentActivityTable({
             </span>
           </div>
           <h3 className="text-base font-heading font-bold text-[#0F172A] tracking-tight">
-            Recent Scans & Security Verdicts
+            {t('dashboard.recentScans', {}, 'Recent Scans & Security Verdicts')}
           </h3>
           <p className="text-[13.5px] text-[#475569]">
             Real-time feed of recently submitted URLs, SMS lures, and screenshots evaluated by PhishShield engines.
@@ -113,7 +115,7 @@ export default function RecentActivityTable({
             onClick={onViewAllHistory}
             className="cyber-btn-secondary text-xs self-start sm:self-auto"
           >
-            <span>View All Logs</span>
+            <span>{t('dashboard.viewAllHistory', {}, 'View All Logs')}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         )}
@@ -128,12 +130,12 @@ export default function RecentActivityTable({
           <table className="w-full text-left text-[13.5px] border-collapse">
             <thead className="bg-[#F8FAFC] text-[#475569] font-mono uppercase text-xs border-b border-[#E2E8F0]">
               <tr>
-                <th className="py-3 px-3.5 font-medium">Time</th>
-                <th className="py-3 px-3.5 font-medium">Type</th>
-                <th className="py-3 px-3.5 font-medium">Target Input</th>
-                <th className="py-3 px-3.5 font-medium">Identified Brand</th>
-                <th className="py-3 px-3.5 font-medium">Risk Score</th>
-                <th className="py-3 px-3.5 text-right font-medium">Verdict</th>
+                <th className="py-3 px-3.5 font-medium">{t('common.timestamp', {}, 'Time')}</th>
+                <th className="py-3 px-3.5 font-medium">{t('common.type', {}, 'Type')}</th>
+                <th className="py-3 px-3.5 font-medium">{t('common.target', {}, 'Target Input')}</th>
+                <th className="py-3 px-3.5 font-medium">{t('urlScan.targetBrand', {}, 'Identified Brand')}</th>
+                <th className="py-3 px-3.5 font-medium">{t('urlScan.calibratedScore', {}, 'Risk Score')}</th>
+                <th className="py-3 px-3.5 text-right font-medium">{t('common.status', {}, 'Verdict')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E2E8F0] text-[#475569]">
