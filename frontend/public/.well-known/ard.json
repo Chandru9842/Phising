@@ -1,0 +1,19 @@
+{
+  "ard_version": "1.0",
+  "name": "PhishShield",
+  "description": "Brand-Aware, Explainable Phishing Protection Platform for Indian Banking Customers",
+  "homepage": "https://phising-two-chi.vercel.app/",
+  "documentation": "https://phishshield-api-w7aj.onrender.com/docs",
+  "endpoints": [
+    {
+      "type": "rest",
+      "url": "https://phishshield-api-w7aj.onrender.com/api/v1/urls/scan",
+      "description": "Real-time AI URL phishing classifier"
+    },
+    {
+      "type": "rest",
+      "url": "https://phishshield-api-w7aj.onrender.com/api/v1/sms/scan",
+      "description": "SMS and messaging lure threat analyzer"
+    }
+  ]
+}

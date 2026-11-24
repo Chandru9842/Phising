@@ -44,7 +44,7 @@ export default function LanguageSelector({ className = '' }) {
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
-        aria-label={t('nav.selectLanguage', {}, 'Select Language')}
+        aria-label={`${currentLanguage.nativeName} - ${t('nav.selectLanguage', {}, 'Select Language')}`}
         className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-md bg-white hover:bg-[#F8FAFC] border border-[#CBD5E1] text-[#0F172A] hover:border-[#94A3B8] transition-colors text-xs font-medium shadow-[0_1px_2px_rgba(15,23,42,0.03)] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
       >
         <Globe className="w-3.5 h-3.5 text-[#1D4ED8] shrink-0" />

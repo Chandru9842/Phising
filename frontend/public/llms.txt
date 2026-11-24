@@ -1,0 +1,12 @@
+# PhishShield AI & Agentic Documentation
+
+> Enterprise brand-aware phishing and smishing protection platform designed for Indian digital banking ecosystems.
+
+## Core Capabilities
+- [URL Threat Scanner](https://phising-two-chi.vercel.app/): Real-time brand impersonation and machine learning URL scanner.
+- [SMS Smishing Detection](https://phising-two-chi.vercel.app/): NLP-driven SMS and messaging threat classifier.
+- [Screenshot Threat Scanner](https://phising-two-chi.vercel.app/): Vision-based visual brand impersonation detector.
+- [Indian Banking Threat Intel](https://phising-two-chi.vercel.app/): Real-time threat feed across 16 major Indian financial institutions.
+- [Explainable AI and SHAP](https://phising-two-chi.vercel.app/): Interpretable feature importance and risk breakdown.
+- [API Health Diagnostics](https://phishshield-api-w7aj.onrender.com/api/health): Staging service availability and latency monitoring.
+- [OpenAPI Documentation](https://phishshield-api-w7aj.onrender.com/docs): Interactive REST API schema and endpoint specs.
