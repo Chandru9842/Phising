@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, Server, Shield, RefreshCw } from 'lucide-react';
+import { Database, Server, Shield, RefreshCw, Cpu } from 'lucide-react';
 
 export default function SystemStatus({ health, isChecking, onRefresh }) {
   const isHealthy = health?.status === 'healthy';
@@ -29,11 +29,7 @@ export default function SystemStatus({ health, isChecking, onRefresh }) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {/* Core API Service */}
           <div className="p-3.5 rounded-md bg-[#F8FAFC] border border-[#E2E8F0] flex items-center space-x-3">
-            <div
-              className={`w-2.5 h-2.5 rounded-full shrink-0 ${
-                isChecking ? 'bg-amber-500 animate-pulse' : isHealthy ? 'bg-[#059669]' : 'bg-[#DC2626]'
-              }`}
-            />
+            <Cpu className="w-4 h-4 text-[#475569] shrink-0" />
             <div className="min-w-0">
               <p className="text-[11px] text-[#64748B] uppercase font-mono truncate">Inference Engine</p>
               <p className="text-[13px] font-semibold text-[#0F172A] font-mono truncate">

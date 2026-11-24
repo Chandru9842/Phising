@@ -498,7 +498,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
               >
                 <div className="shrink-0 mt-0.5">
                   {riskAssessment.risk_level === 'CRITICAL' || riskAssessment.risk_level === 'HIGH' ? (
-                    <ShieldAlert className="w-5 h-5 text-[#DC2626] animate-pulse" />
+                    <ShieldAlert className="w-5 h-5 text-[#DC2626]" />
                   ) : riskAssessment.risk_level === 'MEDIUM' || riskAssessment.risk_level === 'SUSPICIOUS' ? (
                     <AlertTriangle className="w-5 h-5 text-[#D97706]" />
                   ) : (

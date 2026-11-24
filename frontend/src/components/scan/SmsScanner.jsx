@@ -378,7 +378,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             >
               <div className="shrink-0 mt-0.5">
                 {scanResult.composite_risk_level === 'CRITICAL' || scanResult.composite_risk_level === 'HIGH' ? (
-                  <ShieldAlert className="w-5 h-5 text-[#DC2626] animate-pulse" />
+                  <ShieldAlert className="w-5 h-5 text-[#DC2626]" />
                 ) : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS' ? (
                   <AlertTriangle className="w-5 h-5 text-[#D97706]" />
                 ) : (

@@ -5,6 +5,9 @@ import {
   Menu,
   X,
   ChevronRight,
+  CheckCircle2,
+  RefreshCw,
+  AlertCircle
 } from 'lucide-react';
 
 const TAB_TITLES = {
@@ -73,23 +76,22 @@ export default function Navbar({
         {/* Right Section: Real-time API Status */}
         <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
           {/* Backend Engine Status Pill */}
-          <div className="flex items-center space-x-2 px-2.5 py-1 rounded-md bg-[#F8FAFC] border border-[#E2E8F0] text-xs">
-            <Activity className="w-3.5 h-3.5 text-[#64748B] hidden sm:inline-block" />
-            <span className="text-[#64748B] font-mono text-xs hidden sm:inline-block">Engine:</span>
-            <div className="flex items-center space-x-1.5">
-              <span
-                className={`w-2 h-2 rounded-full ${isChecking
-                    ? 'bg-[#D97706] animate-pulse'
-                    : isHealthy
-                      ? 'bg-[#059669]'
-                      : 'bg-[#DC2626]'
-                  }`}
-              />
-              <span className="font-mono text-xs font-medium text-[#475569]">
-                {isChecking ? 'Checking' : isHealthy ? 'Online' : 'Degraded'}
-              </span>
+          {isChecking ? (
+            <div className="flex items-center space-x-1.5 bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] font-mono text-xs px-2.5 py-1 rounded-md">
+              <RefreshCw className="w-3.5 h-3.5 text-[#D97706] animate-spin" />
+              <span>Engine: Checking</span>
             </div>
-          </div>
+          ) : isHealthy ? (
+            <div className="flex items-center space-x-1.5 bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] font-mono text-xs px-2.5 py-1 rounded-md">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#059669]" />
+              <span>Engine: Online</span>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-1.5 bg-[#FEF2F2] border border-[#FECACA] text-[#991B1B] font-mono text-xs px-2.5 py-1 rounded-md">
+              <AlertCircle className="w-3.5 h-3.5 text-[#DC2626]" />
+              <span>Engine: Degraded</span>
+            </div>
+          )}
         </div>
       </div>
     </header>

@@ -9,7 +9,8 @@ import {
   Activity,
   ShieldCheck,
   Camera,
-  Shield
+  Shield,
+  Lock
 } from 'lucide-react';
 
 export default function Sidebar({
@@ -139,7 +140,7 @@ export default function Sidebar({
                 Zero-Trust Active
               </span>
             </div>
-            <span className="w-2 h-2 rounded-full bg-[#059669]" />
+            <Lock className="w-3.5 h-3.5 text-[#065F46]" />
           </div>
           <p className="text-xs text-[#475569] leading-snug">
             Strict domain validation against 16 official Indian banking registries.

@@ -1121,8 +1121,8 @@ IMPORTANT STATIC LIMITATIONS:
 
             {/* Indeterminate Animated Scanning Radar Bar */}
             <div className="space-y-1">
-              <div className="w-full bg-[#F8FAFC] h-2 rounded-full overflow-hidden border border-[#E2E8F0] relative">
-                <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-cyan-500 via-indigo-500 to-rose-500 rounded-full animate-pulse opacity-85" />
+              <div className="w-full bg-[#F1F5F9] h-2 rounded-full overflow-hidden border border-[#E2E8F0] relative">
+                <div className="h-full bg-[#1D4ED8] rounded-full w-full" />
               </div>
               <p className="text-[11px] font-mono text-[#475569] pt-1">
                 {processingStatusText || 'Executing multi-layer threat assessment...'}

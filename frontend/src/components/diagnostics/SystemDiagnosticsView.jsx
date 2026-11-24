@@ -101,22 +101,13 @@ export default function SystemDiagnosticsView({
           }`}
         >
           <div className="flex items-center space-x-3">
-            <div className="relative">
-              <div
-                className={`w-3 h-3 rounded-full ${
-                  isHealthy
-                    ? 'bg-emerald-400 animate-pulse'
-                    : isDegraded
-                    ? 'bg-amber-400'
-                    : 'bg-rose-500'
-                }`}
-              />
-              <div
-                className={`absolute inset-0 rounded-full animate-ping opacity-75 ${
-                  isHealthy ? 'bg-emerald-400' : isDegraded ? 'bg-amber-400' : 'bg-rose-500'
-                }`}
-              />
-            </div>
+            {isHealthy ? (
+              <CheckCircle2 className="w-5 h-5 text-[#059669] shrink-0" />
+            ) : isDegraded ? (
+              <AlertTriangle className="w-5 h-5 text-[#D97706] shrink-0" />
+            ) : (
+              <XCircle className="w-5 h-5 text-[#DC2626] shrink-0" />
+            )}
             <div>
               <h4 className="text-xs font-mono font-bold uppercase tracking-wider">
                 {isHealthy

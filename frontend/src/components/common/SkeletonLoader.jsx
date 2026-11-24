@@ -25,7 +25,6 @@ export function SkeletonMetricCards() {
         >
           <div className="flex justify-between items-center">
             <SkeletonLine className="h-3 w-24" />
-            <div className="w-2 h-2 rounded-full bg-[#E2E8F0] animate-pulse" />
           </div>
           <SkeletonLine className="h-8 w-20" />
           <SkeletonLine className="h-3 w-36" />
