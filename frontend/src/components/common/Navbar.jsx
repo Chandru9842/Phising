@@ -55,7 +55,7 @@ export default function Navbar({
                 PhishShield
               </span>
               <span className="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#12161F] text-[#9CA3AF] border border-[#1E2430]">
-                Enterprise
+                v0.2
               </span>
             </div>
           </div>

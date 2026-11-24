@@ -145,31 +145,6 @@ export default function App() {
 
         {/* Primary Workspace Scroll Area */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-7xl mx-auto w-full space-y-6">
-          {/* Top Banner: Indian Banking Cyber Defense Context */}
-          <div className="p-4 rounded-md bg-[#12161F] border border-[#1E2430] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-center space-x-3 min-w-0">
-              <span className="p-2 rounded-md bg-[#0E121A] text-[#34D399] border border-[#1E2430] shrink-0">
-                <ShieldCheck className="w-5 h-5" />
-              </span>
-              <div className="min-w-0">
-                <h4 className="text-sm font-semibold text-[#F3F4F6] flex flex-wrap items-center gap-2">
-                  <span>PhishShield Protection Engine</span>
-                  <span className="text-[10px] font-mono bg-[#0E121A] text-[#9CA3AF] px-2 py-0.5 rounded border border-[#1E2430]">
-                    Indian Banking Zero-Trust
-                  </span>
-                </h4>
-                <p className="text-xs text-[#9CA3AF] truncate">
-                  Real-time detection of fraudulent URLs, smishing lures & lookalike domains spoofing Indian banking portals.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2 shrink-0 self-start sm:self-auto">
-              <span className="text-xs text-[#6B7280] font-mono">
-                Engine: <span className="text-[#34D399]">Active</span>
-              </span>
-            </div>
-          </div>
-
           {/* TAB 1: OVERVIEW DASHBOARD */}
           {activeTab === 'dashboard' && (
             <div className="space-y-6">

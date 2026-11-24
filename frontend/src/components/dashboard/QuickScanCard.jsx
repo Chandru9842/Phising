@@ -155,13 +155,7 @@ export default function QuickScanCard({ onNavigateToScanner }) {
                       {isSelected && <Check className="w-3 h-3 text-[#2563EB]" />}
                       <span>{sample.label}</span>
                     </span>
-                    <span
-                      className={`text-[9px] px-1.5 py-0.2 rounded font-mono shrink-0 ${
-                        sample.isOfficial
-                          ? 'bg-emerald-500/10 text-[#34D399] border border-emerald-500/20'
-                          : 'bg-rose-500/10 text-[#F87171] border border-rose-500/20'
-                      }`}
-                    >
+                    <span className="text-[9px] px-1.5 py-0.5 rounded font-mono shrink-0 bg-[#171C28] text-[#9CA3AF] border border-[#2B3445]">
                       {sample.brand}
                     </span>
                   </div>
