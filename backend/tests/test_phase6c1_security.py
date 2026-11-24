@@ -425,26 +425,29 @@ def test_audit_log_hash_chain_and_redaction():
 # ==============================================================================
 # 9. OCR Concurrency & Semaphore Accounting Safety
 # ==============================================================================
-@pytest.mark.asyncio
-async def test_ocr_semaphore_accounting_on_timeout():
-    controller = ocr_controller
-
-    initial_waiting = controller.waiting_count
-    initial_active = controller.active_count
-
-    # Simulate a function that times out waiting for semaphore
+def test_ocr_semaphore_accounting_on_timeout():
     import asyncio
-    with patch.object(settings, "OCR_TIMEOUT_SECONDS", 0.05):
-        # Artificially lock semaphore to force timeout
-        sem = controller._get_semaphore()
-        await sem.acquire()
-        try:
-            with pytest.raises(Exception) as exc_info:
-                await controller.run_bounded(lambda: "never_run")
-            assert "timed out" in str(exc_info.value.detail).lower() or exc_info.value.status_code == 504
-        finally:
-            sem.release()
 
-    # Waiting and active counters MUST return to baseline (no memory/counter leak)
-    assert controller.waiting_count == initial_waiting
-    assert controller.active_count == initial_active
+    async def _run_test():
+        controller = ocr_controller
+
+        initial_waiting = controller.waiting_count
+        initial_active = controller.active_count
+
+        # Simulate a function that times out waiting for semaphore
+        with patch.object(settings, "OCR_TIMEOUT_SECONDS", 0.05):
+            # Artificially lock semaphore to force timeout
+            sem = controller._get_semaphore()
+            await sem.acquire()
+            try:
+                with pytest.raises(Exception) as exc_info:
+                    await controller.run_bounded(lambda: "never_run")
+                assert "timed out" in str(exc_info.value.detail).lower() or exc_info.value.status_code == 504
+            finally:
+                sem.release()
+
+        # Waiting and active counters MUST return to baseline (no memory/counter leak)
+        assert controller.waiting_count == initial_waiting
+        assert controller.active_count == initial_active
+
+    asyncio.run(_run_test())
