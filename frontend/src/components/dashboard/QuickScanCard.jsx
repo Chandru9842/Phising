@@ -91,8 +91,8 @@ export default function QuickScanCard({ onNavigateToScanner }) {
                   }
                 }}
                 className={`w-full h-11 pl-10 pr-9 rounded-md bg-white text-[13.5px] text-[#0F172A] placeholder-[#94A3B8] font-mono transition-colors focus:outline-none ${validationError
-                    ? 'border border-[#EF4444] focus:border-[#EF4444]'
-                    : 'border border-[#CBD5E1] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15'
+                  ? 'border border-[#EF4444] focus:border-[#EF4444]'
+                  : 'border border-[#CBD5E1] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15'
                   }`}
               />
               {inputUrl && (
@@ -144,8 +144,8 @@ export default function QuickScanCard({ onNavigateToScanner }) {
                   type="button"
                   onClick={() => handleSelectSample(sample.url)}
                   className={`text-left p-2.5 rounded-md border transition-colors ${isSelected
-                      ? 'bg-[#EFF6FF] border-[#1D4ED8]'
-                      : 'bg-white border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]'
+                    ? 'bg-[#EFF6FF] border-[#1D4ED8]'
+                    : 'bg-white border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]'
                     }`}
                 >
                   <div className="flex items-center justify-between text-[13px] font-medium gap-2">

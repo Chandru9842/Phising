@@ -86,7 +86,7 @@ export default function Sidebar({
 
       {/* Sidebar Chrome - Stripe & Cloudflare Style */}
       <aside
-        className={`fixed md:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-[#E2E8F0] flex flex-col justify-between py-5 px-3 shrink-0 min-h-[calc(100vh-57px)] transition-transform duration-150 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        className={`fixed md:sticky top-14 h-[calc(100vh-3.5rem)] inset-y-0 left-0 z-40 w-64 bg-white border-r border-[#E2E8F0] flex flex-col justify-between py-5 px-3 shrink-0 overflow-y-auto transition-transform duration-150 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
           }`}
       >
         <div className="space-y-4">
@@ -110,17 +110,15 @@ export default function Sidebar({
                 <button
                   key={item.id}
                   onClick={() => handleSelect(item.id)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md text-[13.5px] font-medium transition-colors duration-100 group text-left ${
-                    isActive
-                      ? 'bg-[#EFF6FF] text-[#1D4ED8] font-semibold border-l-2 border-[#1D4ED8] rounded-l-none'
-                      : 'text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC]'
-                  }`}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md text-[13.5px] font-medium transition-colors duration-100 group text-left ${isActive
+                    ? 'bg-[#EFF6FF] text-[#1D4ED8] font-semibold border-l-2 border-[#1D4ED8] rounded-l-none'
+                    : 'text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC]'
+                    }`}
                 >
                   <div className="flex items-center space-x-2.5 min-w-0">
                     <Icon
-                      className={`w-4 h-4 shrink-0 transition-colors ${
-                        isActive ? 'text-[#1D4ED8]' : 'text-[#64748B] group-hover:text-[#0F172A]'
-                      }`}
+                      className={`w-4 h-4 shrink-0 transition-colors ${isActive ? 'text-[#1D4ED8]' : 'text-[#64748B] group-hover:text-[#0F172A]'
+                        }`}
                     />
                     <span className="truncate">
                       {item.label}

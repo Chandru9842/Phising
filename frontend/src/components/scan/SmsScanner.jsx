@@ -353,12 +353,12 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             {/* Actionable Safety Recommendation Directive */}
             <div
               className={`p-4 rounded-xl border flex items-start space-x-3.5 ${scanResult.composite_risk_level === 'CRITICAL'
-                  ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
-                  : scanResult.composite_risk_level === 'HIGH'
-                    ? 'bg-orange-950/30 border-orange-800/70 text-orange-200'
-                    : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS'
-                      ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
-                      : 'bg-[#ECFDF5] border-[#A7F3D0] text-emerald-200'
+                ? 'bg-[#FEF2F2] border-[#FECACA] text-rose-200'
+                : scanResult.composite_risk_level === 'HIGH'
+                  ? 'bg-orange-950/30 border-orange-800/70 text-orange-200'
+                  : scanResult.composite_risk_level === 'MEDIUM' || scanResult.composite_risk_level === 'SUSPICIOUS'
+                    ? 'bg-[#FFFBEB] border-[#FDE68A] text-amber-200'
+                    : 'bg-[#ECFDF5] border-[#A7F3D0] text-emerald-200'
                 }`}
             >
               <div className="shrink-0 mt-0.5">
@@ -396,12 +396,12 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 <div className="flex items-baseline space-x-2">
                   <span
                     className={`text-3xl font-black font-mono ${scanResult.composite_risk_score >= 80
-                        ? 'text-[#991B1B]'
-                        : scanResult.composite_risk_score >= 60
-                          ? 'text-orange-400'
-                          : scanResult.composite_risk_score >= 30
-                            ? 'text-[#92400E]'
-                            : 'text-[#065F46]'
+                      ? 'text-[#991B1B]'
+                      : scanResult.composite_risk_score >= 60
+                        ? 'text-orange-400'
+                        : scanResult.composite_risk_score >= 30
+                          ? 'text-[#92400E]'
+                          : 'text-[#065F46]'
                       }`}
                   >
                     {scanResult.composite_risk_score}%
@@ -416,12 +416,12 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                   <div className="w-full bg-[#F8FAFC] h-2 rounded-full overflow-hidden border border-[#E2E8F0]">
                     <div
                       className={`h-full rounded-full transition-all duration-700 ${scanResult.composite_risk_score >= 80
-                          ? 'bg-rose-500'
-                          : scanResult.composite_risk_score >= 60
-                            ? 'bg-orange-500'
-                            : scanResult.composite_risk_score >= 30
-                              ? 'bg-amber-500'
-                              : 'bg-emerald-500'
+                        ? 'bg-rose-500'
+                        : scanResult.composite_risk_score >= 60
+                          ? 'bg-orange-500'
+                          : scanResult.composite_risk_score >= 30
+                            ? 'bg-amber-500'
+                            : 'bg-emerald-500'
                         }`}
                       style={{ width: `${Math.max(4, scanResult.composite_risk_score)}%` }}
                     />

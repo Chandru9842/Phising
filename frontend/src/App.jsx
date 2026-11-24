@@ -134,7 +134,7 @@ export default function App() {
         onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
       />
 
-      <div className="flex-1 flex flex-col md:flex-row">
+      <div className="flex-1 flex flex-col md:flex-row md:items-start">
         {/* Responsive Sidebar Navigation */}
         <Sidebar
           activeTab={activeTab}
