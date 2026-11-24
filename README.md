@@ -145,7 +145,7 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
 * **Forensic Threat Dossier Export:** One-click export in structured JSON and executive PDF format featuring **automatic URL defanging** (e.g., transforming `http://malicious.com` into `hxxp[://]malicious[.]com` to prevent accidental analyst execution).
 * **Outbound Webhooks with SSRF Defense:** Automated notifications to SIEM/Slack endpoints with strict blocking of private subnets (RFC 1918 `10.x`, `192.168.x`, `172.16.x`), loopbacks (`127.x`), and cloud metadata IPs (`169.254.169.254`).
 * **Cryptographic Tamper-Evident Audit Trail:** Every administrative operation is appended to an immutable **SHA-256 hash-chain**:
-  $$\text{entry\_hash} = \text{SHA256}(\text{prev\_hash} \parallel \text{timestamp} \parallel \text{actor} \parallel \text{action} \parallel \text{entity} \parallel \text{details})$$
+  $$\text{Hash}_i = \text{SHA-256}(\text{Hash}_{i-1} \parallel \text{timestamp} \parallel \text{actor} \parallel \text{action} \parallel \text{entity} \parallel \text{details})$$
   Any manual alteration or deletion of audit logs breaks the chain and triggers `TAMPER_DETECTED`.
 
 ---
@@ -175,6 +175,18 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
 ## 🧠 Step-by-Step Internal Mechanics: How Every Algorithm Works Under the Hood
 
 > **🌟 Student & Hackathon Pitch Guide:** This section is written in clear, simple terms so you can easily understand every concept, learn why each algorithm was chosen, understand why other algorithms were rejected, and confidently explain the entire project to judges, professors, and interviewers.
+
+### 🎯 Master Algorithm Map: Which Algorithm Powers What?
+
+| Threat Channel / Feature | What Chandru Scans | Core Algorithm Used | Why This Algorithm? |
+| :--- | :--- | :--- | :--- |
+| **1. URL Scanner** | Web links (`http://...`) | **Random Forest Classifier** (100 Decision Trees) | 0.45 ms CPU speed, catches complex non-linear feature combinations, ₹0 cost. |
+| **2. AI Explainability** | Why a link was flagged | **TreeSHAP** (Game Theory Shapley Values) | 100% deterministic mathematical proof; eliminates black-box uncertainty. |
+| **3. Brand Protection** | Typosquatting (`0nlinesbi`) | **Levenshtein Distance + Canonical RBI Whitelist** | Catches lookalike domain spoofs even if attacker has green SSL padlock. |
+| **4. SMS Scanner** | Smishing messages on phone | **TF-IDF (1,2 n-grams) + L2 Logistic Regression** | Sub-millisecond speed, 100% offline privacy (never sends user OTPs/SMS to cloud). |
+| **5. Screenshot Scanner** | Screenshots of fake banking sites | **EasyOCR** (PyTorch CRAFT + ResNet + BiLSTM) | Reads mobile displays & styled fonts in RAM; never writes image to disk. |
+| **6. Multi-Vector Risk Engine** | Overall threat verdict | **Calibrated Decision Matrix + Zero-Trust Overrides** | Hard rules override statistical scores if brand theft or malware is caught. |
+| **7. Security Audit Trail** | Tamper-proof admin logs | **Cryptographic SHA-256 Hash Chaining** | Mini-blockchain in SQLite; detects any database tampering instantly. |
 
 ---
 
@@ -291,15 +303,15 @@ Most AI models act like a **black box**—they give a score (like 97%), but cann
 > 1. **Baseline Base Value ($\phi_0$):** $0.12$ (12.0% average baseline risk across legitimate internet URLs).
 > 2. **Target Prediction ($f(x)$):** $0.97$ (97.0%).
 > 3. **Net Shift to Explain:** $\Delta = 0.97 - 0.12 = \mathbf{+0.85\ (+85.0\%)}$.
-> 4. **TreeSHAP Traversal:** TreeSHAP climbs through the 100 trees and calculates the exact mathematical credit ($\phi_i$) for each feature:
->    * $\phi_{\text{has\_bank\_in\_subdomain}} = \mathbf{+0.32}$ *(Fake bank token adds +32% risk)*
->    * $\phi_{\text{has\_suspicious\_keyword}} = \mathbf{+0.24}$ *(Keywords "login" & "pan" add +24% risk)*
->    * $\phi_{\text{count\_hyphens}} = \mathbf{+0.15}$ *(Hyphenated domain adds +15% risk)*
->    * $\phi_{\text{digit\_ratio}} = \mathbf{+0.10}$ *(Account number in query adds +10% risk)*
->    * $\phi_{\text{domain\_entropy}} = \mathbf{+0.04}$ *(Domain randomness adds +4% risk)*
->    * $\phi_{\text{other\_21\_features}} = \mathbf{0.00}$ *(Neutral impact)*
+> 4. **TreeSHAP Traversal:** TreeSHAP climbs through the 100 trees and calculates the exact mathematical credit for each feature:
+>    * **`has_bank_in_subdomain`** (SHAP Attribution: **+0.32**): Fake bank token in subdomain adds **+32% risk**.
+>    * **`has_suspicious_keyword`** (SHAP Attribution: **+0.24**): Credentials path (`/login/update-pan`) adds **+24% risk**.
+>    * **`count_hyphens`** (SHAP Attribution: **+0.15**): Hyphenated domain structure adds **+15% risk**.
+>    * **`digit_ratio`** (SHAP Attribution: **+0.10**): Numeric account query parameter adds **+10% risk**.
+>    * **`domain_entropy`** (SHAP Attribution: **+0.04**): Elevated character randomness adds **+4% risk**.
+>    * **`other_21_features`** (SHAP Attribution: **+0.00**): Neutral impact (0% change across other 21 features).
 > 5. **Mathematical Verification:**  
->    $$\phi_0 + \sum \phi_i = 0.12 + (0.32 + 0.24 + 0.15 + 0.10 + 0.04) = 0.12 + 0.85 = \mathbf{0.97 \quad (100\%\ Matched!)}$$
+>    $$\text{Base Risk } (0.12) + \sum \phi_i (0.85) = \mathbf{0.97 \quad (97.0\%\ Exact\ Match!)}$$
 > 6. **Dashboard Display:** Chandru sees a clear, color-coded waterfall bar chart explaining why the link is dangerous in plain English.
 
 > [!TIP]
