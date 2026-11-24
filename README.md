@@ -42,23 +42,21 @@ PhishShield is deployed live across global cloud infrastructure without incurrin
 
 1. [Executive Summary & Problem Statement](#-executive-summary--problem-statement)
 2. [End-to-End Development Lifecycle (Phases 1 to 6E)](#-end-to-end-development-lifecycle-phases-1-to-6e)
-   * [Phase 1: Foundation & Canonical Banking Registry](#phase-1-foundation--canonical-banking-registry)
-   * [Phase 2: Lexical Engineering & Random Forest Classifier](#phase-2-lexical-engineering--random-forest-classifier)
-   * [Phase 3: Explainable AI (SHAP) & Brand Impersonation](#phase-3-explainable-ai-shap--brand-impersonation)
-   * [Phase 4: SMS Smishing & Social Engineering Engine](#phase-4-sms-smishing--social-engineering-engine)
-   * [Phase 5: Visual Screenshot Threat Intelligence (EasyOCR)](#phase-5-visual-screenshot-threat-intelligence-easyocr)
-   * [Phase 6A: System Unification & End-to-End UAT](#phase-6a-system-unification--end-to-end-uat)
-   * [Phase 6B: Performance Optimization & Asynchronous Queue](#phase-6b-performance-optimization--asynchronous-queue)
-   * [Phase 6C: Enterprise Governance, RBAC & SHA-256 Audit Trail](#phase-6c-enterprise-governance-rbac--sha-256-audit-trail)
-   * [Phase 6D: Release Engineering & Reproducibility](#phase-6d-release-engineering--reproducibility)
-   * [Phase 6E: Deployment & Public Demo Readiness](#phase-6e-deployment--public-demo-readiness)
-3. [Deep-Dive Algorithm Justification Matrix](#-deep-dive-algorithm-justification-matrix)
-4. [Complete System Architecture](#-complete-system-architecture)
-5. [Directory Layout](#-directory-layout)
-6. [Cloud Deployment Architecture & Guide](#-cloud-deployment-architecture--guide)
-7. [Automated Verification, Playwright Testing & CI/CD](#-automated-verification-playwright-testing--cicd)
-8. [Security, Privacy & Threat Mitigation Guarantees](#-security-privacy--threat-mitigation-guarantees)
-9. [Local Quickstart Guide](#-local-quickstart-guide)
+3. [🧠 Step-by-Step Internal Mechanics: How Every Algorithm Works Under the Hood](#-step-by-step-internal-mechanics-how-every-algorithm-works-under-the-hood)
+   * [1. Random Forest URL Classifier (26-Feature Lexical Engine)](#1-random-forest-url-classifier-26-feature-lexical-engine)
+   * [2. TreeSHAP Explainable AI Attribution Engine](#2-treeshap-explainable-ai-attribution-engine)
+   * [3. Indian Banking Brand Impersonation & Typosquatting Engine](#3-indian-banking-brand-impersonation--typosquatting-engine)
+   * [4. TF-IDF + Regularized Logistic Regression SMS Smishing Engine](#4-tf-idf--regularized-logistic-regression-sms-smishing-engine)
+   * [5. EasyOCR PyTorch Visual Threat Pipeline](#5-easyocr-pytorch-visual-threat-pipeline)
+   * [6. Unified Multi-Vector Risk Engine & Decision Matrix](#6-unified-multi-vector-risk-engine--decision-matrix)
+   * [7. Cryptographic SHA-256 Tamper-Evident Audit Ledger](#7-cryptographic-sha-256-tamper-evident-audit-ledger)
+4. [Deep-Dive Algorithm Justification Matrix (Why Selected vs Why Rejected)](#-deep-dive-algorithm-justification-matrix)
+5. [Complete System Architecture](#-complete-system-architecture)
+6. [Directory Layout](#-directory-layout)
+7. [Cloud Deployment Architecture & Guide](#-cloud-deployment-architecture--guide)
+8. [Automated Verification, Playwright Testing & CI/CD](#-automated-verification-playwright-testing--cicd)
+9. [Security, Privacy & Threat Mitigation Guarantees](#-security-privacy--threat-mitigation-guarantees)
+10. [Local Quickstart Guide](#-local-quickstart-guide)
 
 ---
 
@@ -91,14 +89,6 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
   * Domain entropy: Shannon entropy of the domain character distribution to identify algorithmically generated domains (DGA).
   * Brand heuristics: Presence of Indian bank keywords in non-authoritative URL tokens.
 * **Algorithm Selected:** **Random Forest Classifier** (`n_estimators=100`, max_depth=15, `scikit-learn`).
-* **Why Random Forest?**
-  * Models complex non-linear feature interactions without manual polynomial expansion.
-  * Invariant to monotonic feature scaling (no normalization distortion).
-  * Highly resistant to overfitting via bootstrap aggregation (bagging) and feature sub-sampling.
-  * Sub-millisecond CPU inference (~0.45 ms/URL), ideal for high-throughput security proxies.
-* **Why NOT Other Algorithms?**
-  * *Why not Deep Learning (CNN/LSTM/BERT)?* High memory footprint (>500MB), CPU inference latency 100x slower (50-200ms), requires GPU hardware, prone to adversarial perturbation attacks on character encodings.
-  * *Why not Logistic Regression / Linear SVM?* Cannot capture non-linear relationships (e.g., a banking keyword is safe on `sbi.co.in` but malicious on `sbi.verify-kyc.net`).
 
 ---
 
@@ -108,11 +98,6 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
 * **Concept:** Assigns an exact mathematical Shapley credit $\phi_i$ to each of the 26 lexical features:
   $$\text{Score}(x) = \phi_0 + \sum_{i=1}^{M} \phi_i(x)$$
   Positive values increase phishing risk; negative values decrease risk toward legitimacy.
-* **Why TreeSHAP?**
-  * Guarantees three mathematical axioms: **Efficiency** (sum of attributions equals output delta), **Symmetry** (identical features get identical weight), and **Additivity**.
-  * Computes exact Shapley values in polynomial time $O(T L D^2)$ rather than exponential permutations.
-* **Why NOT LIME (Local Interpretable Model-agnostic Explanations)?**
-  * LIME draws random perturbations around the data point, producing non-deterministic, varying explanations for identical inputs—unacceptable for forensic evidence and legal auditing.
 * **Brand Mismatch Engine:** Computes Levenshtein edit distance and token boundaries against canonical banking names. Flags severe anomalies when a page presents banking logos or keywords while hosted on untrusted domains.
 
 ---
@@ -122,12 +107,6 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
 * **Algorithm Selected:** **TF-IDF (Term Frequency-Inverse Document Frequency) + Regularized Logistic Regression**.
 * **Concept:** High-dimensional n-gram vectorization capturing linguistic cues of urgency (*"blocked"*, *"immediately"*, *"suspend"*, *"KYC"*, *"PAN card"*, *"electricity cut"*, *"lottery win"*, *"refund"*).
 * **Deep URL Harvesting:** Automatically isolates embedded URLs in the SMS text, decodes redirects, and passes candidate links through the Random Forest URL classifier.
-* **Why TF-IDF + Logistic Regression?**
-  * Lightweight artifact size (~89.9 kB) with zero runtime dependencies.
-  * Instant inference (<1.0 ms) suitable for real-time telecom SMS firewalls.
-  * Interpretable positive log-odds weights directly expose malicious trigger words.
-* **Why NOT Transformer Models (BERT / RoBERTa / LLMs)?**
-  * Large Language Models consume 1 GB+ RAM, introduce 200–500ms latency, and require paid third-party API keys or heavy GPU compute, conflicting with our zero-cost, privacy-first offline architecture.
 
 ---
 
@@ -135,12 +114,6 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
 * **Core Focus:** Optical character recognition of visual screenshot uploads to detect brand spoofing.
 * **Engine Selected:** **EasyOCR** (PyTorch CRAFT text detection + ResNet/LSTM sequence recognition).
 * **Zero-Disk Processing:** Uploaded images are processed entirely in-memory as OpenCV byte arrays (`np.ndarray`) and discarded upon classification to protect user privacy.
-* **Why EasyOCR?**
-  * Superior text detection accuracy on low-contrast screenshots, mobile screen captures, and styled typography.
-  * Pure Python/PyTorch CPU implementation that does not require host-level C++ binary dependencies.
-* **Why NOT Tesseract (pytesseract)?**
-  * Tesseract requires installing native OS packages (`apt-get install tesseract-ocr`), causing environment drift between Windows and Linux.
-  * Struggles with stylized digital typography, gradients, and low-resolution mobile renders.
 
 ---
 
@@ -196,6 +169,328 @@ Financial cyber fraud targeting Indian retail banking customers has surged expon
   * Total Infrastructure Cost: **₹0.00 / month** (Zero credit card requirement).
 * **Playwright Automated Browser Testing:** Executed live browser automation against the Vercel site:
   * Verified 100% UI rendering, 0 console errors, and successful live classification of State Bank of India phishing lures.
+
+---
+
+## 🧠 Step-by-Step Internal Mechanics: How Every Algorithm Works Under the Hood
+
+### 1. Random Forest URL Classifier (26-Feature Lexical Engine)
+
+The URL classification pipeline executes a deterministic, four-step feature extraction and tree-ensemble evaluation:
+
+```
+[Target URL Input]
+       │
+       ▼
+[Step 1: Canonicalization & Suffix Parsing (tldextract)]
+       │
+       ▼
+[Step 2: 26-Dimensional Feature Vector Extraction]
+       │  ├── Lengths (URL, Domain, Path, Query)
+       │  ├── Structural Counts (Dots, Hyphens, Slashes, Subdomains)
+       │  ├── Security Markers (IP Host, Punycode, Non-std Port, @ Symbol)
+       │  └── Domain Shannon Entropy: H(X) = -Σ p(x) log2 p(x)
+       ▼
+[Step 3: 100 Decision Trees Voting (Bootstrap Aggregation)]
+       │  Each Tree evaluates non-linear splits via Gini Impurity:
+       │  Gini(D) = 1 - Σ (p_i)^2
+       ▼
+[Step 4: Leaf Distribution Averaging & Probability Calibration]
+       │  P(Phishing | x) = (1 / B) * Σ p_b(x)
+       ▼
+[Calibrated URL Risk Score: 0.0% – 100.0%]
+```
+
+* **Step 1: Canonicalization & Zero-Trust Parsing:**
+  The URL is stripped of trailing spaces and whitespace. Using `tldextract`, the URL is parsed into its three constituent segments: **Subdomain**, **Registered Domain**, and **Public Suffix** (TLD). This separates deceptive subdomains (e.g., `sbi.co.in.attacker.xyz`) from the real root host (`attacker.xyz`).
+* **Step 2: 26-Dimensional Feature Extraction:**
+  A mathematical vector $X \in \mathbb{R}^{26}$ is constructed:
+  1. `url_length`: Total character length of URL.
+  2. `domain_length`: Character length of the registered domain.
+  3. `path_length`: Length of the resource URI path.
+  4. `query_length`: Length of query parameters.
+  5. `count_dots`: Total count of period (`.`) characters.
+  6. `count_hyphens`: Total count of hyphen (`-`) characters (frequently used in typosquatting).
+  7. `count_slashes`: Total path hierarchy depth.
+  8. `count_at`: Presence of `@` symbol (used to trick basic browser decoders).
+  9. `count_question`: Count of `?` parameter markers.
+  10. `count_equal`: Count of `=` parameter separators.
+  11. `count_subdomains`: Depth of subdomain tokens (e.g., `a.b.c.target.com`).
+  12. `digit_ratio`: Total digits divided by total length (phishing URLs contain more numeric hashes).
+  13. `is_ip`: Boolean check if host is an IPv4 dotted-decimal address.
+  14. `has_punycode`: Boolean check for `xn--` internationalized domain name (IDN) homograph attacks.
+  15. `has_suspicious_tld`: Match against known predatory TLDs (`.top`, `.xyz`, `.club`, `.work`, etc.).
+  16. `has_non_standard_port`: Flag if port $\ne$ 80, 443, 8080.
+  17. `has_bank_in_subdomain`: Keyword presence of Indian bank tokens inside subdomains.
+  18. `has_bank_in_path`: Keyword presence of Indian bank tokens inside URL path.
+  19. `domain_entropy`: **Shannon Entropy** measuring randomness of domain characters:
+      $$H(X) = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)$$
+      High entropy indicates Algorithmically Generated Domains (DGA) generated by botnets.
+  20–26. Ratios of vowels, special characters, consecutive consonants, brand edit distances, and token counts.
+* **Step 3: Ensemble Tree Partitioning:**
+  The feature vector passes through an ensemble of $B = 100$ independent decision trees trained with bootstrap aggregating (bagging). At each node of depth $\le 15$, splits are chosen to minimize Gini Impurity:
+  $$I_G(p) = 1 - \sum_{k=1}^{K} p_k^2$$
+* **Step 4: Output Calibration:**
+  Each tree $b$ outputs a class probability distribution $p_b(x)$. The final phishing probability is computed as the ensemble mean:
+  $$\hat{P}(\text{phishing} \mid x) = \frac{1}{B} \sum_{b=1}^{B} p_b(x)$$
+
+---
+
+### 2. TreeSHAP Explainable AI Attribution Engine
+
+To make predictions transparent and auditable for cybersecurity incident responders, PhishShield computes exact local feature attributions using TreeSHAP:
+
+```
+[Input Vector x + Trained Random Forest]
+       │
+       ▼
+[Step 1: Compute Expected Background Value E[f(x)] = φ_0]
+       │
+       ▼
+[Step 2: Recursive Tree Traversal Algorithm (Lundberg et al.)]
+       │  Traverses split conditions in O(T * L * D^2) polynomial time
+       │  Evaluates conditional expectation E[f(x) | S] for subsets S
+       ▼
+[Step 3: Compute Shapley Values for each Feature i ∈ [1..26]]
+       │  φ_i(x) = Σ [|S|!(M - |S| - 1)! / M!] * [f_x(S ∪ {i}) - f_x(S)]
+       ▼
+[Step 4: Verify Efficiency Axiom: Σ φ_i = f(x) - E[f(x)]]
+       │
+       ▼
+[Step 5: Rank Top Phishing Drivers & Protective Factors for Analyst UI]
+```
+
+* **Step 1: Background Value Initialization:**
+  Computes the base prediction expectation $E[f(x)] = \phi_0$ across the global training baseline (the average probability of phishing in the dataset).
+* **Step 2: Recursive Tree Traversal:**
+  Rather than evaluating all $2^{26}$ feature combinations (which is NP-hard), TreeSHAP recursively tracks the proportion of training samples flowing down each sub-branch of each decision tree when features are known vs. unknown. It completes in polynomial time $O(T L D^2)$, where $T$ is the number of trees (100), $L$ is maximum leaves, and $D$ is tree depth.
+* **Step 3: Shapley Attribution Calculation:**
+  Computes the marginal contribution of each feature $i$ across all possible feature coalitions $S \subseteq M \setminus \{i\}$:
+  $$\phi_i(x) = \sum_{S \subseteq M \setminus \{i\}} \frac{|S|! (M - |S| - 1)!}{M!} \left( f(S \cup \{i\}) - f(S) \right)$$
+* **Step 4: Efficiency & Consistency Axiom Guarantee:**
+  Verifies that the sum of all 26 feature attributions exactly equals the difference between the model's prediction and the base expected value:
+  $$\sum_{i=1}^{26} \phi_i(x) = f(x) - \phi_0$$
+* **Step 5: Visual Feature Ranking:**
+  Features with large positive $\phi_i$ are flagged in the UI as **Primary Risk Drivers** (e.g., `is_ip = True (+24.2%)`, `has_bank_in_path = True (+18.5%)`), while negative $\phi_i$ are highlighted as **Protective Factors** (e.g., `official_domain_match = True (-35.1%)`).
+
+---
+
+### 3. Indian Banking Brand Impersonation & Typosquatting Engine
+
+Detects deceptive brand spoofs even when attackers register brand-new domains with valid SSL certificates:
+
+```
+[Input URL / Extracted Typography]
+       │
+       ▼
+[Step 1: Canonical Banking Registry Lookup (16 RBI Banks)]
+       │  Loads Brand Names, Official Domains, Aliases, Keywords
+       ▼
+[Step 2: Token Decomposition & Regex Boundary Isolation]
+       │  Isolates tokens using (?i)\b(?:sbi|hdfc|icici|axis|pnb|kotak)\b
+       ▼
+[Step 3: Levenshtein Distance & String Similarity Scoring]
+       │  Similarity(s1, s2) = 1 - (Levenshtein(s1, s2) / max(len(s1), len(s2)))
+       ▼
+[Step 4: Zero-Trust Triangulation Rule]
+       ├── If Brand Keyword Found in Host/Path/OCR:
+       │     ├── Does Registered Domain match Official RBI Whitelist?
+       │     │     ├── YES  --> SAFE (Legitimate Banking Portal)
+       │     │     └── NO   --> CRITICAL ALERT: Brand / Domain Mismatch!
+```
+
+* **Step 1: Registry Indexing:**
+  Maintains official digital assets for 16 Indian financial institutions:
+  * Brand Name (e.g., `State Bank of India`).
+  * Canonical Official Domains (e.g., `onlinesbi.sbi`, `sbi.co.in`).
+  * Subdomain / Typography Keywords (e.g., `["sbi", "onlinesbi", "statebank", "sbicard"]`).
+* **Step 2: Token Boundary Extraction:**
+  Scans hostname subdomains, URI path components, query strings, and visual OCR typography using strict regex word boundaries `\b` to prevent false alarms on benign English words (e.g., preventing `bobcat` from triggering Bank of Baroda `bob`, or `axis-chart` from triggering Axis Bank).
+* **Step 3: Levenshtein Edit Distance Calculation:**
+  For domains that do not match exact keywords, computes the minimum single-character edits (insertions, deletions, substitutions) required to transform string $s_1$ into $s_2$:
+  $$\text{lev}(a, b) = \begin{cases} |a| & \text{if } |b| = 0, \\ |b| & \text{if } |a| = 0, \\ \text{lev}(\text{tail}(a), \text{tail}(b)) & \text{if } a[0] = b[0], \\ 1 + \min \begin{cases} \text{lev}(\text{tail}(a), b) \\ \text{lev}(a, \text{tail}(b)) \\ \text{lev}(\text{tail}(a), \text{tail}(b)) \end{cases} & \text{otherwise} \end{cases}$$
+  Normalized similarity:
+  $$\text{Sim}(s_1, s_2) = 1 - \frac{\text{lev}(s_1, s_2)}{\max(|s_1|, |s_2|)}$$
+  If $\text{Sim} \ge 0.82$, typosquatting is flagged (e.g., `0nlinesbi.com` vs `onlinesbi.com`).
+* **Step 4: Zero-Trust Triangulation:**
+  * If bank branding is detected in the typography or subdomains, but the registered domain is **NOT** in the official RBI domain list $\rightarrow$ Immediately flags a **Brand/Domain Mismatch Anomaly** and triggers an automatic **CRITICAL** risk verdict.
+
+---
+
+### 4. TF-IDF + Regularized Logistic Regression SMS Smishing Engine
+
+Processes deceptive mobile SMS text, identifies financial coercion, and traces embedded links:
+
+```
+[Raw SMS Text]
+       │
+       ▼
+[Step 1: Text Preprocessing & Entity Masking]
+       │  Lowercasing, Unicode normalization, phone/account regex masking
+       ▼
+[Step 2: TF-IDF Feature Vectorization]
+       │  Computes Term Frequency & Inverse Document Frequency:
+       │  w_(t,d) = TF(t, d) * log((1 + |D|) / (1 + |{d: t ∈ d}|)) + 1
+       ▼
+[Step 3: L2-Regularized Logistic Regression Classification]
+       │  Linear combination: z = w_0 + Σ (w_j * x_j)
+       │  Sigmoid probability: σ(z) = 1 / (1 + e^-z)
+       ▼
+[Step 4: Social Engineering Linguistic Heuristic Analysis]
+       │  Regex matching: Urgency, KYC expiry, Electricity threat, APK lures
+       ▼
+[Step 5: Deep URL Extraction & Secondary Pipeline Routing]
+       │  Extracts embedded shortlinks -> Dispatches to Random Forest URL Engine
+```
+
+* **Step 1: Text Normalization:**
+  Converts text to lower-case, expands contractions, standardizes Indian currency symbols (`Rs.`, `INR`, `₹`), and replaces 10-digit mobile numbers and bank account numbers with symbolic tokens (`<PHONE_NUM>`, `<ACCT_NUM>`).
+* **Step 2: TF-IDF Matrix Transformation:**
+  Constructs a sparse n-gram feature vector (word and character n-grams from 1 to 3 words):
+  $$\text{TF}(t, d) = \frac{f_{t,d}}{\sum_{t' \in d} f_{t',d}}, \quad \text{IDF}(t, D) = \ln\left(\frac{1 + |D|}{1 + |\{d \in D : t \in d\}|}\right) + 1$$
+  $$\text{Weight}(t, d) = \text{TF}(t, d) \times \text{IDF}(t, D)$$
+  High weights are assigned to words that are frequent in smishing messages but rare in benign transactional messages.
+* **Step 3: Logistic Regression Sigmoid Scoring:**
+  The vector $X$ passes into the trained regularized linear model:
+  $$z = \beta_0 + \sum_{j=1}^{K} \beta_j X_j, \quad P(\text{smishing} \mid X) = \frac{1}{1 + e^{-z}}$$
+* **Step 4: Social Engineering Linguistic Rules:**
+  The message is scanned against four high-risk financial fraud patterns:
+  1. *KYC Invalidation:* e.g., `"your sbi yono account will be suspended today update kyc"`.
+  2. *Urgent Utility Threats:* e.g., `"electricity will be disconnected at 9:30 pm call officer"`.
+  3. *Unclaimed Rewards:* e.g., `"congratulations reward points worth Rs 9850 credit to bank"`.
+  4. *Malicious Android Packages:* e.g., links ending in `.apk` or requesting remote desktop downloads (`AnyDesk`, `TeamViewer`).
+* **Step 5: Deep Embedded Link Harvesting:**
+  Any embedded HTTP/HTTPS links are isolated, resolved past shortener redirects, and dispatched to the Phase 2 Random Forest classifier. The final SMS risk score combines linguistic coercion with URL malice.
+
+---
+
+### 5. EasyOCR PyTorch Visual Threat Pipeline
+
+Processes screenshot uploads entirely in RAM, performing deep optical text extraction and logo/domain verification:
+
+```
+[Uploaded Screenshot Image Buffer]
+       │
+       ▼
+[Step 1: In-Memory BGR Array Decoding (cv2.imdecode)]
+       │  Validates PNG/JPEG/WEBP magic bytes; zero disk persistence
+       ▼
+[Step 2: Text Region Detection via CRAFT Deep Neural Network]
+       │  Outputs 2D heatmaps: Character Region Score & Affinity Score
+       │  Generates rotated bounding-box polygons for each word
+       ▼
+[Step 3: Deep Sequence Recognition (ResNet CNN + BiLSTM + CTC Decoder)]
+       │  CNN extracts visual features -> BiLSTM sequences text -> CTC decodes
+       ▼
+[Step 4: Optical Misrecognition Normalization Engine]
+       │  Fixes common OCR errors: "vvv" -> "www", "0" -> "o", missing slashes
+       ▼
+[Step 5: Multimodal Threat Synthesis & Asynchronous Queue Dispatch]
+       │  OCRController manages concurrency (MAX_CONCURRENT_OCR=1)
+```
+
+* **Step 1: In-Memory Decoding:**
+  The incoming multipart byte-stream is inspected for valid magic bytes (`\x89PNG`, `\xFF\xD8\xFF`, `RIFF...WEBP`). The image is decoded into a 3D NumPy array ($H \times W \times 3$) using `cv2.imdecode`. The raw file is **never written to disk**.
+* **Step 2: CRAFT Text Region Detection:**
+  EasyOCR utilizes the **Character Region Awareness for Text Detection (CRAFT)** neural network. It outputs two pixel-level probability maps:
+  1. *Region Score:* Identifies the center of individual characters.
+  2. *Affinity Score:* Detects spaces and connects adjacent characters into words and sentences.
+  Bounding-box coordinates are derived for every detected text snippet.
+* **Step 3: Sequence Recognition:**
+  Image patches from detected bounding boxes pass through a **ResNet** convolutional backbone to extract visual features, into a **Bidirectional LSTM** (BiLSTM) layer to model character dependencies, and finally into a **Connectionist Temporal Classification (CTC)** decoder to produce unicode strings.
+* **Step 4: Optical Misrecognition Normalization:**
+  OCR engines frequently misread URLs displayed on digital screens. PhishShield applies regex correction filters:
+  * Repaired `vvv.` or `\/\/ww.` $\rightarrow$ `www.`
+  * Repaired `hxxp` or `htfp` $\rightarrow$ `http`
+  * Corrected numeric substitutions in domains (e.g., `sb1.co.in` $\rightarrow$ `sbi.co.in`).
+* **Step 5: Concurrency Guarding:**
+  To prevent CPU core exhaustion on cloud instances, `OCRController` executes extractions through a bounded semaphore (`threading.Semaphore(1)`). Incoming requests receive an asynchronous `HTTP 202 Accepted` job ID to poll while the CPU processes the image.
+
+---
+
+### 6. Unified Multi-Vector Risk Engine & Decision Matrix
+
+Harmonizes all detection channels (URL, Brand, SMS, Screenshot) into a calibrated verdict:
+
+```
+  [URL Model Score]      [Brand Mismatch]      [SMS Linguistics]      [OCR Typography]
+         │                       │                     │                      │
+         └───────────────────────┴──────────┬──────────┴──────────────────────┘
+                                            ▼
+                    [Zero-Trust Hard Decision Overrides]
+                    ├── Brand Mismatch on Untrusted Host? --> Force CRITICAL (Score ≥ 92%)
+                    ├── Malicious APK / RAT Download?     --> Force CRITICAL (Score ≥ 95%)
+                    └── Verified RBI Whitelist Portal?    --> Force SAFE (Score ≤ 12%)
+                                            │
+                                  (If no override applies)
+                                            ▼
+                    [Calibrated Multi-Factor Weighted Synthesis]
+                    Risk = (w_url * S_url) + (w_brand * S_brand) + (w_ling * S_ling)
+                                            ▼
+                               [Five-Tier Verdict Mapping]
+                    ├── 0.0%  – 14.9%  : SAFE
+                    ├── 15.0% – 39.9%  : LOW RISK
+                    ├── 40.0% – 69.9%  : SUSPICIOUS
+                    ├── 70.0% – 84.9%  : HIGH RISK
+                    └── 85.0% – 100.0% : CRITICAL PHISHING
+```
+
+* **Step 1: Hard Rule Pre-Checks (Zero-Trust Overrides):**
+  * If a verified brand keyword appears in visual OCR typography or URL paths, but the domain does not belong to the official RBI domain list $\rightarrow$ **Override to CRITICAL (92–98%)**.
+  * If SMS instructs user to download remote desktop utilities (`AnyDesk`, `TeamViewer`, `.apk`) $\rightarrow$ **Override to CRITICAL (95–100%)**.
+  * If the registered domain is on the RBI whitelist and zero deceptive parameters exist $\rightarrow$ **Override to SAFE (0–12%)**.
+* **Step 2: Weighted Calibration:**
+  When no hard overrides trigger, scores are blended dynamically based on vector availability:
+  $$\text{Score} = w_{\text{URL}} \cdot S_{\text{URL}} + w_{\text{Brand}} \cdot S_{\text{Brand}} + w_{\text{Linguistic}} \cdot S_{\text{Linguistic}}$$
+* **Step 3: Five-Tier Decision Mapping:**
+  The synthesized score maps into an actionable security posture accompanied by explainability attributions and tailored user safety recommendations.
+
+---
+
+### 7. Cryptographic SHA-256 Tamper-Evident Audit Ledger
+
+Provides immutable, blockchain-grade governance tracking for every administrative action:
+
+```
+[Admin Action / Scan Export]
+       │
+       ▼
+[Step 1: Payload Sanitization & Password Redaction]
+       │  Scans dictionary: removes 'password', 'token', 'secret_key'
+       ▼
+[Step 2: Predecessor Pointer Retrieval (prev_hash)]
+       │  Queries database: retrieves entry_hash from most recent audit record
+       │  (If table is empty: prev_hash = "0000...0000" Genesis Hash)
+       ▼
+[Step 3: Canonical Tuple Serialization]
+       │  Serialized = prev_hash | timestamp | actor | action | entity | sorted_json(details)
+       ▼
+[Step 4: Cryptographic SHA-256 Digest Generation]
+       │  entry_hash = hashlib.sha256(Serialized.encode('utf-8')).hexdigest()
+       ▼
+[Step 5: Atomic Database Commit to audit_logs Table]
+       │
+       ▼
+[Tamper Audit Verification Algorithm: verify_audit_log_chain()]
+       │  Sequentially re-computes hashes across all records:
+       │  If recomputed != stored or prev_hash != prior.entry_hash -> TAMPER_DETECTED!
+```
+
+* **Step 1: Payload Scrubbing:**
+  Before recording an event, `sanitize_audit_payload` recursively redacts sensitive credentials, tokens, and authorization headers (`[REDACTED]`).
+* **Step 2: Predecessor Chaining:**
+  The system queries the latest record in `audit_logs` to retrieve its `entry_hash`. If the database is new, it initializes with a 64-character Genesis Hash (`0000000000000000000000000000000000000000000000000000000000000000`).
+* **Step 3: Canonical String Serialization:**
+  Constructs a deterministic, pipe-delimited string of the event tuple:
+  $$\text{String} = \text{prev\_hash} \parallel \text{timestamp} \parallel \text{actor} \parallel \text{action} \parallel \text{entity\_type} \parallel \text{entity\_id} \parallel \text{json.dumps}(\text{details}, \text{sort\_keys}=\text{True})$$
+* **Step 4: SHA-256 Hash Generation:**
+  $$\text{entry\_hash} = \text{SHA-256}(\text{String})$$
+  Both `prev_hash` and `entry_hash` are committed alongside the record.
+* **Step 5: Integrity Verification Algorithm (`verify_audit_log_chain`):**
+  Administrators can trigger a cryptographic integrity verification pass. The function iterates through all rows sequentially:
+  1. Checks if `record[i].prev_hash == record[i-1].entry_hash`.
+  2. Re-computes `SHA-256(record[i])` and checks if it matches `record[i].entry_hash`.
+  If an attacker manually deletes an audit row or modifies details directly in SQLite, the link is broken and the system flags **`TAMPER_DETECTED`** identifying the exact corrupted record ID.
 
 ---
 
