@@ -854,8 +854,8 @@ IMPORTANT STATIC LIMITATIONS:
               tabIndex={0}
               role="button"
               aria-label="Upload banking screenshot or phishing image"
-              className={`p-8 sm:p-12 rounded-xl border-2 border-dashed transition-all cursor-pointer text-center space-y-4 focus:outline-none focus:ring-2 focus:ring-cyan-500/60 ${isDragging
-                  ? 'border-[#0F172A] bg-cyan-500/10 shadow-lg shadow-cyan-500/20'
+              className={`p-8 sm:p-12 rounded-xl border-2 border-dashed transition-all cursor-pointer text-center space-y-4 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 ${isDragging
+                  ? 'border-[#1D4ED8] bg-[#EFF6FF] shadow-lg shadow-[#1D4ED8]/10'
                   : 'border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]/50 bg-white'
                 }`}
             >
@@ -871,16 +871,16 @@ IMPORTANT STATIC LIMITATIONS:
                 className="hidden"
               />
 
-              <div className="w-14 h-14 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] flex items-center justify-center mx-auto shadow-inner">
-                <UploadCloud className="w-7 h-7" />
+              <div className="w-14 h-14 rounded-full bg-[#EFF6FF] border border-[#BFDBFE] text-[#1D4ED8] flex items-center justify-center mx-auto shadow-inner">
+                <UploadCloud className="w-7 h-7 text-[#1D4ED8]" />
               </div>
 
               <div className="space-y-1">
-                <h3 className="text-sm font-bold text-white font-mono">
+                <h3 className="text-sm font-bold text-[#0F172A] font-mono">
                   Drag and drop screenshot of suspicious portal, SMS, or app lure
                 </h3>
                 <p className="text-xs text-[#475569]">
-                  or <span className="text-[#0F172A] font-semibold underline">browse local files</span> from your system
+                  or <span className="text-[#1D4ED8] font-semibold underline">browse local files</span> from your system
                 </p>
               </div>
 

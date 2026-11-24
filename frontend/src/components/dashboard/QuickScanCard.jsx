@@ -92,7 +92,7 @@ export default function QuickScanCard({ onNavigateToScanner }) {
                 }}
                 className={`w-full h-11 pl-10 pr-9 rounded-md bg-white text-[13.5px] text-[#0F172A] placeholder-[#94A3B8] font-mono transition-colors focus:outline-none ${validationError
                     ? 'border border-[#EF4444] focus:border-[#EF4444]'
-                    : 'border border-[#CBD5E1] focus:border-[#0F172A] focus:ring-2 focus:ring-[#0F172A]/10'
+                    : 'border border-[#CBD5E1] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15'
                   }`}
               />
               {inputUrl && (
@@ -144,13 +144,13 @@ export default function QuickScanCard({ onNavigateToScanner }) {
                   type="button"
                   onClick={() => handleSelectSample(sample.url)}
                   className={`text-left p-2.5 rounded-md border transition-colors ${isSelected
-                      ? 'bg-[#F1F5F9] border-[#0F172A]'
+                      ? 'bg-[#EFF6FF] border-[#1D4ED8]'
                       : 'bg-white border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-[#F8FAFC]'
                     }`}
                 >
                   <div className="flex items-center justify-between text-[13px] font-medium gap-2">
                     <span className="text-[#0F172A] font-semibold truncate flex items-center gap-1.5">
-                      {isSelected && <Check className="w-3.5 h-3.5 text-[#0F172A]" />}
+                      {isSelected && <Check className="w-3.5 h-3.5 text-[#1D4ED8]" />}
                       <span>{sample.label}</span>
                     </span>
                     <span className="text-xs px-2 py-0.5 rounded font-mono shrink-0 bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]">

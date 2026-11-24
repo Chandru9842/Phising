@@ -276,8 +276,8 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-4">
           <div>
             <div className="flex items-center space-x-2 text-[#0F172A] mb-1">
-              <Cpu className="w-4 h-4" />
-              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
+              <Cpu className="w-4 h-4 text-[#1D4ED8]" />
+              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-[#0F172A]">
                 URL Threat Intelligence Console
               </h2>
             </div>
@@ -297,7 +297,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
           <div className="flex flex-col sm:flex-row gap-2.5">
             <div className="relative flex-1">
               <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center space-x-1.5 text-[#475569]">
-                <Globe className="w-4 h-4 text-[#0F172A]" />
+                <Globe className="w-4 h-4 text-[#1D4ED8]" />
                 {protocolDetails && (
                   <span
                     className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
@@ -319,7 +319,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && executeScan()}
-                className="w-full pl-28 pr-10 py-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#0F172A] focus:ring-1 focus:ring-cyan-400 transition-all"
+                className="w-full pl-28 pr-10 py-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 transition-all"
               />
 
               {url && (
@@ -883,7 +883,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                       placeholder="Filter features..."
                       value={featureSearch}
                       onChange={(e) => setFeatureSearch(e.target.value)}
-                      className="pl-8 pr-3 py-1 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#0F172A] w-full sm:w-44"
+                      className="pl-8 pr-3 py-1 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15 w-full sm:w-44"
                     />
                   </div>
                 </div>

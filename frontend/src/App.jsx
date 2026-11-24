@@ -208,7 +208,7 @@ export default function App() {
               {/* Compact Protected Banks Summary Banner */}
               <div className="p-4 rounded-lg bg-white border border-[#E2E8F0] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center space-x-3">
-                  <div className="p-2 rounded-md bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0] shrink-0">
+                  <div className="p-2 rounded-md bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE] shrink-0">
                     <Building2 className="w-4 h-4" />
                   </div>
                   <div>

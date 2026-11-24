@@ -259,7 +259,7 @@ export default function ScanHistoryView({
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full pl-9 pr-8 py-2 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#0F172A] focus:ring-1 focus:ring-cyan-400"
+                className="w-full pl-9 pr-8 py-2 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15"
               />
               {searchQuery && (
                 <button
@@ -287,7 +287,7 @@ export default function ScanHistoryView({
                   onClick={() => handleTypeChange(t.id)}
                   className={`px-2.5 py-1 rounded text-xs font-mono transition-all ${
                     selectedType === t.id
-                      ? 'bg-cyan-500/15 text-[#0F172A] font-bold border border-cyan-500/30'
+                      ? 'bg-[#EFF6FF] text-[#1D4ED8] font-semibold border border-[#BFDBFE]'
                       : 'text-[#475569] hover:text-[#0F172A]'
                   }`}
                 >
@@ -312,7 +312,7 @@ export default function ScanHistoryView({
                   onClick={() => handleVerdictChange(v.id)}
                   className={`px-2.5 py-1 rounded text-xs font-mono transition-all ${
                     selectedVerdict === v.id
-                      ? 'bg-slate-800 text-white font-bold border border-slate-700'
+                      ? 'bg-[#0F172A] text-white font-semibold'
                       : `${v.color || 'text-[#475569]'} hover:text-[#0F172A]`
                   }`}
                 >
@@ -327,7 +327,7 @@ export default function ScanHistoryView({
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-2.5 py-1.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] focus:outline-none focus:border-[#0F172A]"
+                className="px-2.5 py-1.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
               >
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>

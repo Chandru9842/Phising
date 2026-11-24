@@ -89,7 +89,7 @@ export default function RegisteredBanksList({ banks = [] }) {
               placeholder="Search by bank name, official domain (e.g. sbi, hdfcbank.com)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 rounded-md bg-white border border-[#CBD5E1] text-[13.5px] text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#0F172A] focus:ring-2 focus:ring-[#0F172A]/10 font-mono transition-colors"
+              className="w-full pl-9 pr-8 py-2 rounded-md bg-white border border-[#CBD5E1] text-[13.5px] text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 font-mono transition-colors"
             />
             {searchTerm && (
               <button

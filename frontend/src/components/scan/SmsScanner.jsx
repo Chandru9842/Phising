@@ -205,7 +205,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
               placeholder="Paste suspicious SMS message text here (e.g. 'Dear SBI user, your YONO account is blocked today due to pending KYC. Click http://...')..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 resize-y transition-all"
+              className="w-full p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs font-mono text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/15 resize-y transition-all"
             />
             <div className="absolute right-3 bottom-3 text-[10px] font-mono text-[#64748B] bg-white/80 px-2 py-0.5 rounded border border-[#E2E8F0]">
               {message.length} characters
@@ -235,7 +235,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                 type="button"
                 onClick={() => handleScan()}
                 disabled={isScanning || !message.trim()}
-                className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 text-white font-bold text-xs tracking-wide shadow-lg shadow-purple-500/20 transition-all disabled:opacity-50"
+                className="cyber-btn-primary px-5 py-2.5 text-xs"
               >
                 {isScanning ? (
                   <>

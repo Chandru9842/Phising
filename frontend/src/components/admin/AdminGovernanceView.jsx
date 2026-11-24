@@ -239,10 +239,10 @@ export default function AdminGovernanceView() {
 
       {/* Unauthenticated View: Login Modal */}
       {!currentUser && (
-        <div className="max-w-md mx-auto p-6 rounded-xl bg-white border border-[#E2E8F0] space-y-4">
+        <div className="max-w-md mx-auto p-6 rounded-xl bg-white border border-[#E2E8F0] space-y-4 shadow-sm">
           <div className="text-center space-y-1">
-            <Key className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
+            <Key className="w-8 h-8 text-[#1D4ED8] mx-auto mb-2" />
+            <h3 className="text-sm font-bold text-[#0F172A] uppercase tracking-wider font-mono">
               Administrator Authentication
             </h3>
             <p className="text-xs text-[#475569]">
@@ -257,7 +257,7 @@ export default function AdminGovernanceView() {
                 type="text"
                 value={loginForm.username}
                 onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })}
-                className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-3 py-2 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                 required
               />
             </div>
@@ -268,7 +268,7 @@ export default function AdminGovernanceView() {
                 placeholder="Default: PhishShieldAdmin#2026"
                 value={loginForm.password}
                 onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
-                className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-3 py-2 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                 required
               />
             </div>
@@ -278,7 +278,7 @@ export default function AdminGovernanceView() {
             <button
               type="submit"
               disabled={isLoggingIn}
-              className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded transition-colors disabled:opacity-50"
+              className="cyber-btn-primary w-full py-2 text-xs"
             >
               {isLoggingIn ? 'Verifying Credentials...' : 'Authenticate Session'}
             </button>
@@ -305,7 +305,7 @@ export default function AdminGovernanceView() {
                   onClick={() => setActiveSubTab(tab.id)}
                   className={`flex items-center space-x-2 px-4 py-2.5 text-xs font-medium border-b-2 transition-all ${
                     isActive
-                      ? 'border-indigo-500 text-indigo-400 bg-indigo-500/5'
+                      ? 'border-[#1D4ED8] text-[#1D4ED8] bg-[#EFF6FF]'
                       : 'border-transparent text-[#475569] hover:text-[#0F172A]'
                   }`}
                 >
@@ -364,8 +364,8 @@ export default function AdminGovernanceView() {
               </div>
 
               {/* Create User Form */}
-              <div className="rounded-xl bg-white border border-[#E2E8F0] p-5">
-                <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono mb-3">
+              <div className="rounded-xl bg-white border border-[#E2E8F0] p-5 shadow-sm">
+                <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider font-mono mb-3">
                   Provision New User
                 </h3>
                 <form onSubmit={handleCreateUser} className="space-y-3">
@@ -375,7 +375,7 @@ export default function AdminGovernanceView() {
                       type="text"
                       value={newUser.username}
                       onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                       required
                     />
                   </div>
@@ -385,7 +385,7 @@ export default function AdminGovernanceView() {
                       type="email"
                       value={newUser.email}
                       onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                       required
                     />
                   </div>
@@ -395,7 +395,7 @@ export default function AdminGovernanceView() {
                       type="password"
                       value={newUser.password}
                       onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                       placeholder="Min 8 characters"
                       required
                     />
@@ -405,7 +405,7 @@ export default function AdminGovernanceView() {
                     <select
                       value={newUser.role}
                       onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                     >
                       <option value="Viewer">Viewer (Read-only)</option>
                       <option value="Analyst">Analyst (Scans & Exports)</option>
@@ -414,7 +414,7 @@ export default function AdminGovernanceView() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded transition-colors mt-2"
+                    className="cyber-btn-primary w-full py-2 text-xs mt-2"
                   >
                     Create User Account
                   </button>
@@ -429,7 +429,7 @@ export default function AdminGovernanceView() {
               <div className="lg:col-span-2 rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+                    <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider font-mono">
                       Whitelist Institutions ({managedBanks.total_institutions || managedBanks.institutions?.length || 0})
                     </h3>
                     <p className="text-[11px] text-[#475569] mt-0.5">
@@ -481,7 +481,7 @@ export default function AdminGovernanceView() {
                       placeholder="e.g. Bandhan Bank"
                       value={newBank.brand_name}
                       onChange={(e) => setNewBank({ ...newBank, brand_name: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                       required
                     />
                   </div>
@@ -492,7 +492,7 @@ export default function AdminGovernanceView() {
                       placeholder="e.g. bandhanbank.com"
                       value={newBank.primary_domain}
                       onChange={(e) => setNewBank({ ...newBank, primary_domain: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] font-mono focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                       required
                     />
                     <p className="text-[10px] text-[#64748B] mt-1">No protocols (https://) or wildcards (*).</p>
@@ -503,12 +503,12 @@ export default function AdminGovernanceView() {
                       type="text"
                       value={newBank.category}
                       onChange={(e) => setNewBank({ ...newBank, category: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded transition-colors mt-2"
+                    className="cyber-btn-primary w-full py-2 text-xs mt-2"
                   >
                     Add Institution to Registry
                   </button>
@@ -523,7 +523,7 @@ export default function AdminGovernanceView() {
               <div className="lg:col-span-2 rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+                    <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider font-mono">
                       Outbound Alert Destinations ({webhooks.length})
                     </h3>
                     <p className="text-[11px] text-[#475569] mt-0.5">
@@ -575,7 +575,7 @@ export default function AdminGovernanceView() {
                       placeholder="e.g. SOC Slack Channel"
                       value={newWebhook.name}
                       onChange={(e) => setNewWebhook({ ...newWebhook, name: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                       required
                     />
                   </div>
@@ -586,7 +586,7 @@ export default function AdminGovernanceView() {
                       placeholder="https://hooks.slack.com/services/..."
                       value={newWebhook.url}
                       onChange={(e) => setNewWebhook({ ...newWebhook, url: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white font-mono"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] font-mono focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                       required
                     />
                     <p className="text-[10px] text-[#64748B] mt-1">SSRF protection blocks localhost and private IPs.</p>
@@ -598,12 +598,12 @@ export default function AdminGovernanceView() {
                       placeholder="Bearer token or secret"
                       value={newWebhook.secret_token}
                       onChange={(e) => setNewWebhook({ ...newWebhook, secret_token: e.target.value })}
-                      className="w-full bg-[#F8FAFC] border border-slate-800 rounded px-2.5 py-1.5 text-xs text-white"
+                      className="w-full bg-[#F8FAFC] border border-[#CBD5E1] rounded px-2.5 py-1.5 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/15"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded transition-colors mt-2"
+                    className="cyber-btn-primary w-full py-2 text-xs mt-2"
                   >
                     Save Webhook Config
                   </button>
@@ -617,14 +617,14 @@ export default function AdminGovernanceView() {
             <div className="rounded-xl bg-white border border-[#E2E8F0] p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+                  <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider font-mono">
                     Administrative Security Audit Logs ({auditLogs.total})
                   </h3>
                   <p className="text-[11px] text-[#475569] mt-0.5">
                     Immutable forensic log of user events, registry changes, and export actions.
                   </p>
                 </div>
-                <button onClick={() => loadTabData('audit')} className="text-xs text-[#475569] hover:text-white">
+                <button onClick={() => loadTabData('audit')} className="text-xs text-[#475569] hover:text-[#0F172A]">
                   <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                 </button>
               </div>
@@ -632,7 +632,7 @@ export default function AdminGovernanceView() {
               <div className="overflow-x-auto max-h-[500px]">
                 <table className="w-full text-left text-xs">
                   <thead>
-                    <tr className="border-b border-slate-800 text-[#475569] font-mono text-[11px]">
+                    <tr className="border-b border-[#E2E8F0] text-[#475569] font-mono text-[11px]">
                       <th className="pb-2">Timestamp</th>
                       <th className="pb-2">Actor</th>
                       <th className="pb-2">Role</th>
@@ -640,14 +640,14 @@ export default function AdminGovernanceView() {
                       <th className="pb-2">Details</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/60 font-mono text-[11px]">
+                  <tbody className="divide-y divide-[#E2E8F0] font-mono text-[11px]">
                     {auditLogs.logs?.map((log) => (
-                      <tr key={log.id} className="hover:bg-slate-800/30">
+                      <tr key={log.id} className="hover:bg-[#F8FAFC]">
                         <td className="py-2 text-[#475569] whitespace-nowrap">
                           {log.timestamp ? new Date(log.timestamp).toLocaleString() : 'N/A'}
                         </td>
-                        <td className="py-2 text-white font-semibold">{log.actor_username}</td>
-                        <td className="py-2 text-indigo-400">{log.actor_role}</td>
+                        <td className="py-2 text-[#0F172A] font-semibold">{log.actor_username}</td>
+                        <td className="py-2 text-[#1D4ED8] font-medium">{log.actor_role}</td>
                         <td className="py-2 text-[#065F46] font-bold">{log.action}</td>
                         <td className="py-2 text-[#475569] max-w-xs truncate">
                           {log.details ? JSON.stringify(log.details) : '-'}

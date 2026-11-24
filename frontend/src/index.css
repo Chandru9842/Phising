@@ -107,21 +107,21 @@
 
   .cyber-input:focus {
     outline: none;
-    border-color: #0F172A;
-    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.12);
+    border-color: #2563EB;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
   }
 
   .cyber-input::placeholder {
     color: #94A3B8;
   }
 
-  /* Primary Action Button (Authoritative Charcoal) */
+  /* Primary Action Button (Institutional Banking Blue) */
   .cyber-btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background-color: #0F172A;
+    background-color: #1D4ED8;
     color: #FFFFFF;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
@@ -132,7 +132,7 @@
   }
 
   .cyber-btn-primary:hover:not(:disabled) {
-    background-color: #1E293B;
+    background-color: #1E40AF;
   }
 
   .cyber-btn-primary:disabled {

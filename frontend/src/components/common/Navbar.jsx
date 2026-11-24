@@ -46,7 +46,7 @@ export default function Navbar({
 
           {/* Clean Enterprise Brand Mark */}
           <div className="flex items-center space-x-2.5 shrink-0">
-            <div className="w-7 h-7 rounded-md bg-[#0F172A] flex items-center justify-center text-white shrink-0">
+            <div className="w-7 h-7 rounded-md bg-[#1D4ED8] flex items-center justify-center text-white shrink-0">
               <Shield className="w-4 h-4 stroke-[2.2]" />
             </div>
 
