@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   Cell
 } from 'recharts';
-import { ShieldAlert, BarChart3, Database } from 'lucide-react';
+import { ShieldAlert, Database } from 'lucide-react';
 
 export default function ThreatMapPreview({ history = [], stats = null }) {
   // Compute genuine threat vector distribution from actual database records
@@ -17,13 +17,13 @@ export default function ThreatMapPreview({ history = [], stats = null }) {
       if (stats && stats.total_scans > 0) {
         const fallback = [];
         if (stats.phishing_detected > 0) {
-          fallback.push({ name: 'Phishing Threats', count: stats.phishing_detected, fill: '#ef4444' });
+          fallback.push({ name: 'Phishing Threats', count: stats.phishing_detected, fill: '#F87171' });
         }
         if (stats.brand_impersonations > 0) {
-          fallback.push({ name: 'Brand Impersonation', count: stats.brand_impersonations, fill: '#f43f5e' });
+          fallback.push({ name: 'Brand Spoofing', count: stats.brand_impersonations, fill: '#EF4444' });
         }
         if (stats.safe_scans > 0) {
-          fallback.push({ name: 'Safe Verified', count: stats.safe_scans, fill: '#10b981' });
+          fallback.push({ name: 'Safe Verified', count: stats.safe_scans, fill: '#34D399' });
         }
         return fallback;
       }
@@ -61,25 +61,25 @@ export default function ThreatMapPreview({ history = [], stats = null }) {
 
     const breakdown = [];
     if (impersonationCount > 0) {
-      breakdown.push({ name: 'Brand Spoofing', count: impersonationCount, fill: '#f43f5e' });
+      breakdown.push({ name: 'Brand Spoofing', count: impersonationCount, fill: '#EF4444' });
     }
     if (screenshotPhishCount > 0) {
-      breakdown.push({ name: 'Screenshot Threats', count: screenshotPhishCount, fill: '#f97316' });
+      breakdown.push({ name: 'Screenshot Threats', count: screenshotPhishCount, fill: '#F97316' });
     }
     if (smishingCount > 0) {
-      breakdown.push({ name: 'SMS Smishing Lures', count: smishingCount, fill: '#a855f7' });
+      breakdown.push({ name: 'SMS Smishing Lures', count: smishingCount, fill: '#8B5CF6' });
     }
     if (urlPhishingCount > 0) {
-      breakdown.push({ name: 'Phishing URLs', count: urlPhishingCount, fill: '#ef4444' });
+      breakdown.push({ name: 'Phishing URLs', count: urlPhishingCount, fill: '#F87171' });
     }
     if (suspiciousCount > 0) {
-      breakdown.push({ name: 'Suspicious Anomalies', count: suspiciousCount, fill: '#f59e0b' });
+      breakdown.push({ name: 'Suspicious Anomalies', count: suspiciousCount, fill: '#FBBF24' });
     }
     if (unconfirmedCount > 0) {
-      breakdown.push({ name: 'Unconfirmed / Low Typography', count: unconfirmedCount, fill: '#64748b' });
+      breakdown.push({ name: 'Unconfirmed', count: unconfirmedCount, fill: '#6B7280' });
     }
     if (safeCount > 0) {
-      breakdown.push({ name: 'Safe Legit Scans', count: safeCount, fill: '#10b981' });
+      breakdown.push({ name: 'Safe Verified', count: safeCount, fill: '#34D399' });
     }
 
     return breakdown;
@@ -88,35 +88,35 @@ export default function ThreatMapPreview({ history = [], stats = null }) {
   const totalCalculated = threatData.reduce((acc, curr) => acc + curr.count, 0);
 
   return (
-    <div className="p-5 rounded-xl bg-[#0d111a] border border-[#1e293b] shadow-sm flex flex-col justify-between">
+    <div className="p-4 rounded-md bg-[#12161F] border border-[#1E2430] flex flex-col justify-between">
       <div>
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-2">
-            <ShieldAlert className="w-4 h-4 text-rose-400" />
-            <h3 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+            <ShieldAlert className="w-4 h-4 text-[#F87171]" />
+            <h3 className="text-xs font-mono font-semibold text-[#F3F4F6] uppercase tracking-wider">
               Attack Vector Distribution
             </h3>
           </div>
-          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-rose-950/60 text-rose-400 border border-rose-800/40">
-            {totalCalculated > 0 ? `${totalCalculated} Analyzed` : 'Live SQLite'}
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#0E121A] text-[#9CA3AF] border border-[#1E2430]">
+            {totalCalculated > 0 ? `${totalCalculated} Analyzed` : 'Telemetry Store'}
           </span>
         </div>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-[#9CA3AF] mb-3">
           Empirical distribution of verified threat vectors from persistent SQLite scan logs.
         </p>
 
         {/* Dynamic Threat Chart or Empty State */}
         {threatData.length > 0 ? (
-          <div className="h-52 w-full">
+          <div className="h-48 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={threatData}
                 layout="vertical"
-                margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+                margin={{ top: 5, right: 15, left: 5, bottom: 5 }}
               >
                 <XAxis
                   type="number"
-                  stroke="#64748b"
+                  stroke="#6B7280"
                   fontSize={11}
                   fontFamily="JetBrains Mono"
                   allowDecimals={false}
@@ -124,25 +124,25 @@ export default function ThreatMapPreview({ history = [], stats = null }) {
                 <YAxis
                   dataKey="name"
                   type="category"
-                  stroke="#94a3b8"
+                  stroke="#9CA3AF"
                   fontSize={11}
-                  width={130}
+                  width={125}
                   tickLine={false}
                 />
                 <Tooltip
-                  cursor={{ fill: 'rgba(255, 255, 255, 0.03)' }}
+                  cursor={{ fill: 'rgba(255, 255, 255, 0.02)' }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       const data = payload[0].payload;
                       const percentage = totalCalculated > 0 ? ((data.count / totalCalculated) * 100).toFixed(1) : 0;
                       return (
-                        <div className="p-2.5 rounded-lg bg-[#07090e] border border-[#1e293b] shadow-xl text-xs font-mono space-y-1">
-                          <p className="text-white font-semibold flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: data.fill }}></span>
+                        <div className="p-2.5 rounded-md bg-[#0D1017] border border-[#1E2430] text-xs font-mono space-y-1">
+                          <p className="text-[#F3F4F6] font-medium flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: data.fill }} />
                             <span>{data.name}</span>
                           </p>
-                          <p className="text-slate-400">
-                            Count: <span className="text-white font-bold">{data.count}</span> ({percentage}%)
+                          <p className="text-[#9CA3AF]">
+                            Count: <span className="text-[#F3F4F6] font-semibold">{data.count}</span> ({percentage}%)
                           </p>
                         </div>
                       );
@@ -150,7 +150,7 @@ export default function ThreatMapPreview({ history = [], stats = null }) {
                     return null;
                   }}
                 />
-                <Bar dataKey="count" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="count" radius={[0, 3, 3, 0]}>
                   {threatData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
@@ -159,17 +159,17 @@ export default function ThreatMapPreview({ history = [], stats = null }) {
             </ResponsiveContainer>
           </div>
         ) : (
-          <div className="h-52 flex flex-col items-center justify-center rounded-lg bg-[#07090e] border border-[#1e293b] p-4 text-center space-y-2">
-            <Database className="w-6 h-6 text-slate-600" />
-            <p className="text-xs text-slate-400 font-mono">No historical threat distribution recorded yet.</p>
-            <p className="text-[11px] text-slate-500">Run a URL or SMS scan to populate live SQLite vectors.</p>
+          <div className="h-48 flex flex-col items-center justify-center rounded-md bg-[#0E121A] border border-[#1E2430] p-4 text-center space-y-1.5">
+            <Database className="w-5 h-5 text-[#6B7280]" />
+            <p className="text-xs text-[#9CA3AF] font-mono">No historical threat distribution recorded yet.</p>
+            <p className="text-[11px] text-[#6B7280]">Submit a scan to populate live forensic telemetry.</p>
           </div>
         )}
       </div>
 
-      <div className="mt-3 pt-3 border-t border-[#1e293b] text-[11px] text-slate-500 font-mono flex items-center justify-between">
+      <div className="mt-3 pt-2.5 border-t border-[#1E2430] text-[11px] text-[#6B7280] font-mono flex items-center justify-between">
         <span>Source: SQLite Database</span>
-        <span className="text-cyan-400">Zero Fabricated Data</span>
+        <span className="text-[#9CA3AF]">Zero Fabricated Data</span>
       </div>
     </div>
   );

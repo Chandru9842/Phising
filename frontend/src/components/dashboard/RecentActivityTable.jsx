@@ -9,9 +9,7 @@ import {
   CheckCircle2,
   XCircle,
   HelpCircle,
-  AlertOctagon,
-  ShieldCheck,
-  ShieldAlert
+  AlertOctagon
 } from 'lucide-react';
 
 export default function RecentActivityTable({
@@ -37,13 +35,13 @@ export default function RecentActivityTable({
     if (level === 'CRITICAL' || level === 'PHISHING' || item.is_phishing) {
       return (
         <span className="cyber-badge cyber-badge-danger">
-          <XCircle className="w-3 h-3 text-rose-400" /> Phishing
+          <XCircle className="w-3 h-3 text-[#F87171]" /> Phishing
         </span>
       );
     }
     if (level === 'HIGH') {
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-500/10 text-orange-400 border border-orange-500/30 uppercase">
+        <span className="inline-flex items-center gap-1 font-mono text-[9px] font-semibold px-1.5 py-0.5 rounded bg-amber-500/10 text-[#FBBF24] border border-amber-500/20 uppercase">
           <AlertOctagon className="w-2.5 h-2.5" /> High Risk
         </span>
       );
@@ -51,20 +49,20 @@ export default function RecentActivityTable({
     if (level === 'SUSPICIOUS' || level === 'MEDIUM') {
       return (
         <span className="cyber-badge cyber-badge-warn">
-          <AlertTriangle className="w-3 h-3 text-amber-400" /> Suspicious
+          <AlertTriangle className="w-3 h-3 text-[#FBBF24]" /> Suspicious
         </span>
       );
     }
     if (level === 'INSUFFICIENT_EVIDENCE') {
       return (
-        <span className="inline-flex items-center gap-1 font-mono text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 uppercase">
-          <HelpCircle className="w-2.5 h-2.5 text-cyan-400" /> Unconfirmed
+        <span className="inline-flex items-center gap-1 font-mono text-[9px] font-semibold px-1.5 py-0.5 rounded bg-[#0E121A] text-[#9CA3AF] border border-[#1E2430] uppercase">
+          <HelpCircle className="w-2.5 h-2.5 text-[#2563EB]" /> Unconfirmed
         </span>
       );
     }
     return (
       <span className="cyber-badge cyber-badge-safe">
-        <CheckCircle2 className="w-3 h-3 text-emerald-400" /> Safe
+        <CheckCircle2 className="w-3 h-3 text-[#34D399]" /> Safe
       </span>
     );
   };
@@ -72,17 +70,17 @@ export default function RecentActivityTable({
   const renderRiskScore = (item) => {
     const level = (item.risk_level || '').toUpperCase();
     if (item.risk_score === null || item.risk_score === undefined || level === 'INSUFFICIENT_EVIDENCE') {
-      return <span className="text-slate-500 font-mono text-[11px]">N/A</span>;
+      return <span className="text-[#6B7280] font-mono text-[11px]">N/A</span>;
     }
     const val = typeof item.risk_score === 'number' ? item.risk_score.toFixed(1) : item.risk_score;
     return (
       <span
         className={
           item.risk_score >= 70
-            ? 'text-rose-400 font-bold'
+            ? 'text-[#F87171] font-semibold'
             : item.risk_score >= 30
-            ? 'text-amber-400 font-semibold'
-            : 'text-emerald-400'
+            ? 'text-[#FBBF24] font-medium'
+            : 'text-[#34D399]'
         }
       >
         {val}%
@@ -91,19 +89,19 @@ export default function RecentActivityTable({
   };
 
   return (
-    <div className="p-6 rounded-xl bg-[#0d111a] border border-[#1e293b] shadow-sm space-y-4">
+    <div className="p-5 rounded-md bg-[#12161F] border border-[#1E2430] space-y-3.5">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="flex items-center space-x-2 text-cyan-400 mb-1">
-            <History className="w-4 h-4" />
-            <span className="text-[11px] font-mono font-semibold uppercase tracking-wider">
-              Live Audit Stream
+          <div className="flex items-center space-x-2 text-[#9CA3AF] mb-1">
+            <History className="w-4 h-4 text-[#2563EB]" />
+            <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-[#9CA3AF]">
+              Audit Stream
             </span>
           </div>
-          <h3 className="text-base font-bold text-white tracking-tight">
+          <h3 className="text-sm font-semibold text-[#F3F4F6] tracking-tight">
             Recent Scans & Security Verdicts
           </h3>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-[#9CA3AF]">
             Real-time feed of recently submitted URLs, SMS lures, and screenshots evaluated by PhishShield engines.
           </p>
         </div>
@@ -112,76 +110,76 @@ export default function RecentActivityTable({
           <button
             type="button"
             onClick={onViewAllHistory}
-            className="cyber-btn-secondary text-xs self-start sm:self-auto group"
+            className="cyber-btn-secondary text-xs self-start sm:self-auto"
           >
             <span>View All Logs</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
 
       {isLoading ? (
-        <div className="py-8 text-center text-xs font-mono text-slate-500">
-          Loading live telemetry from SQLite...
+        <div className="py-6 text-center text-xs font-mono text-[#6B7280]">
+          Loading telemetry from audit store...
         </div>
       ) : displayScans.length > 0 ? (
-        <div className="overflow-x-auto rounded-lg border border-[#1e293b]">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-[#131926] text-slate-400 font-mono uppercase text-[10px] border-b border-[#1e293b]">
+        <div className="overflow-x-auto rounded-md border border-[#1E2430]">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead className="bg-[#0E121A] text-[#9CA3AF] font-mono uppercase text-[10px] border-b border-[#1E2430]">
               <tr>
-                <th className="py-2.5 px-3.5">Time</th>
-                <th className="py-2.5 px-3.5">Type</th>
-                <th className="py-2.5 px-3.5">Target Input</th>
-                <th className="py-2.5 px-3.5">Identified Brand</th>
-                <th className="py-2.5 px-3.5">Risk Score</th>
-                <th className="py-2.5 px-3.5 text-right">Verdict</th>
+                <th className="py-2.5 px-3">Time</th>
+                <th className="py-2.5 px-3">Type</th>
+                <th className="py-2.5 px-3">Target Input</th>
+                <th className="py-2.5 px-3">Identified Brand</th>
+                <th className="py-2.5 px-3">Risk Score</th>
+                <th className="py-2.5 px-3 text-right">Verdict</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1e293b] text-slate-300">
+            <tbody className="divide-y divide-[#1E2430] text-[#9CA3AF]">
               {displayScans.map((item) => {
                 const scanType = (item.scan_type || 'url').toLowerCase();
 
                 return (
-                  <tr key={item.id} className="hover:bg-[#131926]/60 transition-colors">
-                    <td className="py-2.5 px-3.5 font-mono text-[11px] text-slate-500 whitespace-nowrap">
+                  <tr key={item.id} className="hover:bg-[#171C28] transition-colors">
+                    <td className="py-2.5 px-3 font-mono text-[11px] text-[#6B7280] whitespace-nowrap">
                       {formatTimestamp(item.created_at)}
                     </td>
-                    <td className="py-2.5 px-3.5">
-                      <span className="inline-flex items-center gap-1 font-mono text-[10px] px-1.5 py-0.5 rounded bg-[#131926] border border-[#1e293b] text-slate-400">
+                    <td className="py-2.5 px-3">
+                      <span className="inline-flex items-center gap-1 font-mono text-[10px] px-1.5 py-0.5 rounded bg-[#0E121A] border border-[#1E2430] text-[#9CA3AF]">
                         {scanType === 'sms' ? (
                           <>
-                            <MessageSquare className="w-2.5 h-2.5 text-purple-400" />
+                            <MessageSquare className="w-2.5 h-2.5 text-[#9CA3AF]" />
                             <span>SMS</span>
                           </>
                         ) : scanType === 'screenshot' ? (
                           <>
-                            <ImageIcon className="w-2.5 h-2.5 text-cyan-400" />
+                            <ImageIcon className="w-2.5 h-2.5 text-[#9CA3AF]" />
                             <span>IMAGE</span>
                           </>
                         ) : (
                           <>
-                            <Globe className="w-2.5 h-2.5 text-cyan-400" />
+                            <Globe className="w-2.5 h-2.5 text-[#9CA3AF]" />
                             <span>URL</span>
                           </>
                         )}
                       </span>
                     </td>
-                    <td className="py-2.5 px-3.5 font-mono text-slate-200 max-w-[280px] truncate" title={item.target_input}>
+                    <td className="py-2.5 px-3 font-mono text-[#F3F4F6] max-w-[280px] truncate" title={item.target_input}>
                       {item.target_input}
                     </td>
-                    <td className="py-2.5 px-3.5 whitespace-nowrap">
+                    <td className="py-2.5 px-3 whitespace-nowrap">
                       {item.target_brand ? (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-indigo-950/60 text-indigo-300 border border-indigo-800/40">
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#0E121A] text-[#9CA3AF] border border-[#1E2430]">
                           {item.target_brand}
                         </span>
                       ) : (
-                        <span className="text-slate-600 font-mono text-[11px]">—</span>
+                        <span className="text-[#6B7280] font-mono text-[11px]">—</span>
                       )}
                     </td>
-                    <td className="py-2.5 px-3.5 font-mono">
+                    <td className="py-2.5 px-3 font-mono">
                       {renderRiskScore(item)}
                     </td>
-                    <td className="py-2.5 px-3.5 text-right whitespace-nowrap">
+                    <td className="py-2.5 px-3 text-right whitespace-nowrap">
                       {renderVerdictBadge(item)}
                     </td>
                   </tr>
@@ -191,9 +189,9 @@ export default function RecentActivityTable({
           </table>
         </div>
       ) : (
-        <div className="py-8 px-4 rounded-lg bg-[#07090e] border border-[#1e293b] text-center space-y-2">
-          <p className="text-xs font-mono text-slate-400">No scan activity recorded yet.</p>
-          <p className="text-[11px] text-slate-500">Run a URL, SMS, or screenshot scan to populate live audit history.</p>
+        <div className="py-6 px-4 rounded-md bg-[#0E121A] border border-[#1E2430] text-center space-y-1">
+          <p className="text-xs font-mono text-[#9CA3AF]">No scan activity recorded yet.</p>
+          <p className="text-[11px] text-[#6B7280]">Submit a URL, SMS lure, or screenshot to populate live audit history.</p>
         </div>
       )}
     </div>

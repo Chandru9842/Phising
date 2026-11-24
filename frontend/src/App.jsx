@@ -124,7 +124,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-[#f8fafc] flex flex-col font-sans selection:bg-cyan-500/20 selection:text-cyan-300">
+    <div className="min-h-screen bg-[#0B0E14] text-[#F3F4F6] flex flex-col font-sans selection:bg-[#2563EB]/30 selection:text-[#93C5FD]">
       {/* Top Application Bar */}
       <Navbar
         health={health}
@@ -146,26 +146,26 @@ export default function App() {
         {/* Primary Workspace Scroll Area */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-7xl mx-auto w-full space-y-6">
           {/* Top Banner: Indian Banking Cyber Defense Context */}
-          <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+          <div className="p-4 rounded-md bg-[#12161F] border border-[#1E2430] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center space-x-3 min-w-0">
-              <span className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 shrink-0">
+              <span className="p-2 rounded-md bg-[#0E121A] text-[#34D399] border border-[#1E2430] shrink-0">
                 <ShieldCheck className="w-5 h-5" />
               </span>
               <div className="min-w-0">
-                <h4 className="text-sm font-semibold text-white flex flex-wrap items-center gap-2">
+                <h4 className="text-sm font-semibold text-[#F3F4F6] flex flex-wrap items-center gap-2">
                   <span>PhishShield Protection Engine</span>
-                  <span className="text-[10px] font-mono bg-cyan-500/10 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/30">
+                  <span className="text-[10px] font-mono bg-[#0E121A] text-[#9CA3AF] px-2 py-0.5 rounded border border-[#1E2430]">
                     Indian Banking Zero-Trust
                   </span>
                 </h4>
-                <p className="text-xs text-slate-400 truncate">
-                  Real-time detection of fraudulent URLs, smishing lures & lookalike domains spoofing SBI, HDFC, ICICI, Axis & Indian payment portals.
+                <p className="text-xs text-[#9CA3AF] truncate">
+                  Real-time detection of fraudulent URLs, smishing lures & lookalike domains spoofing Indian banking portals.
                 </p>
               </div>
             </div>
             <div className="flex items-center space-x-2 shrink-0 self-start sm:self-auto">
-              <span className="text-xs text-slate-500 font-mono">
-                API: <span className="text-cyan-400">http://localhost:8000</span>
+              <span className="text-xs text-[#6B7280] font-mono">
+                Engine: <span className="text-[#34D399]">Active</span>
               </span>
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function App() {
                   value={stats?.total_scans !== undefined ? stats.total_scans : '—'}
                   subtext="Persistent SQLite audit logs"
                   icon={Activity}
-                  color="cyan"
+                  color="blue"
                 />
                 <MetricCard
                   title="Phishing Detected"
@@ -231,16 +231,16 @@ export default function App() {
               />
 
               {/* Compact Protected Banks Summary Banner */}
-              <div className="p-4 rounded-xl bg-[#0d111a] border border-[#1e293b] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="p-4 rounded-md bg-[#12161F] border border-[#1E2430] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center space-x-3">
-                  <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shrink-0">
+                  <div className="p-2 rounded-md bg-[#0E121A] text-[#9CA3AF] border border-[#1E2430] shrink-0">
                     <Building2 className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+                    <h4 className="text-xs font-semibold text-[#F3F4F6] uppercase tracking-wider font-mono">
                       Protected Indian Banking Registry
                     </h4>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-[#9CA3AF]">
                       {banksData.length > 0
                         ? `${banksData.length} canonical institutions actively guarded against typosquatting & impersonation.`
                         : 'Loading canonical whitelist...'}
@@ -335,7 +335,7 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#07090e] border-t border-[#1e293b] px-6 py-4 text-center text-xs text-slate-500">
+      <footer className="bg-[#0B0E14] border-t border-[#1E2430] px-6 py-4 text-center text-xs text-[#6B7280]">
         <p className="font-mono text-[11px]">
           PhishShield — Brand-Aware, Explainable Phishing Protection for Indian Banking Customers.
         </p>
