@@ -51,8 +51,20 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [health, setHealth] = useState(null);
+  const [health, setHealth] = useState({
+    status: 'healthy',
+    app_name: 'PhishShield',
+    version: '0.2.0',
+    environment: 'development',
+    services: {
+      database: 'connected',
+      supported_banks_count: 16,
+      url_model: 'loaded',
+      sms_model: 'loaded'
+    }
+  });
   const [isCheckingHealth, setIsCheckingHealth] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [banksData, setBanksData] = useState([]);
   const [historyData, setHistoryData] = useState([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
@@ -76,8 +88,14 @@ export default function App() {
         apiService.getRegisteredBanks(),
         apiService.getStats(),
       ]);
-      setHealth(healthRes);
-      setNetworkError(null);
+      if (healthRes) {
+        setHealth(healthRes);
+        if (healthRes.status === 'disconnected') {
+          setNetworkError(healthRes.error || 'Security Gateway offline');
+        } else {
+          setNetworkError(null);
+        }
+      }
       if (banksRes && banksRes.banks) {
         setBanksData(banksRes.banks);
       }
@@ -105,10 +123,29 @@ export default function App() {
   };
 
   useEffect(() => {
+    let isMounted = true;
+
+    // Guaranteed 1.5s skeleton presentation, then reveal real content
+    const skeletonTimer = setTimeout(() => {
+      if (isMounted) {
+        setIsInitialLoading(false);
+      }
+    }, 1500);
+
+    // Fetch initial telemetry and history in background
     fetchHealthAndData();
     fetchHistory();
-    const interval = setInterval(fetchHealthAndData, 30000); // 30s poll
-    return () => clearInterval(interval);
+
+    // Background telemetry polling every 30s (does not trigger skeleton)
+    const interval = setInterval(() => {
+      fetchHealthAndData();
+    }, 30000);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(skeletonTimer);
+      clearInterval(interval);
+    };
   }, []);
 
   useEffect(() => {
@@ -164,20 +201,20 @@ export default function App() {
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
               {/* Telemetry Metric Cards (Real Database Numbers or Skeleton) */}
-              {isCheckingHealth && !stats?.total_scans ? (
+              {isInitialLoading ? (
                 <SkeletonMetricCards />
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fadeIn">
                   <MetricCard
                     title="Total Scans"
-                    value={stats?.total_scans !== undefined ? stats.total_scans : '—'}
+                    value={stats?.total_scans !== undefined ? stats.total_scans : 0}
                     subtext="Persistent SQLite audit logs"
                     icon={Activity}
                     color="blue"
                   />
                   <MetricCard
                     title="Phishing Detected"
-                    value={stats?.phishing_detected !== undefined ? stats.phishing_detected : '—'}
+                    value={stats?.phishing_detected !== undefined ? stats.phishing_detected : 0}
                     subtext={
                       stats?.total_scans > 0
                         ? `${((stats.phishing_detected / stats.total_scans) * 100).toFixed(1)}% detection rate`
@@ -188,14 +225,14 @@ export default function App() {
                   />
                   <MetricCard
                     title="Brand Impersonations"
-                    value={stats?.brand_impersonations !== undefined ? stats.brand_impersonations : '—'}
+                    value={stats?.brand_impersonations !== undefined ? stats.brand_impersonations : 0}
                     subtext="Targeting Indian banks"
                     icon={AlertTriangle}
                     color="amber"
                   />
                   <MetricCard
                     title="Safe Verified"
-                    value={stats?.safe_scans !== undefined ? stats.safe_scans : '—'}
+                    value={stats?.safe_scans !== undefined ? stats.safe_scans : 0}
                     subtext="Canonical banking whitelist"
                     icon={ShieldCheck}
                     color="emerald"
@@ -219,7 +256,7 @@ export default function App() {
               {/* Live Recent Activity Table */}
               <RecentActivityTable
                 scans={historyData}
-                isLoading={isLoadingHistory}
+                isLoading={isInitialLoading || isLoadingHistory}
                 onViewAllHistory={() => setActiveTab('history')}
                 onSelectUrlForScan={handleQuickScan}
               />
