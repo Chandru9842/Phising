@@ -27,6 +27,29 @@ BACKEND_BASE_URL = "http://127.0.0.1:8000"
 FRONTEND_BASE_URL = "http://localhost:4173"
 
 
+def _is_service_online(url: str, timeout: float = 0.5) -> bool:
+    """Helper to detect if live staging service is reachable."""
+    try:
+        r = requests.get(url, timeout=timeout)
+        return r.status_code < 500
+    except Exception:
+        return False
+
+
+FRONTEND_ONLINE = _is_service_online(FRONTEND_BASE_URL)
+BACKEND_ONLINE = _is_service_online(f"{BACKEND_BASE_URL}/api/health")
+
+skip_if_no_frontend = pytest.mark.skipif(
+    not FRONTEND_ONLINE,
+    reason=f"Live frontend preview server ({FRONTEND_BASE_URL}) is not active"
+)
+
+skip_if_no_backend = pytest.mark.skipif(
+    not BACKEND_ONLINE,
+    reason=f"Live backend server ({BACKEND_BASE_URL}) is not active"
+)
+
+
 # ------------------------------------------------------------------------------
 # Fixtures for Authenticated Roles
 # ------------------------------------------------------------------------------
@@ -111,6 +134,7 @@ def viewer_token():
 # ------------------------------------------------------------------------------
 # 1. Real Runtime Health & Proxy Verification
 # ------------------------------------------------------------------------------
+@skip_if_no_frontend
 def test_live_frontend_availability():
     """Verify live frontend production preview server responds with HTML."""
     res = requests.get(FRONTEND_BASE_URL, timeout=5)
@@ -119,6 +143,7 @@ def test_live_frontend_availability():
     assert "<div id=\"root\">" in res.text or "PhishShield" in res.text
 
 
+@skip_if_no_backend
 def test_live_backend_health_and_root():
     """Verify live backend responds on / and /api/health."""
     res_root = requests.get(f"{BACKEND_BASE_URL}/", timeout=5)
@@ -136,6 +161,7 @@ def test_live_backend_health_and_root():
     assert health_json.get("services", {}).get("protection_engine") == "operational"
 
 
+@skip_if_no_frontend
 def test_live_frontend_reverse_proxy_to_backend():
     """Verify frontend reverse-proxies /api/ requests to the backend container/process."""
     res_proxy = requests.get(f"{FRONTEND_BASE_URL}/api/health", timeout=5)
@@ -145,6 +171,7 @@ def test_live_frontend_reverse_proxy_to_backend():
     assert proxy_json.get("app_name") == "PhishShield"
 
 
+@skip_if_no_backend
 def test_live_diagnostics_and_banks_list():
     """Verify live model metadata and Indian banking registry."""
     res_meta = requests.get(f"{BACKEND_BASE_URL}/api/v1/urls/model-info", timeout=5)
@@ -167,6 +194,7 @@ def test_live_diagnostics_and_banks_list():
 # ------------------------------------------------------------------------------
 # 2. Live Authentication & RBAC Verification
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_auth_login_success_and_failure():
     """Verify login authentication with valid vs invalid credentials."""
     # Invalid login returns 401
@@ -191,6 +219,7 @@ def test_live_auth_login_success_and_failure():
     assert body.get("user", {}).get("role") == "Administrator"
 
 
+@skip_if_no_backend
 def test_live_rbac_enforcement(admin_token, analyst_token, viewer_token):
     """Verify strict role-based access control across live endpoints."""
     admin_headers = {"Authorization": f"Bearer {admin_token}"}
@@ -218,6 +247,7 @@ def test_live_rbac_enforcement(admin_token, analyst_token, viewer_token):
 # ------------------------------------------------------------------------------
 # 3. Live URL Scanner Pipeline Validation
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_url_scanner_benign_bank_domain():
     """Verify authentic banking portal is categorized as SAFE with low risk score."""
     payload = {"url": "https://onlinesbi.sbi"}
@@ -230,6 +260,7 @@ def test_live_url_scanner_benign_bank_domain():
     assert data["brand_impersonation_flag"] is False
 
 
+@skip_if_no_backend
 def test_live_url_scanner_typosquatting_and_impersonation():
     """Verify brand typosquatting lure is flagged as PHISHING with high risk."""
     lure_url = "http://login-sbi-secure-update-alert.com/netbanking/login.php"
@@ -244,6 +275,7 @@ def test_live_url_scanner_typosquatting_and_impersonation():
     assert data["shap_explanation"] is not None
 
 
+@skip_if_no_backend
 def test_live_url_scanner_invalid_and_empty_inputs():
     """Verify scanner rejects empty or malformed payload."""
     res_empty = requests.post(f"{BACKEND_BASE_URL}/api/v1/urls/scan", json={"url": "   "}, timeout=5)
@@ -256,6 +288,7 @@ def test_live_url_scanner_invalid_and_empty_inputs():
 # ------------------------------------------------------------------------------
 # 4. Live SMS Scanner Pipeline Validation
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_sms_scanner_benign_transactional():
     """Verify benign banking OTP SMS is categorized as SAFE."""
     sms_text = "Your SBI OTP for transaction of Rs 1,500 is 492018. Valid for 10 mins. Never share OTP with anyone."
@@ -267,6 +300,7 @@ def test_live_sms_scanner_benign_transactional():
     assert data["extracted_urls"] == []
 
 
+@skip_if_no_backend
 def test_live_sms_scanner_urgent_kyc_lure():
     """Verify urgent KYC smishing attack with URL is detected and flagged."""
     sms_text = "Dear customer, your SBI account is suspended! Update PAN & KYC immediately: http://bit.ly/sbi-pan-kyc"
@@ -278,6 +312,7 @@ def test_live_sms_scanner_urgent_kyc_lure():
     assert len(data["extracted_urls"]) >= 1
 
 
+@skip_if_no_backend
 def test_live_sms_scanner_empty_input():
     """Verify empty SMS message returns HTTP 400."""
     res = requests.post(f"{BACKEND_BASE_URL}/api/v1/sms/scan", json={"message": "   "}, timeout=5)
@@ -287,6 +322,7 @@ def test_live_sms_scanner_empty_input():
 # ------------------------------------------------------------------------------
 # 5. Live Screenshot / OCR Pipeline Validation
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_screenshot_queue_status():
     """Verify OCR queue telemetry endpoint responds with active concurrency state."""
     res = requests.get(f"{BACKEND_BASE_URL}/api/v1/screenshot/queue/status", timeout=5)
@@ -299,6 +335,7 @@ def test_live_screenshot_queue_status():
     assert "queued_scans" in telemetry
 
 
+@skip_if_no_backend
 def test_live_screenshot_async_upload_and_poll():
     """Verify synthetic PNG image upload, job registration, and status polling."""
     # Create in-memory synthetic PNG image (120x120 white background)
@@ -327,6 +364,7 @@ def test_live_screenshot_async_upload_and_poll():
     assert poll_data.get("status") in ["queued", "running", "processing", "completed"]
 
 
+@skip_if_no_backend
 def test_live_screenshot_format_validation():
     """Verify unsupported file extensions are rejected with HTTP 400."""
     files = {"file": ("malicious_payload.exe", b"MZDummyExecutableBytes", "application/octet-stream")}
@@ -342,6 +380,7 @@ def test_live_screenshot_format_validation():
 # ------------------------------------------------------------------------------
 # 6. Live Forensic Threat Dossier Export
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_threat_dossier_json_and_pdf(admin_token, analyst_token, viewer_token):
     """Verify JSON and PDF threat dossier generation with defanged indicators."""
     from app.database import SessionLocal
@@ -395,6 +434,7 @@ def test_live_threat_dossier_json_and_pdf(admin_token, analyst_token, viewer_tok
 # ------------------------------------------------------------------------------
 # 7. Live Bank Registry Governance & Anti-Collision
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_bank_registry_lifecycle(admin_token):
     """Verify administrator custom bank creation, duplicate rejection, and deletion."""
     headers = {"Authorization": f"Bearer {admin_token}"}
@@ -424,6 +464,7 @@ def test_live_bank_registry_lifecycle(admin_token):
 # ------------------------------------------------------------------------------
 # 8. Live Webhook SSRF Mitigation
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_webhook_ssrf_rejection(admin_token):
     """Verify SSRF mitigation blocks internal, loopback, and metadata destinations."""
     headers = {"Authorization": f"Bearer {admin_token}"}
@@ -451,6 +492,7 @@ def test_live_webhook_ssrf_rejection(admin_token):
 # ------------------------------------------------------------------------------
 # 9. Live Audit Trail & Cryptographic Hash-Chaining Integrity
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_audit_trail_and_chain(admin_token):
     """Verify audit log query and cryptographically unbroken SHA-256 chain."""
     from app.database import SessionLocal
@@ -477,6 +519,7 @@ def test_live_audit_trail_and_chain(admin_token):
 # ------------------------------------------------------------------------------
 # 10. Live Persistence Across Environment Lifecycle
 # ------------------------------------------------------------------------------
+@skip_if_no_backend
 def test_live_persistence_verification():
     """Verify that scan records and governance entries persist in SQLite."""
     res_history = requests.get(f"{BACKEND_BASE_URL}/api/v1/history?limit=10", timeout=5)
