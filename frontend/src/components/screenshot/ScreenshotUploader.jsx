@@ -19,7 +19,6 @@ import {
   EyeOff,
   Info,
   Lock,
-  Sparkles,
   Sliders,
   Layers,
   ArrowRight,
@@ -803,8 +802,8 @@ IMPORTANT STATIC LIMITATIONS:
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
           <div>
             <div className="flex items-center space-x-2 text-[#0F172A] mb-1">
-              <ShieldAlert className="w-4 h-4" />
-              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
+              <ShieldAlert className="w-4 h-4 text-[#1D4ED8]" />
+              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-[#0F172A]">
                 Screenshot Phishing Threat Intelligence Console (Phase 5E)
               </h2>
             </div>
@@ -956,8 +955,8 @@ IMPORTANT STATIC LIMITATIONS:
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center space-x-2 min-w-0">
-                <ImageIcon className="w-4 h-4 text-[#0F172A] shrink-0" />
-                <span className="text-xs font-bold font-mono text-white uppercase tracking-wider shrink-0">
+                <ImageIcon className="w-4 h-4 text-[#1D4ED8] shrink-0" />
+                <span className="text-xs font-bold font-mono text-[#0F172A] uppercase tracking-wider shrink-0">
                   Target Image Preview
                 </span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-[#334155] border border-[#E2E8F0] truncate" title={selectedFile?.name}>
@@ -1019,7 +1018,7 @@ IMPORTANT STATIC LIMITATIONS:
                   <div className="space-y-2 text-xs font-mono">
                     <div className="flex justify-between text-[#475569]">
                       <span>Target File:</span>
-                      <span className="text-white font-bold truncate max-w-[150px]" title={selectedFile?.name}>
+                      <span className="text-[#0F172A] font-bold truncate max-w-[150px]" title={selectedFile?.name}>
                         {selectedFile?.name}
                       </span>
                     </div>
@@ -1076,7 +1075,7 @@ IMPORTANT STATIC LIMITATIONS:
                       type="button"
                       onClick={handleExtractOcr}
                       disabled={isProcessing || isExtractingOcr || isAnalyzingThreats}
-                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-[#334155] hover:text-white"
+                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-[#334155] hover:text-[#0F172A]"
                       title="Run EasyOCR typography extraction only"
                     >
                       <FileText className="w-3.5 h-3.5" />
@@ -1087,7 +1086,7 @@ IMPORTANT STATIC LIMITATIONS:
                       type="button"
                       onClick={handleUploadAndProcess}
                       disabled={isProcessing || isExtractingOcr || isAnalyzingThreats}
-                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-[#334155] hover:text-white"
+                      className="cyber-btn-secondary py-2 text-[11px] flex items-center justify-center gap-1.5 text-[#334155] hover:text-[#0F172A]"
                       title="Run safe OpenCV pixel normalization only"
                     >
                       <Sliders className="w-3.5 h-3.5" />
@@ -1102,11 +1101,11 @@ IMPORTANT STATIC LIMITATIONS:
 
         {/* Polished Multi-Stage Honest Processing State (Task 2) */}
         {(isProcessing || isExtractingOcr || isAnalyzingThreats) && (
-          <div className="p-4 sm:p-5 rounded-xl bg-[#0a0e17] border border-[#CBD5E1] space-y-4 animate-fadeIn">
+          <div className="p-4 sm:p-5 rounded-xl bg-white border border-[#CBD5E1] space-y-4 animate-fadeIn shadow-sm">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center gap-2">
-                <RefreshCw className="w-4 h-4 text-[#0F172A] animate-spin" />
-                <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                <RefreshCw className="w-4 h-4 text-[#1D4ED8] animate-spin" />
+                <span className="text-xs font-mono font-bold text-[#0F172A] uppercase tracking-wider">
                   Static Security Pipeline Active
                 </span>
               </div>
@@ -1236,8 +1235,8 @@ IMPORTANT STATIC LIMITATIONS:
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
             <div className="space-y-1">
               <div className="flex items-center space-x-2">
-                <FileSearch className="w-4 h-4 text-[#0F172A]" />
-                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+                <FileSearch className="w-4 h-4 text-[#1D4ED8]" />
+                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                   Screenshot Phishing Threat Assessment Dossier
                 </h3>
               </div>
@@ -1288,7 +1287,7 @@ IMPORTANT STATIC LIMITATIONS:
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
             <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
               <span className="text-[10px] text-[#64748B] uppercase block">Calibrated Risk Score</span>
-              <span className="text-sm font-bold mt-0.5 block text-white">
+              <span className="text-sm font-bold mt-0.5 block text-[#0F172A]">
                 {formatRiskScore(threatReport.screenshot_assessment?.risk_score)}
               </span>
             </div>
@@ -1343,7 +1342,7 @@ IMPORTANT STATIC LIMITATIONS:
 
             <div className="space-y-1.5 flex-1 min-w-0">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="font-mono font-bold text-xs uppercase tracking-wide block text-white">
+                <span className="font-mono font-bold text-xs uppercase tracking-wide block text-[#0F172A]">
                   Executive Threat Assessment Summary
                 </span>
                 <span className="text-[10px] font-mono opacity-80">
@@ -1546,7 +1545,7 @@ IMPORTANT STATIC LIMITATIONS:
                           {ev.severity}
                         </span>
                         <div className="space-y-0.5 flex-1 min-w-0">
-                          <span className="text-white font-bold block">{ev.title}</span>
+                          <span className="text-[#0F172A] font-bold block">{ev.title}</span>
                           <p className="text-[11px] opacity-90 leading-relaxed">
                             {ev.description}
                           </p>
@@ -1656,7 +1655,7 @@ IMPORTANT STATIC LIMITATIONS:
                               <button
                                 type="button"
                                 onClick={() => handleCopySingleUrl(cand.normalized_url, idx)}
-                                className="cyber-btn-secondary text-[10px] px-2 py-1 text-[#334155] hover:text-white shrink-0"
+                                className="cyber-btn-secondary text-[10px] px-2 py-1 text-[#334155] hover:text-[#0F172A] shrink-0"
                                 title="Copy candidate URL"
                               >
                                 {copiedUrlIndex === idx ? (
@@ -1699,14 +1698,14 @@ IMPORTANT STATIC LIMITATIONS:
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] pt-1">
                             <div className="p-2 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
                               <span className="text-[#64748B] block text-[10px]">Model Prediction</span>
-                              <span className="text-white font-bold">
+                              <span className="text-[#0F172A] font-bold">
                                 {uRes.is_phishing ? 'Phishing Classified' : 'Legitimate Classified'}
                               </span>
                             </div>
 
                             <div className="p-2 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
                               <span className="text-[#64748B] block text-[10px]">Brand Spoofing Check</span>
-                              <span className="text-white font-bold">
+                              <span className="text-[#0F172A] font-bold">
                                 {bRes?.match_type || 'NONE'}
                               </span>
                             </div>
@@ -1775,7 +1774,7 @@ IMPORTANT STATIC LIMITATIONS:
                         }`}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-2">
-                        <span className="text-white font-bold text-sm">{b.brand_name}</span>
+                        <span className="text-[#0F172A] font-bold text-sm">{b.brand_name}</span>
                         <div className="flex items-center space-x-2">
                           {b.domain_mismatch_detected ? (
                             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-[#991B1B] border border-rose-800">
@@ -1849,7 +1848,7 @@ IMPORTANT STATIC LIMITATIONS:
                     >
                       <div className="space-y-1 min-w-0 flex-1">
                         <div className="flex items-center space-x-2">
-                          <span className="text-white font-bold">{ind.label}</span>
+                          <span className="text-[#0F172A] font-bold">{ind.label}</span>
                           <span className="text-[10px] text-[#64748B]">[{ind.category}]</span>
                         </div>
                         <p className="text-[11px] text-[#334155]">
@@ -1933,8 +1932,8 @@ IMPORTANT STATIC LIMITATIONS:
         <div className="cyber-card p-5 sm:p-6 border-cyan-500/30 space-y-5 bg-white animate-fadeIn">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E2E8F0] pb-3">
             <div className="flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-[#0F172A]" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+              <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                 OCR Typography Extraction Dossier (Phase 5B)
               </h3>
             </div>

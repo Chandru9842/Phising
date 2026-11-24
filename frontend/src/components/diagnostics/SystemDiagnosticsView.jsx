@@ -62,7 +62,7 @@ export default function SystemDiagnosticsView({
           <div>
             <div className="flex items-center space-x-2 text-[#0F172A] mb-1">
               <Activity className="w-4 h-4" />
-              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
+              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-[#0F172A]">
                 Infrastructure Health & Telemetry
               </h2>
             </div>
@@ -183,7 +183,7 @@ export default function SystemDiagnosticsView({
           {/* Subsystem 1: FastAPI Gateway */}
           <div className="cyber-card p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
+              <div className="flex items-center space-x-2 text-[#0F172A]">
                 <Server className="w-4 h-4 text-[#0F172A]" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   FastAPI Core Engine
@@ -194,7 +194,7 @@ export default function SystemDiagnosticsView({
             <div className="space-y-1.5 text-xs font-mono">
               <div className="flex justify-between text-[#475569]">
                 <span>Application:</span>
-                <span className="text-white">{health?.app_name || 'PhishShield'}</span>
+                <span className="text-[#0F172A] font-semibold">{health?.app_name || 'PhishShield'}</span>
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>Version:</span>
@@ -214,7 +214,7 @@ export default function SystemDiagnosticsView({
           {/* Subsystem 2: SQLite Persistence Layer */}
           <div className="cyber-card p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
+              <div className="flex items-center space-x-2 text-[#0F172A]">
                 <Database className="w-4 h-4 text-[#0F172A]" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   SQLite Persistence Layer
@@ -233,7 +233,7 @@ export default function SystemDiagnosticsView({
             <div className="space-y-1.5 text-xs font-mono">
               <div className="flex justify-between text-[#475569]">
                 <span>Storage Engine:</span>
-                <span className="text-white">SQLite (SQLAlchemy)</span>
+                <span className="text-[#0F172A] font-semibold">SQLite (SQLAlchemy)</span>
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>Live Query Probe:</span>
@@ -253,8 +253,8 @@ export default function SystemDiagnosticsView({
           {/* Subsystem 3: Indian Banking Registry */}
           <div className="cyber-card p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
-                <Shield className="w-4 h-4 text-indigo-400" />
+              <div className="flex items-center space-x-2 text-[#0F172A]">
+                <Shield className="w-4 h-4 text-[#1D4ED8]" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Banking Brand Registry
                 </h4>
@@ -264,7 +264,7 @@ export default function SystemDiagnosticsView({
             <div className="space-y-1.5 text-xs font-mono">
               <div className="flex justify-between text-[#475569]">
                 <span>Protected Entities:</span>
-                <span className="text-indigo-300 font-bold">
+                <span className="text-[#1D4ED8] font-bold">
                   {health?.services?.supported_banks_count || 16} Major Banks
                 </span>
               </div>
@@ -278,7 +278,7 @@ export default function SystemDiagnosticsView({
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>Brand Flags in DB:</span>
-                <span className="text-indigo-400">{stats?.brand_impersonations ?? '—'} detections</span>
+                <span className="text-[#1D4ED8]">{stats?.brand_impersonations ?? '—'} detections</span>
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@ export default function SystemDiagnosticsView({
           {/* Subsystem 4: URL Random Forest Engine */}
           <div className="cyber-card p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
+              <div className="flex items-center space-x-2 text-[#0F172A]">
                 <Cpu className="w-4 h-4 text-[#0F172A]" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   URL Random Forest Model
@@ -297,7 +297,7 @@ export default function SystemDiagnosticsView({
             <div className="space-y-1.5 text-xs font-mono">
               <div className="flex justify-between text-[#475569]">
                 <span>Model Artifact:</span>
-                <span className="text-white">url_rf_model.joblib</span>
+                <span className="text-[#0F172A] font-semibold">url_rf_model.joblib</span>
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>Ensemble Size:</span>
@@ -309,7 +309,7 @@ export default function SystemDiagnosticsView({
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>Explainability:</span>
-                <span className="text-purple-400">TreeSHAP Explainer</span>
+                <span className="text-[#1D4ED8]">TreeSHAP Explainer</span>
               </div>
             </div>
           </div>
@@ -317,8 +317,8 @@ export default function SystemDiagnosticsView({
           {/* Subsystem 5: SMS Smishing NLP Engine */}
           <div className="cyber-card p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
-                <MessageSquare className="w-4 h-4 text-purple-400" />
+              <div className="flex items-center space-x-2 text-[#0F172A]">
+                <MessageSquare className="w-4 h-4 text-[#1D4ED8]" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   SMS NLP Classifier
                 </h4>
@@ -328,11 +328,11 @@ export default function SystemDiagnosticsView({
             <div className="space-y-1.5 text-xs font-mono">
               <div className="flex justify-between text-[#475569]">
                 <span>Model Artifact:</span>
-                <span className="text-white">sms_tfidf_lr_model.joblib</span>
+                <span className="text-[#0F172A] font-semibold">sms_tfidf_lr_model.joblib</span>
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>Classifier:</span>
-                <span className="text-purple-300">Logistic Regression</span>
+                <span className="text-[#1D4ED8]">Logistic Regression</span>
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>TF-IDF Bounds:</span>
@@ -348,7 +348,7 @@ export default function SystemDiagnosticsView({
           {/* Subsystem 6: Frontend Client Environment */}
           <div className="cyber-card p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
+              <div className="flex items-center space-x-2 text-[#0F172A]">
                 <Globe className="w-4 h-4 text-[#065F46]" />
                 <h4 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Vite Client Application
@@ -359,7 +359,7 @@ export default function SystemDiagnosticsView({
             <div className="space-y-1.5 text-xs font-mono">
               <div className="flex justify-between text-[#475569]">
                 <span>Dev Server:</span>
-                <span className="text-white">http://127.0.0.1:5173</span>
+                <span className="text-[#0F172A] font-semibold">http://127.0.0.1:5173</span>
               </div>
               <div className="flex justify-between text-[#475569]">
                 <span>UI Stack:</span>

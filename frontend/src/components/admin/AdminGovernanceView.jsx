@@ -181,9 +181,9 @@ export default function AdminGovernanceView() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-white border border-[#E2E8F0]">
         <div>
           <div className="flex items-center space-x-2">
-            <Shield className="w-5 h-5 text-indigo-400" />
-            <h2 className="text-lg font-bold text-white tracking-wide">Enterprise Governance & Administration</h2>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <Shield className="w-5 h-5 text-[#1D4ED8]" />
+            <h2 className="text-lg font-bold text-[#0F172A] tracking-wide">Enterprise Governance & Administration</h2>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
               PHASE 6C
             </span>
           </div>
@@ -194,11 +194,11 @@ export default function AdminGovernanceView() {
 
         {/* Current Session Badge */}
         {currentUser ? (
-          <div className="flex items-center space-x-3 bg-slate-900/80 px-3.5 py-2 rounded-lg border border-slate-800">
+          <div className="flex items-center space-x-3 bg-[#F8FAFC] px-3.5 py-2 rounded-lg border border-[#E2E8F0]">
             <div className="flex items-center space-x-2 text-xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[#334155] font-mono">{currentUser.username}</span>
-              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-indigo-500/20 text-indigo-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[#0F172A] font-mono font-semibold">{currentUser.username}</span>
+              <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-[#EFF6FF] text-[#1D4ED8]">
                 {currentUser.role}
               </span>
             </div>
@@ -224,7 +224,7 @@ export default function AdminGovernanceView() {
             <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span>{actionMessage}</span>
           </div>
-          <button onClick={() => setActionMessage(null)} className="text-[#475569] hover:text-white text-xs">✕</button>
+          <button onClick={() => setActionMessage(null)} className="text-[#475569] hover:text-[#0F172A] text-xs">✕</button>
         </div>
       )}
       {actionError && (
@@ -233,7 +233,7 @@ export default function AdminGovernanceView() {
             <AlertTriangle className="w-4 h-4 shrink-0" />
             <span>{actionError}</span>
           </div>
-          <button onClick={() => setActionError(null)} className="text-[#475569] hover:text-white text-xs">✕</button>
+          <button onClick={() => setActionError(null)} className="text-[#475569] hover:text-[#0F172A] text-xs">✕</button>
         </div>
       )}
 
@@ -303,11 +303,10 @@ export default function AdminGovernanceView() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveSubTab(tab.id)}
-                  className={`flex items-center space-x-2 px-4 py-2.5 text-xs font-medium border-b-2 transition-all ${
-                    isActive
-                      ? 'border-[#1D4ED8] text-[#1D4ED8] bg-[#EFF6FF]'
-                      : 'border-transparent text-[#475569] hover:text-[#0F172A]'
-                  }`}
+                  className={`flex items-center space-x-2 px-4 py-2.5 text-xs font-medium border-b-2 transition-all ${isActive
+                    ? 'border-[#1D4ED8] text-[#1D4ED8] bg-[#EFF6FF]'
+                    : 'border-transparent text-[#475569] hover:text-[#0F172A]'
+                    }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
                   <span>{tab.label}</span>
@@ -321,32 +320,31 @@ export default function AdminGovernanceView() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 rounded-xl bg-white border border-[#E2E8F0] p-5">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+                  <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider font-mono">
                     Registered Users ({users.length})
                   </h3>
-                  <button onClick={() => loadTabData('users')} className="text-xs text-[#475569] hover:text-white">
+                  <button onClick={() => loadTabData('users')} className="text-xs text-[#475569] hover:text-[#0F172A]">
                     <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                   </button>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800 text-[#475569]">
+                      <tr className="border-b border-[#E2E8F0] text-[#475569]">
                         <th className="pb-2">User</th>
                         <th className="pb-2">Role</th>
                         <th className="pb-2">Status</th>
                         <th className="pb-2">Last Login</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/60 font-mono text-[11px]">
+                    <tbody className="divide-y divide-[#E2E8F0] font-mono text-[11px]">
                       {users.map((u) => (
-                        <tr key={u.id} className="hover:bg-slate-800/30">
-                          <td className="py-2.5 text-white font-semibold">{u.username}</td>
+                        <tr key={u.id} className="hover:bg-[#F8FAFC]">
+                          <td className="py-2.5 text-[#0F172A] font-semibold">{u.username}</td>
                           <td className="py-2.5">
-                            <span className={`px-2 py-0.5 rounded text-[10px] ${
-                              u.role === 'Administrator' ? 'bg-rose-500/20 text-[#991B1B]' :
+                            <span className={`px-2 py-0.5 rounded text-[10px] ${u.role === 'Administrator' ? 'bg-rose-500/20 text-[#991B1B]' :
                               u.role === 'Analyst' ? 'bg-indigo-500/20 text-indigo-300' : 'bg-slate-800 text-[#334155]'
-                            }`}>
+                              }`}>
                               {u.role}
                             </span>
                           </td>
@@ -436,23 +434,23 @@ export default function AdminGovernanceView() {
                       16 Canonical Core Banks are protected from deletion.
                     </p>
                   </div>
-                  <button onClick={() => loadTabData('banks')} className="text-xs text-[#475569] hover:text-white">
+                  <button onClick={() => loadTabData('banks')} className="text-xs text-[#475569] hover:text-[#0F172A]">
                     <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                   </button>
                 </div>
                 <div className="max-h-[450px] overflow-y-auto space-y-2 pr-1">
                   {managedBanks.institutions?.map((b, idx) => (
-                    <div key={idx} className="p-3 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+                    <div key={idx} className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-between">
                       <div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-xs font-bold text-white">{b.brand_name}</span>
+                          <span className="text-xs font-bold text-[#0F172A]">{b.brand_name}</span>
                           {b.is_custom ? (
                             <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-[#065F46]">CUSTOM</span>
                           ) : (
-                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300">CANONICAL</span>
+                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8]">CANONICAL</span>
                           )}
                         </div>
-                        <p className="text-[11px] font-mono text-indigo-400 mt-0.5">{b.primary_domain}</p>
+                        <p className="text-[11px] font-mono text-[#1D4ED8] mt-0.5">{b.primary_domain}</p>
                       </div>
                       {b.is_custom && (
                         <button
@@ -470,7 +468,7 @@ export default function AdminGovernanceView() {
 
               {/* Add Custom Bank Form */}
               <div className="rounded-xl bg-white border border-[#E2E8F0] p-5">
-                <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono mb-3">
+                <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider font-mono mb-3">
                   Add Approved Institution
                 </h3>
                 <form onSubmit={handleAddBank} className="space-y-3">
@@ -530,7 +528,7 @@ export default function AdminGovernanceView() {
                       SSRF Defense enforces strict HTTPS & blocks private networks / loopbacks.
                     </p>
                   </div>
-                  <button onClick={() => loadTabData('webhooks')} className="text-xs text-[#475569] hover:text-white">
+                  <button onClick={() => loadTabData('webhooks')} className="text-xs text-[#475569] hover:text-[#0F172A]">
                     <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                   </button>
                 </div>
@@ -539,20 +537,20 @@ export default function AdminGovernanceView() {
                     <p className="text-xs text-[#64748B] py-4 text-center">No alert webhooks configured.</p>
                   ) : (
                     webhooks.map((w) => (
-                      <div key={w.id} className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 space-y-2">
+                      <div key={w.id} className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-white">{w.name}</span>
+                          <span className="text-xs font-bold text-[#0F172A]">{w.name}</span>
                           <div className="flex items-center space-x-2">
                             <button
                               onClick={() => handleTestWebhook(w.id, w.name)}
-                              className="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 text-[10px] font-mono hover:bg-indigo-500/30 transition-colors"
+                              className="px-2 py-1 rounded bg-[#EFF6FF] text-[#1D4ED8] text-[10px] font-mono hover:bg-blue-100 transition-colors"
                             >
                               Test Ping
                             </button>
                           </div>
                         </div>
                         <p className="text-[11px] font-mono text-[#475569] truncate">{w.url}</p>
-                        <div className="flex items-center justify-between text-[10px] text-[#64748B] pt-1 border-t border-slate-800/60">
+                        <div className="flex items-center justify-between text-[10px] text-[#64748B] pt-1 border-t border-[#E2E8F0]">
                           <span>Last Delivery: {w.last_delivery_status || 'Never'}</span>
                           {w.last_error && <span className="text-[#991B1B] truncate max-w-[200px]">{w.last_error}</span>}
                         </div>
@@ -564,7 +562,7 @@ export default function AdminGovernanceView() {
 
               {/* Add Webhook Form */}
               <div className="rounded-xl bg-white border border-[#E2E8F0] p-5">
-                <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono mb-3">
+                <h3 className="text-xs font-bold text-[#0F172A] uppercase tracking-wider font-mono mb-3">
                   Register Alert Webhook
                 </h3>
                 <form onSubmit={handleCreateWebhook} className="space-y-3">

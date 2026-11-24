@@ -15,7 +15,6 @@ import {
   Copy,
   Check,
   Landmark,
-  Sparkles,
   BarChart3,
   AlertOctagon,
   FileText,
@@ -449,13 +448,13 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                 </div>
 
                 <div className="flex items-center space-x-2 pt-1">
-                  <span className="text-sm font-mono font-bold text-white break-all">
+                  <span className="text-sm font-mono font-bold text-[#0F172A] break-all">
                     {scanResult.url}
                   </span>
                   <button
                     type="button"
                     onClick={() => handleCopy(scanResult.url)}
-                    className="p-1.5 rounded bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#475569] hover:text-white border border-[#E2E8F0] shrink-0"
+                    className="p-1.5 rounded bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0] shrink-0"
                     title="Copy URL string"
                   >
                     {copiedUrl ? (
@@ -615,10 +614,10 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
               <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-mono uppercase text-[#475569] font-semibold flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#92400E]" />
+                    <BarChart3 className="w-3.5 h-3.5 text-[#1D4ED8]" />
                     <span>Explainable AI Model</span>
                   </span>
-                  <span className="text-[10px] font-mono text-purple-400">TreeSHAP v1.0</span>
+                  <span className="text-[10px] font-mono text-[#1D4ED8] bg-[#EFF6FF] px-1.5 py-0.5 rounded border border-[#BFDBFE]">TreeSHAP v1.0</span>
                 </div>
 
                 <div className="space-y-1.5 text-xs">
@@ -653,7 +652,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
               <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
                 <div className="flex items-center space-x-2">
                   <Landmark className="w-4 h-4 text-[#0F172A]" />
-                  <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+                  <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                     Indian Banking Brand Impersonation Audit
                   </h3>
                 </div>
@@ -668,7 +667,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                   <div className="text-[10px] font-mono text-[#475569] uppercase">
                     Submitted Domain Analyzed
                   </div>
-                  <div className="font-mono text-xs font-bold text-white break-all flex items-center gap-2">
+                  <div className="font-mono text-xs font-bold text-[#0F172A] break-all flex items-center gap-2">
                     <span>{brandData.submitted_domain}</span>
                     {brandData.is_official_domain ? (
                       <span className="cyber-badge cyber-badge-safe text-[9px]">OFFICIAL</span>
@@ -733,7 +732,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-3">
                 <div className="flex items-center space-x-2">
                   <BarChart3 className="w-4 h-4 text-[#0F172A]" />
-                  <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+                  <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                     TreeSHAP Feature Attributions (Phishing Class Impact)
                   </h3>
                 </div>
@@ -751,9 +750,9 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
 
               {/* Natural Language AI Summary */}
               <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#334155] flex items-start space-x-2.5">
-                <Sparkles className="w-4 h-4 text-[#92400E] shrink-0 mt-0.5" />
+                <SlidersHorizontal className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <span className="font-mono uppercase text-[10px] text-[#92400E] font-bold block">
+                  <span className="font-mono uppercase text-[10px] text-[#1D4ED8] font-bold block">
                     SHAP Decision Path Summary
                   </span>
                   <p className="leading-relaxed italic text-[#0F172A]">
@@ -773,13 +772,13 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                     <XAxis
                       type="number"
                       domain={['auto', 'auto']}
-                      tick={{ fill: '#94a3b8', fontSize: 11, fontFamily: 'monospace' }}
+                      tick={{ fill: '#64748B', fontSize: 11, fontFamily: 'monospace' }}
                       tickFormatter={(val) => `${val > 0 ? '+' : ''}${val.toFixed(2)}`}
                     />
                     <YAxis
                       type="category"
                       dataKey="name"
-                      tick={{ fill: '#e2e8f0', fontSize: 11, fontFamily: 'monospace' }}
+                      tick={{ fill: '#334155', fontSize: 11, fontFamily: 'monospace' }}
                       width={130}
                     />
                     <Tooltip
@@ -787,13 +786,13 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
                         if (active && payload && payload.length) {
                           const data = payload[0].payload;
                           return (
-                            <div className="p-3 bg-white border border-[#CBD5E1] rounded-lg shadow-2xl text-xs space-y-1.5 max-w-sm">
-                              <p className="font-mono font-bold text-white uppercase text-[11px] border-b border-[#E2E8F0] pb-1">
+                            <div className="p-3 bg-white border border-[#CBD5E1] rounded-lg shadow-sm text-xs space-y-1.5 max-w-sm">
+                              <p className="font-mono font-bold text-[#0F172A] uppercase text-[11px] border-b border-[#E2E8F0] pb-1">
                                 {data.name}
                               </p>
                               <div className="flex justify-between text-[#334155] font-mono text-[11px]">
                                 <span>Feature Value:</span>
-                                <span className="font-bold text-white">{String(data.value)}</span>
+                                <span className="font-bold text-[#0F172A]">{String(data.value)}</span>
                               </div>
                               <div className="flex justify-between font-mono text-[11px]">
                                 <span>SHAP Attribution:</span>
@@ -842,7 +841,7 @@ export default function UrlScanner({ initialUrl, onScanComplete }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center space-x-2">
                 <Layers className="w-4 h-4 text-[#0F172A]" />
-                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                   Extracted Feature Vector ({Object.keys(scanResult.features || {}).length} Features)
                 </h3>
               </div>

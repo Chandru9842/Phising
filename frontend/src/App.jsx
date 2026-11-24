@@ -36,7 +36,6 @@ import {
   Building2,
   Activity,
   AlertTriangle,
-  Sparkles,
   ExternalLink,
   Cpu,
   History as HistoryIcon,

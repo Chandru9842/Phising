@@ -14,7 +14,6 @@ import {
   Copy,
   Check,
   Landmark,
-  Sparkles,
   AlertOctagon,
   FileText,
   Link as LinkIcon,
@@ -24,7 +23,9 @@ import {
   Lock,
   ChevronDown,
   ChevronUp,
-  Layers
+  Layers,
+  SlidersHorizontal,
+  BarChart3
 } from 'lucide-react';
 
 export default function SmsScanner({ initialMessage, onScanComplete }) {
@@ -180,9 +181,9 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
       <div className="cyber-card p-5 sm:p-6 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-4">
           <div>
-            <div className="flex items-center space-x-2 text-purple-400 mb-1">
+            <div className="flex items-center space-x-2 text-[#1D4ED8] mb-1">
               <MessageSquare className="w-4 h-4" />
-              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
+              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-[#0F172A]">
                 SMS Phishing (Smishing) & Multi-URL Defense Console
               </h2>
             </div>
@@ -191,7 +192,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F8FAFC] text-purple-400 border border-[#E2E8F0]">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
               NLP + RF Multi-URL Engine
             </span>
           </div>
@@ -333,7 +334,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                   <button
                     type="button"
                     onClick={() => handleCopyMessage(scanResult.message)}
-                    className="p-1.5 rounded bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#475569] hover:text-white border border-[#E2E8F0] shrink-0 mt-0.5"
+                    className="p-1.5 rounded bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0] shrink-0 mt-0.5"
                     title="Copy message text"
                   >
                     {copiedMessage ? (
@@ -521,8 +522,8 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             <div className="cyber-card p-5 space-y-3">
               <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
                 <div className="flex items-center space-x-2">
-                  <Sparkles className="w-4 h-4 text-purple-400" />
-                  <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+                  <SlidersHorizontal className="w-4 h-4 text-[#1D4ED8]" />
+                  <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                     Identified Urgency & Financial Coercion Tokens
                   </h3>
                 </div>
@@ -553,7 +554,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E2E8F0] pb-3">
               <div className="flex items-center space-x-2">
                 <LinkIcon className="w-4 h-4 text-[#0F172A]" />
-                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+                <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                   Extracted URLs Deep Analysis ({scanResult.url_count} Link{scanResult.url_count !== 1 ? 's' : ''})
                 </h3>
               </div>
@@ -590,7 +591,7 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                           <button
                             type="button"
                             onClick={() => handleCopyUrl(urlRes.url, idx)}
-                            className="p-1.5 rounded bg-white text-[#475569] hover:text-white border border-[#E2E8F0] transition-colors"
+                            className="p-1.5 rounded bg-white text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0] transition-colors"
                             title="Copy extracted URL (Warning: Do not open in browser)"
                           >
                             {copiedIndex === idx ? (
@@ -652,9 +653,9 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
                       {/* SHAP Summary */}
                       {sData && sData.summary && (
                         <div className="p-3 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#334155] flex items-start space-x-2">
-                          <Sparkles className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                          <Cpu className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                           <div className="space-y-0.5">
-                            <span className="text-[10px] font-mono uppercase text-purple-400 font-bold block">
+                            <span className="text-[10px] font-mono uppercase text-[#1D4ED8] font-bold block">
                               TreeSHAP AI Explanation:
                             </span>
                             <p className="italic text-[#334155] leading-relaxed text-[11px]">
@@ -736,8 +737,8 @@ export default function SmsScanner({ initialMessage, onScanComplete }) {
           {/* 5. INDIAN BANKING CUSTOMER CYBER-DEFENSE ADVISORY */}
           <div className="cyber-card p-5 space-y-4">
             <div className="flex items-center space-x-2 text-[#0F172A] border-b border-[#E2E8F0] pb-2.5">
-              <Shield className="w-4 h-4" />
-              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+              <Shield className="w-4 h-4 text-[#1D4ED8]" />
+              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                 Indian Citizen Cyber Defense Advisory
               </h4>
             </div>

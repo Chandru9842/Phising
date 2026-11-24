@@ -86,7 +86,7 @@ export default function Sidebar({
 
       {/* Sidebar Chrome - Stripe & Cloudflare Style */}
       <aside
-        className={`fixed md:sticky top-14 h-[calc(100vh-3.5rem)] inset-y-0 left-0 z-40 w-64 bg-white border-r border-[#E2E8F0] flex flex-col justify-between py-5 px-3 shrink-0 overflow-y-auto transition-transform duration-150 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        className={`fixed md:sticky top-0 h-screen inset-y-0 left-0 z-40 w-64 bg-white border-r border-[#E2E8F0] flex flex-col justify-between py-5 px-3 shrink-0 overflow-y-auto transition-transform duration-150 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
           }`}
       >
         <div className="space-y-4">
@@ -124,10 +124,6 @@ export default function Sidebar({
                       {item.label}
                     </span>
                   </div>
-
-                  {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1D4ED8] shrink-0" />
-                  )}
                 </button>
               );
             })}

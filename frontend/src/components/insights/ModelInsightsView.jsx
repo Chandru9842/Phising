@@ -9,13 +9,13 @@ import {
   Info,
   GitBranch,
   ArrowRight,
-  Sparkles,
   Database,
   Lock,
   CheckCircle2,
   XCircle,
   HelpCircle,
   Sliders,
+  SlidersHorizontal,
   Binary,
   Workflow,
   Scale
@@ -107,8 +107,8 @@ export default function ModelInsightsView() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
           <div>
             <div className="flex items-center space-x-2 text-[#0F172A] mb-1">
-              <Cpu className="w-4 h-4" />
-              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
+              <Cpu className="w-4 h-4 text-[#1D4ED8]" />
+              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-[#0F172A]">
                 Machine Learning & Explainability Intelligence
               </h2>
             </div>
@@ -141,7 +141,7 @@ export default function ModelInsightsView() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-xs font-mono transition-all ${
                   isActive
-                    ? 'bg-cyan-500/15 text-[#0F172A] font-bold border border-[#CBD5E1] shadow-sm shadow-cyan-500/10'
+                    ? 'bg-[#EFF6FF] text-[#1D4ED8] font-bold border border-[#BFDBFE] shadow-sm'
                     : 'bg-[#F8FAFC] text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0]'
                 }`}
               >
@@ -160,8 +160,8 @@ export default function ModelInsightsView() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="cyber-card p-5 space-y-3 lg:col-span-2">
               <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-                <div className="flex items-center space-x-2 text-white">
-                  <Binary className="w-4 h-4 text-[#0F172A]" />
+                <div className="flex items-center space-x-2 text-[#0F172A]">
+                  <Binary className="w-4 h-4 text-[#1D4ED8]" />
                   <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                     URL Random Forest Architecture
                   </h3>
@@ -170,17 +170,17 @@ export default function ModelInsightsView() {
               </div>
 
               <p className="text-xs text-[#334155] leading-relaxed">
-                The URL phishing detection engine deploys an ensemble of <strong className="text-white font-mono">150 decision trees</strong> trained with Scikit-learn. To prevent domain memorization and over-optimistic evaluation, datasets were partitioned using <strong className="text-white font-mono">Domain-Grouped Train/Test Splitting</strong>, ensuring URLs from the same apex domain never co-occur in both sets.
+                The URL phishing detection engine deploys an ensemble of <strong className="text-[#0F172A] font-mono font-semibold">150 decision trees</strong> trained with Scikit-learn. To prevent domain memorization and over-optimistic evaluation, datasets were partitioned using <strong className="text-[#0F172A] font-mono font-semibold">Domain-Grouped Train/Test Splitting</strong>, ensuring URLs from the same apex domain never co-occur in both sets.
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 text-xs font-mono">
                 <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                   <span className="text-[10px] text-[#64748B] block uppercase">Estimators</span>
-                  <span className="text-white font-bold">{urlModelMetrics.estimators} Trees</span>
+                  <span className="text-[#0F172A] font-bold">{urlModelMetrics.estimators} Trees</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                   <span className="text-[10px] text-[#64748B] block uppercase">Max Depth</span>
-                  <span className="text-white font-bold">{urlModelMetrics.maxDepth} Levels</span>
+                  <span className="text-[#0F172A] font-bold">{urlModelMetrics.maxDepth} Levels</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                   <span className="text-[10px] text-[#64748B] block uppercase">Static Features</span>
@@ -195,14 +195,14 @@ export default function ModelInsightsView() {
 
             {/* TreeSHAP Overview Card */}
             <div className="cyber-card p-5 space-y-3">
-              <div className="flex items-center space-x-2 text-white border-b border-[#E2E8F0] pb-2.5">
-                <Sparkles className="w-4 h-4 text-purple-400" />
+              <div className="flex items-center space-x-2 text-[#0F172A] border-b border-[#E2E8F0] pb-2.5">
+                <GitBranch className="w-4 h-4 text-[#1D4ED8]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                   TreeSHAP Explainability
                 </h3>
               </div>
               <p className="text-xs text-[#475569] leading-relaxed">
-                Predictions are explained using <code className="text-purple-300 font-mono text-[11px]">shap.TreeExplainer</code>. TreeSHAP computes exact Shapley additive attributions for each tree path, separating features that increase phishing likelihood from those establishing legitimacy.
+                Predictions are explained using <code className="text-[#1D4ED8] bg-[#EFF6FF] px-1.5 py-0.5 rounded border border-[#BFDBFE] font-mono text-[11px]">shap.TreeExplainer</code>. TreeSHAP computes exact Shapley additive attributions for each tree path, separating features that increase phishing likelihood from those establishing legitimacy.
               </p>
               <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[11px] font-mono text-[#334155]">
                 <span className="text-[#0F172A] font-bold">Additive Identity:</span>
@@ -216,8 +216,8 @@ export default function ModelInsightsView() {
           {/* Verified Performance Metric Cards */}
           <div className="cyber-card p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
-                <BarChart3 className="w-4 h-4 text-[#0F172A]" />
+              <div className="flex items-center space-x-2 text-[#0F172A]">
+                <BarChart3 className="w-4 h-4 text-[#1D4ED8]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Verified Held-Out Evaluation Metrics (Test Set n=40)
                 </h3>
@@ -230,7 +230,7 @@ export default function ModelInsightsView() {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 font-mono text-xs">
               <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                 <span className="text-[10px] text-[#64748B] block uppercase">Accuracy</span>
-                <span className="text-2xl font-bold text-white mt-1 block">
+                <span className="text-2xl font-bold text-[#0F172A] mt-1 block">
                   {urlModelMetrics.accuracy}%
                 </span>
                 <span className="text-[10px] text-[#065F46]">Held-Out Test Set</span>
@@ -246,7 +246,7 @@ export default function ModelInsightsView() {
 
               <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                 <span className="text-[10px] text-[#64748B] block uppercase">Recall</span>
-                <span className="text-2xl font-bold text-indigo-400 mt-1 block">
+                <span className="text-2xl font-bold text-[#1D4ED8] mt-1 block">
                   {urlModelMetrics.recall}%
                 </span>
                 <span className="text-[10px] text-[#64748B]">Phishing True Positives</span>
@@ -254,7 +254,7 @@ export default function ModelInsightsView() {
 
               <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                 <span className="text-[10px] text-[#64748B] block uppercase">F1-Score</span>
-                <span className="text-2xl font-bold text-purple-400 mt-1 block">
+                <span className="text-2xl font-bold text-[#1D4ED8] mt-1 block">
                   {urlModelMetrics.f1Score}%
                 </span>
                 <span className="text-[10px] text-[#64748B]">Harmonic Mean</span>
@@ -310,7 +310,7 @@ export default function ModelInsightsView() {
                 <div className="space-y-1.5 font-mono text-[11px]">
                   <div className="flex justify-between text-[#475569]">
                     <span>Total Labeled Dataset:</span>
-                    <span className="text-white font-bold">{urlModelMetrics.datasetTotal} URLs</span>
+                    <span className="text-[#0F172A] font-bold">{urlModelMetrics.datasetTotal} URLs</span>
                   </div>
                   <div className="flex justify-between text-[#475569]">
                     <span>Training Set (90%):</span>
@@ -332,7 +332,7 @@ export default function ModelInsightsView() {
           {/* Feature Importances Chart */}
           <div className="cyber-card p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
+              <div className="flex items-center space-x-2 text-[#0F172A]">
                 <Layers className="w-4 h-4 text-[#0F172A]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Top Gini Feature Importances (Random Forest)
@@ -351,13 +351,13 @@ export default function ModelInsightsView() {
                   <XAxis
                     type="number"
                     domain={[0, 25]}
-                    tick={{ fill: '#94a3b8', fontSize: 11, fontFamily: 'monospace' }}
+                    tick={{ fill: '#64748B', fontSize: 11, fontFamily: 'monospace' }}
                     tickFormatter={(val) => `${val}%`}
                   />
                   <YAxis
                     type="category"
                     dataKey="label"
-                    tick={{ fill: '#e2e8f0', fontSize: 11, fontFamily: 'monospace' }}
+                    tick={{ fill: '#334155', fontSize: 11, fontFamily: 'monospace' }}
                     width={130}
                   />
                   <Tooltip
@@ -365,7 +365,7 @@ export default function ModelInsightsView() {
                       if (active && payload && payload.length) {
                         const data = payload[0].payload;
                         return (
-                          <div className="p-2.5 bg-white border border-[#CBD5E1] rounded-lg text-xs font-mono space-y-1">
+                          <div className="p-2.5 bg-white border border-[#CBD5E1] rounded-lg text-xs font-mono space-y-1 shadow-sm">
                             <span className="text-[#0F172A] font-bold block">{data.name}</span>
                             <span className="text-[#334155]">Importance: {data.importance}%</span>
                           </div>
@@ -374,7 +374,7 @@ export default function ModelInsightsView() {
                       return null;
                     }}
                   />
-                  <Bar dataKey="importance" fill="#06b6d4" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="importance" fill="#1D4ED8" radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -389,31 +389,31 @@ export default function ModelInsightsView() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="cyber-card p-5 space-y-3 lg:col-span-2">
               <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-                <div className="flex items-center space-x-2 text-white">
-                  <Binary className="w-4 h-4 text-purple-400" />
+                <div className="flex items-center space-x-2 text-[#0F172A]">
+                  <Binary className="w-4 h-4 text-[#1D4ED8]" />
                   <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                     SMS Smishing NLP Pipeline (TF-IDF + LR)
                   </h3>
                 </div>
-                <span className="text-[10px] font-mono text-purple-400">Model v1.0.0</span>
+                <span className="text-[10px] font-mono text-[#1D4ED8] bg-[#EFF6FF] px-2 py-0.5 rounded border border-[#BFDBFE]">Model v1.0.0</span>
               </div>
 
               <p className="text-xs text-[#334155] leading-relaxed">
-                The SMS phishing classifier combines <strong className="text-white font-mono">Sublinear TF-IDF Vectorization</strong> with a regularized <strong className="text-white font-mono">Logistic Regression</strong> classifier. The pipeline extracts word and character boundary n-grams (1-2 range) across a vocabulary of 5,000 tokens, accurately isolating high-pressure financial coercion patterns.
+                The SMS phishing classifier combines <strong className="text-[#0F172A] font-mono font-semibold">Sublinear TF-IDF Vectorization</strong> with a regularized <strong className="text-[#0F172A] font-mono font-semibold">Logistic Regression</strong> classifier. The pipeline extracts word and character boundary n-grams (1-2 range) across a vocabulary of 5,000 tokens, accurately isolating high-pressure financial coercion patterns.
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 text-xs font-mono">
                 <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                   <span className="text-[10px] text-[#64748B] block uppercase">Vocabulary</span>
-                  <span className="text-white font-bold">{smsModelMetrics.vocabularySize} Tokens</span>
+                  <span className="text-[#0F172A] font-bold">{smsModelMetrics.vocabularySize} Tokens</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                   <span className="text-[10px] text-[#64748B] block uppercase">N-Gram Range</span>
-                  <span className="text-white font-bold">1-2 N-Grams</span>
+                  <span className="text-[#0F172A] font-bold">1-2 N-Grams</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                   <span className="text-[10px] text-[#64748B] block uppercase">Total Corpus</span>
-                  <span className="text-purple-400 font-bold">{smsModelMetrics.datasetTotal} Messages</span>
+                  <span className="text-[#1D4ED8] font-bold">{smsModelMetrics.datasetTotal} Messages</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                   <span className="text-[10px] text-[#64748B] block uppercase">Sublinear TF</span>
@@ -424,8 +424,8 @@ export default function ModelInsightsView() {
 
             {/* Recursive URL Deep Scan Integration */}
             <div className="cyber-card p-5 space-y-3">
-              <div className="flex items-center space-x-2 text-white border-b border-[#E2E8F0] pb-2.5">
-                <Workflow className="w-4 h-4 text-[#0F172A]" />
+              <div className="flex items-center space-x-2 text-[#0F172A] border-b border-[#E2E8F0] pb-2.5">
+                <Workflow className="w-4 h-4 text-[#1D4ED8]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Recursive Embedded URL Scan
                 </h3>
@@ -442,8 +442,8 @@ export default function ModelInsightsView() {
           {/* Verified Performance Metric Cards */}
           <div className="cyber-card p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
-                <BarChart3 className="w-4 h-4 text-purple-400" />
+              <div className="flex items-center space-x-2 text-[#0F172A]">
+                <BarChart3 className="w-4 h-4 text-[#1D4ED8]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Verified Held-Out Evaluation Metrics (Test Set n=1,041)
                 </h3>
@@ -456,7 +456,7 @@ export default function ModelInsightsView() {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 font-mono text-xs">
               <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                 <span className="text-[10px] text-[#64748B] block uppercase">Accuracy</span>
-                <span className="text-2xl font-bold text-white mt-1 block">
+                <span className="text-2xl font-bold text-[#0F172A] mt-1 block">
                   {smsModelMetrics.accuracy}%
                 </span>
                 <span className="text-[10px] text-[#065F46]">1,026 / 1,041 Correct</span>
@@ -472,7 +472,7 @@ export default function ModelInsightsView() {
 
               <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                 <span className="text-[10px] text-[#64748B] block uppercase">Recall</span>
-                <span className="text-2xl font-bold text-indigo-400 mt-1 block">
+                <span className="text-2xl font-bold text-[#1D4ED8] mt-1 block">
                   {smsModelMetrics.recall}%
                 </span>
                 <span className="text-[10px] text-[#64748B]">130 of 133 Caught</span>
@@ -480,7 +480,7 @@ export default function ModelInsightsView() {
 
               <div className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
                 <span className="text-[10px] text-[#64748B] block uppercase">F1-Score</span>
-                <span className="text-2xl font-bold text-purple-400 mt-1 block">
+                <span className="text-2xl font-bold text-[#1D4ED8] mt-1 block">
                   {smsModelMetrics.f1Score}%
                 </span>
                 <span className="text-[10px] text-[#64748B]">Harmonic Mean</span>
@@ -520,9 +520,9 @@ export default function ModelInsightsView() {
                       {smsModelMetrics.confusionMatrix.fn}
                     </span>
                   </div>
-                  <div className="p-2 rounded bg-white border border-purple-500/20">
+                  <div className="p-2 rounded bg-white border border-[#BFDBFE]">
                     <span className="text-[10px] text-[#64748B] block">True Positive (Spam)</span>
-                    <span className="text-lg font-bold text-purple-400">
+                    <span className="text-lg font-bold text-[#1D4ED8]">
                       {smsModelMetrics.confusionMatrix.tp}
                     </span>
                   </div>
@@ -536,7 +536,7 @@ export default function ModelInsightsView() {
                 <div className="space-y-1.5 font-mono text-[11px]">
                   <div className="flex justify-between text-[#475569]">
                     <span>Total Authentic SMS Dataset:</span>
-                    <span className="text-white font-bold">{smsModelMetrics.datasetTotal} messages</span>
+                    <span className="text-[#0F172A] font-bold">{smsModelMetrics.datasetTotal} messages</span>
                   </div>
                   <div className="flex justify-between text-[#475569]">
                     <span>Training Set (80%):</span>
@@ -544,7 +544,7 @@ export default function ModelInsightsView() {
                   </div>
                   <div className="flex justify-between text-[#475569]">
                     <span>Held-Out Test Set (20%):</span>
-                    <span className="text-purple-400">{smsModelMetrics.testSamples} messages</span>
+                    <span className="text-[#1D4ED8] font-semibold">{smsModelMetrics.testSamples} messages</span>
                   </div>
                   <div className="flex justify-between text-[#475569] pt-1 border-t border-[#E2E8F0]">
                     <span>Vocabulary Bound:</span>
@@ -558,8 +558,8 @@ export default function ModelInsightsView() {
           {/* Top Smishing Tokens Chips */}
           <div className="cyber-card p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2.5">
-              <div className="flex items-center space-x-2 text-white">
-                <Sparkles className="w-4 h-4 text-purple-400" />
+              <div className="flex items-center space-x-2 text-[#0F172A]">
+                <SlidersHorizontal className="w-4 h-4 text-[#1D4ED8]" />
                 <h3 className="text-xs font-bold font-mono uppercase tracking-wider">
                   Top Smishing Features (Highest Logistic Regression Coefficients)
                 </h3>
@@ -574,7 +574,7 @@ export default function ModelInsightsView() {
                   className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-between"
                 >
                   <div>
-                    <span className="font-mono text-xs font-bold text-purple-300 block">
+                    <span className="font-mono text-xs font-bold text-[#1D4ED8] block">
                       "{item.token}"
                     </span>
                     <span className="text-[10px] text-[#64748B] block">{item.type}</span>
@@ -595,8 +595,8 @@ export default function ModelInsightsView() {
           {/* URL Pipeline Flow */}
           <div className="cyber-card p-5 sm:p-6 space-y-5">
             <div className="flex items-center space-x-2 text-[#0F172A] border-b border-[#E2E8F0] pb-3">
-              <Workflow className="w-4 h-4" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+              <Workflow className="w-4 h-4 text-[#1D4ED8]" />
+              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                 URL Detection Pipeline (Static Zero-Resolution Architecture)
               </h3>
             </div>
@@ -611,10 +611,10 @@ export default function ModelInsightsView() {
                 { step: '06', title: 'Zero-Trust Verdict', desc: 'Composite risk score calibrated with heuristic penalty overrides.' },
               ].map((s, idx) => (
                 <div key={idx} className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-1 relative">
-                  <span className="text-[10px] font-mono text-[#0F172A] font-bold block">
+                  <span className="text-[10px] font-mono text-[#1D4ED8] font-bold block">
                     STEP {s.step}
                   </span>
-                  <h4 className="text-xs font-semibold text-white font-mono">{s.title}</h4>
+                  <h4 className="text-xs font-semibold text-[#0F172A] font-mono">{s.title}</h4>
                   <p className="text-[11px] text-[#475569] leading-normal">{s.desc}</p>
                 </div>
               ))}
@@ -623,9 +623,9 @@ export default function ModelInsightsView() {
 
           {/* SMS Pipeline Flow */}
           <div className="cyber-card p-5 sm:p-6 space-y-5">
-            <div className="flex items-center space-x-2 text-purple-400 border-b border-[#E2E8F0] pb-3">
+            <div className="flex items-center space-x-2 text-[#1D4ED8] border-b border-[#E2E8F0] pb-3">
               <Workflow className="w-4 h-4" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                 SMS Multi-Modal Pipeline (NLP Urgency + Recursive URL Scan)
               </h3>
             </div>
@@ -640,10 +640,10 @@ export default function ModelInsightsView() {
                 { step: '06', title: 'Composite Score', desc: 'Risk synthesized into unified verdict with customer advisory.' },
               ].map((s, idx) => (
                 <div key={idx} className="p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-1 relative">
-                  <span className="text-[10px] font-mono text-purple-400 font-bold block">
+                  <span className="text-[10px] font-mono text-[#1D4ED8] font-bold block">
                     STEP {s.step}
                   </span>
-                  <h4 className="text-xs font-semibold text-white font-mono">{s.title}</h4>
+                  <h4 className="text-xs font-semibold text-[#0F172A] font-mono">{s.title}</h4>
                   <p className="text-[11px] text-[#475569] leading-normal">{s.desc}</p>
                 </div>
               ))}
@@ -656,8 +656,8 @@ export default function ModelInsightsView() {
       {activeTab === 'limitations' && (
         <div className="cyber-card p-5 sm:p-6 space-y-5">
           <div className="flex items-center space-x-2 text-[#92400E] border-b border-[#E2E8F0] pb-3">
-            <Scale className="w-4 h-4" />
-            <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+            <Scale className="w-4 h-4 text-[#92400E]" />
+            <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
               Model Limitations & Cybersecurity Realities
             </h3>
           </div>
@@ -689,7 +689,7 @@ export default function ModelInsightsView() {
 
             <div className="p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-2">
               <div className="flex items-center space-x-2 text-[#0F172A]">
-                <Scale className="w-4 h-4" />
+                <Scale className="w-4 h-4 text-[#1D4ED8]" />
                 <h4 className="text-xs font-bold font-mono uppercase">3. Probabilistic Risk vs Absolute Proof</h4>
               </div>
               <p className="text-xs text-[#475569] leading-relaxed">
@@ -698,8 +698,8 @@ export default function ModelInsightsView() {
             </div>
 
             <div className="p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] space-y-2">
-              <div className="flex items-center space-x-2 text-purple-400">
-                <Lock className="w-4 h-4" />
+              <div className="flex items-center space-x-2 text-[#1D4ED8]">
+                <Lock className="w-4 h-4 text-[#1D4ED8]" />
                 <h4 className="text-xs font-bold font-mono uppercase">4. Zero-Resolution Sandbox Boundary</h4>
               </div>
               <p className="text-xs text-[#475569] leading-relaxed">

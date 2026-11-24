@@ -26,7 +26,6 @@ import {
   Clock,
   RotateCcw,
   HelpCircle,
-  Sparkles,
   Cpu
 } from 'lucide-react';
 
@@ -217,8 +216,8 @@ export default function ScanHistoryView({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
           <div>
             <div className="flex items-center space-x-2 text-[#0F172A] mb-1">
-              <History className="w-4 h-4" />
-              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-white">
+              <History className="w-4 h-4 text-[#1D4ED8]" />
+              <h2 className="text-sm font-bold tracking-wider uppercase font-mono text-[#0F172A]">
                 Scan Audit & Detection Records (Unified Telemetry)
               </h2>
             </div>
@@ -485,10 +484,10 @@ export default function ScanHistoryView({
           </div>
         ) : (
           <div className="py-16 px-4 text-center space-y-3">
-            <div className="w-10 h-10 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mx-auto text-[#475569]">
-              <History className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-full bg-[#F1F5F9] border border-[#CBD5E1] flex items-center justify-center mx-auto text-[#475569]">
+              <History className="w-5 h-5 text-[#475569]" />
             </div>
-            <h3 className="text-sm font-semibold text-white">No Matching Audit Records</h3>
+            <h3 className="text-sm font-semibold text-[#0F172A]">No Matching Audit Records</h3>
             <p className="text-xs text-[#475569] max-w-md mx-auto">
               {hasActiveFilters
                 ? 'No audit records match the current search query or filter selection. Try adjusting or clearing your filters.'
@@ -521,7 +520,7 @@ export default function ScanHistoryView({
                 type="button"
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="p-1.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+                className="p-1.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] hover:text-[#0F172A] disabled:opacity-40 disabled:cursor-not-allowed"
                 title="Previous page"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -535,8 +534,8 @@ export default function ScanHistoryView({
                     onClick={() => setCurrentPage(page)}
                     className={`w-7 h-7 rounded text-xs transition-all ${
                       currentPage === page
-                        ? 'bg-cyan-500 text-[#07090e] font-bold shadow-md shadow-cyan-500/20'
-                        : 'bg-[#F8FAFC] text-[#475569] hover:text-white border border-[#E2E8F0]'
+                        ? 'bg-[#1D4ED8] text-white font-bold shadow-sm'
+                        : 'bg-[#F8FAFC] text-[#475569] hover:text-[#0F172A] border border-[#E2E8F0]'
                     }`}
                   >
                     {page}
@@ -548,7 +547,7 @@ export default function ScanHistoryView({
                 type="button"
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
-                className="p-1.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed"
+                className="p-1.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] text-[#334155] hover:text-[#0F172A] disabled:opacity-40 disabled:cursor-not-allowed"
                 title="Next page"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -560,18 +559,18 @@ export default function ScanHistoryView({
 
       {/* 5. Detail View Drawer / Modal */}
       {selectedRecord && (
-        <div className="cyber-card p-5 sm:p-6 border-cyan-500/30 space-y-5 bg-white relative animate-fadeIn">
+        <div className="cyber-card p-5 sm:p-6 border-[#CBD5E1] space-y-5 bg-white relative animate-fadeIn shadow-lg">
           <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
             <div className="flex items-center space-x-2">
-              <FileText className="w-4 h-4 text-[#0F172A]" />
-              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-white">
+              <FileText className="w-4 h-4 text-[#1D4ED8]" />
+              <h3 className="text-xs font-bold font-mono uppercase tracking-wider text-[#0F172A]">
                 Audit Record Dossier — ID #{selectedRecord.id}
               </h3>
             </div>
             <button
               type="button"
               onClick={() => setSelectedRecord(null)}
-              className="text-[#475569] hover:text-white p-1 rounded hover:bg-[#F8FAFC]"
+              className="text-[#475569] hover:text-[#0F172A] p-1 rounded hover:bg-[#F8FAFC]"
               title="Close dossier"
             >
               <X className="w-4 h-4" />
@@ -581,7 +580,7 @@ export default function ScanHistoryView({
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
             <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
               <span className="text-[10px] text-[#64748B] uppercase block">Scan Type</span>
-              <span className="text-white font-bold uppercase mt-0.5 block flex items-center gap-1.5">
+              <span className="text-[#0F172A] font-bold uppercase mt-0.5 block flex items-center gap-1.5">
                 {selectedRecord.scan_type?.toLowerCase() === 'sms' ? (
                   <MessageSquare className="w-3.5 h-3.5 text-purple-400" />
                 ) : selectedRecord.scan_type?.toLowerCase() === 'screenshot' ? (
@@ -667,7 +666,7 @@ export default function ScanHistoryView({
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 font-mono text-[11px]">
               <div>
                 <span className="text-[#64748B] block text-[10px]">Identified Entity:</span>
-                <span className="text-white font-bold">
+                <span className="text-[#0F172A] font-bold">
                   {selectedRecord.target_brand || 'No Bank Brand Identified'}
                 </span>
               </div>
